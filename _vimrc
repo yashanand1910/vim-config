@@ -1,5 +1,6 @@
 syntax on
-:set number relativenumber autochdir hls is
+:set number relativenumber autochdir hls is nocp
+filetype plugin on
 :set termwinsize=12x200
 let g:netrw_winsize = 20
 
@@ -16,17 +17,27 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " END LIST OF PLUGINS
 
 " BEGIN INITIAL CONFIGURATION
 
 let g:ale_fixers = {
-\	'typescript': ['prettier', 'eslint']
+\	'typescript': ['prettier', 'eslint'],
+\	'html': ['prettier', 'eslint'],
+\	'scss': ['prettier', 'stylelint']
 \}	
+let g:ale_linters = {
+\	'typescript': ['eslint'],
+\	'html': ['eslint'],
+\	'scss': ['stylelint']
+\}
+
 
 let g:deoplete#enable_at_startup = 1
 let g:ale_lint_delay = 200
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "END INITIAL CONFIGURATION
 
