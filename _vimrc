@@ -1,13 +1,8 @@
-call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
+syntax on
+:set number relativenumber autochdir hls is
+:set termwinsize=12x200
 
-" Make sure you use single quotes
+call plug#begin()
 
 " BEGIN LIST OF PLUGINS
 
@@ -15,8 +10,39 @@ Plug 'mattn/emmet-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
+Plug 'jiangmiao/auto-pairs'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " END LIST OF PLUGINS
 
-" Initialize plugin system
+" BEGIN INITIAL CONFIGURATION
+
+let g:ale_fixers = {
+\	'typescript': ['prettier', 'eslint']
+\}	
+
+let g:deoplete#enable_at_startup = 1
+let g:ale_lint_delay = 200
+
+"END INITIAL CONFIGURATION
+
+" BEGIN KEYBINDS
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" END KEYBINDS
+
 call plug#end()
+
+" BEGIN ADDITIONAL CONFIGURATION
+
+call deoplete#custom#option('sources', {
+\ '_': ['ale']
+\})
+
+" END ADDITIONAL CONFIGURATION
+
