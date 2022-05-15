@@ -2,6 +2,7 @@ syntax on
 :set number relativenumber autochdir hls is
 :set termwinsize=12x200
 let g:netrw_winsize = 20
+:set backspace=indent,eol,start " For macOS
 
 call plug#begin()
 
@@ -27,15 +28,14 @@ let g:ale_fixers = {
 \	'html': ['prettier', 'eslint'],
 \	'scss': ['prettier', 'stylelint']
 \}	
-" let g:ale_linters = {
-" \	'typescript': ['eslint'],
-" \	'html': ['eslint'],
-" \	'scss': ['stylelint']
-" \}
+let g:ale_linters = {
+\	'html': ['eslint'],
+\	'scss': ['stylelint']
+\}
 
 
 let g:deoplete#enable_at_startup = 1
-let g:ale_lint_delay = 50
+let g:ale_lint_delay = 200
 let g:ale_fix_on_save = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
