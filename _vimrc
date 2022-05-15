@@ -1,4 +1,5 @@
 syntax on
+colorscheme molokai
 :set number relativenumber autochdir hls is
 :set termwinsize=12x200
 let g:netrw_winsize = 20
@@ -18,6 +19,8 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " END LIST OF PLUGINS
 
