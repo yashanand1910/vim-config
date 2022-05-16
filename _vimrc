@@ -1,28 +1,22 @@
-syntax on
-colorscheme molokai
-:set number relativenumber autochdir hls is
-:set termwinsize=12x200
-let g:netrw_winsize = 20
+set nocompatible 
+syntax enable
+filetype indent plugin on
+
+:set number relativenumber hls is
 :set backspace=indent,eol,start " For macOS
+set wildmenu
 
-call plug#begin()
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
 
-" BEGIN LIST OF PLUGINS
-
-Plug 'mattn/emmet-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-commentary'
-Plug 'dense-analysis/ale'
-Plug 'jiangmiao/auto-pairs'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
-" END LIST OF PLUGINS
+set t_Co=256
+set background=dark
+set number
+set laststatus=2
+colorscheme PaperColor
 
 " BEGIN INITIAL CONFIGURATION
 
@@ -36,13 +30,12 @@ let g:ale_linters = {
 \	'scss': ['stylelint']
 \}
 
-
-let g:deoplete#enable_at_startup = 1
+let g:ale_completion_enabled = 1
 let g:ale_lint_delay = 200
 let g:ale_fix_on_save = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-"END INITIAL CONFIGURATION
+" END INITIAL CONFIGURATION
 
 " BEGIN KEYBINDS
 
@@ -51,13 +44,25 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " END KEYBINDS
 
+call plug#begin()
+
+" BEGIN LIST OF PLUGINS
+
+Plug 'mattn/emmet-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'dense-analysis/ale'
+Plug 'jiangmiao/auto-pairs'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
+
+" END LIST OF PLUGINS
+
 call plug#end()
 
 " BEGIN ADDITIONAL CONFIGURATION
-
-call deoplete#custom#option('sources', {
-\ '_': ['ale']
-\})
 
 " END ADDITIONAL CONFIGURATION
 
