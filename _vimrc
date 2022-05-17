@@ -1,6 +1,6 @@
 set nocompatible 
 syntax enable
-filetype indent plugin on
+filetype plugin on
 
 :set number relativenumber hls is
 :set backspace=indent,eol,start " For macOS
