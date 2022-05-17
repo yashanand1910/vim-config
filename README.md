@@ -1,6 +1,6 @@
 ## My vim & tmux configuration
 
-#### Config for git
+### Config for git
 To use vimdiff as difftool and mergetool
 ```
 git config --global diff.tool vimdiff
