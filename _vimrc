@@ -51,7 +51,7 @@ call plug#begin()
 Plug 'mattn/emmet-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
