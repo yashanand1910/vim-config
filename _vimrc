@@ -16,6 +16,13 @@ set t_Co=256
 set background=dark
 set number
 set laststatus=2
+let g:PaperColor_Theme_Options = {
+\	'theme': {
+\		'default': {
+\			'transparent_background': 1
+\		}
+\	}
+\}
 colorscheme PaperColor
 
 " BEGIN INITIAL CONFIGURATION
