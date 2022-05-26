@@ -1,5 +1,14 @@
 ## My vim & tmux configuration
 
+### Install vim-plug
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+```
+:PlugInst
+```
+
 ### Config for git
 To use vimdiff as difftool and mergetool
 ```
