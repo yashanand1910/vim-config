@@ -20,7 +20,7 @@ git config merge.tool vimdiff
 git config merge.conflictstyle diff3
 git config mergetool.prompt false
 ```
-Install bash-git-prompt
+[For bash] Install bash-git-prompt
 ```shell
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 ```
@@ -31,6 +31,7 @@ if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
 ```
+[For zsh] Use (zsh-git-prompt)[https://github.com/olivierverdier/zsh-git-prompt]
 
 ### Install fzf
 ```shell
