@@ -4,6 +4,7 @@ filetype plugin on
 
 " set expandtab
 " set shiftwidth=4
+:set tabstop=4
 :set number relativenumber hls is
 :set backspace=indent,eol,start " For macOS
 set wildmenu
@@ -56,7 +57,7 @@ call plug#begin()
 Plug 'mattn/emmet-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
