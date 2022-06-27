@@ -19,13 +19,6 @@ set t_Co=256
 set background=dark
 set number
 set laststatus=2
-let g:PaperColor_Theme_Options = {
-\	'theme': {
-\		'default': {
-\			'transparent_background': 1
-\		}
-\	}
-\}
 colorscheme PaperColor
 
 " BEGIN INITIAL CONFIGURATION
@@ -36,10 +29,13 @@ let g:ale_fixers = {
 \	'scss': ['prettier', 'stylelint']
 \}	
 let g:ale_linters = {
+\       'c': ['clang'],
+\       'cpp': ['clang', 'g++'],
 \	'html': ['eslint'],
 \	'scss': ['stylelint']
 \}
 
+" let g:ale_cpp_gcc_options = '-std=c++11'
 let g:ale_completion_enabled = 1
 let g:ale_lint_delay = 200
 let g:ale_fix_on_save = 1
