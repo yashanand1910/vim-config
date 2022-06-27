@@ -1,7 +1,10 @@
 set nocompatible 
 syntax enable
 filetype plugin on
+filetype indent on
 
+set expandtab
+set shiftwidth=4
 :set number relativenumber hls is
 :set backspace=indent,eol,start " For macOS
 set wildmenu
