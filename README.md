@@ -1,5 +1,12 @@
 ## My vim & tmux configuration
 
+### Create symlinks
+After cloning this repository, create the symlinks
+```
+ln -s ~/work/config/_vimrc ~/.vimrc
+ln -s ~/work/config/colors ~/.vim/colors
+ln -s ~/work/config/_tmux.conf ~/.tmux.conf
+```
 ### Install vim-plug
 ```shell
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -8,7 +15,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```shell
 :PlugInst
 ```
-
 ### Config for git
 To use vimdiff as difftool and mergetool
 ```shell
