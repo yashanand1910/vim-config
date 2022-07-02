@@ -47,7 +47,10 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <C-p> <Plug>(fzf-files)
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>c :Commits<CR>
+nnoremap <silent> <Leader>s :GFiles?<CR>
 
 " END KEYBINDS
 
@@ -55,16 +58,15 @@ call plug#begin()
 
 " BEGIN LIST OF PLUGINS
 
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-" Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'ctrlpvim/ctrlp.vim' " redundant when using fzf
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
+Plug 'puremourning/vimspector'
 
 " END LIST OF PLUGINS
 

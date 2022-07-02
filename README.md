@@ -36,7 +36,16 @@ fi
 ### Install fzf
 ```shell
 brew install fzf
+brew install ripgrep
 
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
+```
+
+### Tell fzf to use ripgrep, put in `.zshrc` or `.bashrc`
+```
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 ```
