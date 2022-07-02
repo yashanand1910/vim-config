@@ -2,8 +2,8 @@ set nocompatible
 syntax enable
 filetype plugin on
 
-" set expandtab
-" set shiftwidth=4
+set expandtab
+set shiftwidth=4
 :set tabstop=4
 :set number relativenumber hls is
 :set backspace=indent,eol,start " For macOS
@@ -47,6 +47,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-p> <Plug>(fzf-files)
 
 " END KEYBINDS
 
@@ -54,12 +55,14 @@ call plug#begin()
 
 " BEGIN LIST OF PLUGINS
 
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim' " redundant when using fzf
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 
