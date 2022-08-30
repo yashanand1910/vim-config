@@ -58,6 +58,7 @@ call plug#begin()
 
 " BEGIN LIST OF PLUGINS
 
+Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
