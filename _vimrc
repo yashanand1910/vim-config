@@ -21,6 +21,8 @@ set number
 set laststatus=2
 colorscheme PaperColor
 
+let g:vimtex_view_method = 'skim'
+
 " BEGIN INITIAL CONFIGURATION
 
 let g:ale_fixers = {
@@ -29,8 +31,8 @@ let g:ale_fixers = {
 \	'scss': ['prettier', 'stylelint']
 \}	
 let g:ale_linters = {
-\       'c': ['clang'],
-\       'cpp': ['clang', 'g++'],
+\   'c': ['clang'],
+\   'cpp': ['clang', 'g++'],
 \	'html': ['eslint'],
 \	'scss': ['stylelint']
 \}
