@@ -18,11 +18,7 @@ set t_Co=256
 set background=dark
 set number
 set laststatus=2
-colorscheme PaperColor
-
-let g:vimtex_view_method = 'skim'
-let g:vimtex_view_skim_sync = 1
-let g:vimtex_view_skim_reading_bar = 1
+" colorscheme PaperColor
 
 " BEGIN INITIAL CONFIGURATION
 
