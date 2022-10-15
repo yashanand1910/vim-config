@@ -14,40 +14,50 @@ let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 
-set t_Co=256
-set background=dark
-set number
-set laststatus=2
-" colorscheme PaperColor
-
 " BEGIN INITIAL CONFIGURATION
 
-let g:ale_fixers = {
-\	'typescript': ['prettier', 'eslint'],
-\	'javascript': ['prettier', 'eslint'],
-\	'html': ['prettier'],
-\	'scss': ['prettier', 'stylelint'],
-\   'tex': ['latexindent']
-\}	
-let g:ale_linters = {
-\   'c': ['clang'],
-\   'cpp': ['clang', 'g++'],
-\	'html': ['prettier'],
-\	'scss': ['stylelint'],
-\   'tex': ['latexindent']
-\}
+" COC:
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
 
-" let g:ale_cpp_gcc_options = '-std=c++11'
-let g:ale_completion_enabled = 1
-let g:ale_lint_delay = 200
-let g:ale_fix_on_save = 1
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" use <tab> for trigger completion and navigate to the next complete item
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" inoremap <silent><expr> <Tab>
+"       \ coc#pum#visible() ? coc#pum#next(1) :
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" For JSON comments
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " END INITIAL CONFIGURATION
 
 " BEGIN KEYBINDS
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
@@ -66,19 +76,34 @@ Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-Plug 'dense-analysis/ale'
+Plug 'pangloss/vim-javascript'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'turbio/bracey.vim'
 Plug 'puremourning/vimspector'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ayu-theme/ayu-vim'
 
 " END LIST OF PLUGINS
 
 call plug#end()
 
 " BEGIN ADDITIONAL CONFIGURATION
+
+" This is only necessary if you use "set termguicolors".
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" fixes glitch? in colors when using vim with tmux
+set background=dark
+set t_Co=256
+set termguicolors     " enable true colors support
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 
 " END ADDITIONAL CONFIGURATION
 
