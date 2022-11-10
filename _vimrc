@@ -1,11 +1,18 @@
 set nocompatible 
 syntax enable
 filetype plugin on
+set exrc
+set hidden
+set noerrorbells
+set scrolloff=8
+set smartcase
+set ignorecase
 set expandtab
+set smartindent
 set shiftwidth=4
-:set tabstop=4
-:set number relativenumber hls is
-:set backspace=indent,eol,start " For macOS
+set tabstop=4 softtabstop=4
+set number relativenumber nohls incsearch
+set backspace=indent,eol,start " For macOS
 set wildmenu
 
 let g:netrw_banner=0
@@ -14,7 +21,20 @@ let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 
+let g:tex_flavor='latex' 
+let g:vimtex_view_method = 'skim' 
+let g:vimtex_view_skim_sync = 1 
+let g:vimtex_view_skim_activate = 1 
+
 " BEGIN INITIAL CONFIGURATION
+
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
 
 " COC:
 " Some servers have issues with backup files, see #649.
@@ -29,16 +49,18 @@ set signcolumn=yes
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" use <tab> for trigger completion and navigate to the next complete item
-" function! CheckBackspace() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+" For JSON comments
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
-" inoremap <silent><expr> <Tab>
-"       \ coc#pum#visible() ? coc#pum#next(1) :
-"       \ CheckBackspace() ? "\<Tab>" :
-"       \ coc#refresh()
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
+
+let test#vim#term_position = "topleft 15"
+let test#strategy = "vimterminal"
+
+" END INITIAL CONFIGURATION
+
+" BEGIN KEYBINDS
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -50,13 +72,31 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+"
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
-" For JSON comments
-autocmd FileType json syntax match Comment +\/\/.\+$+
+" Applying codeAction to the selected region.
+" " Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" END INITIAL CONFIGURATION
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+"
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
-" BEGIN KEYBINDS
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Testing
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>A :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>G :TestVisit<CR>
 
 nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
@@ -85,6 +125,9 @@ Plug 'turbio/bracey.vim'
 Plug 'puremourning/vimspector'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ayu-theme/ayu-vim'
+Plug 'tpope/vim-surround' 
+Plug 'vim-test/vim-test'
+Plug 'tpope/vim-fugitive'
 
 " END LIST OF PLUGINS
 
