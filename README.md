@@ -25,9 +25,9 @@ git config --global diff.tool vimdiff
 git config --global difftool.prompt false
 ```
 ```shell
-git config merge.tool vimdiff
-git config merge.conflictstyle diff3
-git config mergetool.prompt false
+git config --global merge.tool vimdiff
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
 ```
 Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 ```shell
