@@ -1,4 +1,4 @@
-## My vim & tmux configuration
+## Config
 
 ### Create symlinks
 After cloning this repository, create the symlinks
