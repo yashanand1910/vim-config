@@ -78,7 +78,6 @@ plugins=(
 )
 
 export FZF_BASE=~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files'
 
 source $ZSH/oh-my-zsh.sh
 
