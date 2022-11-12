@@ -75,7 +75,6 @@ plugins=(
     fzf
     zsh-autosuggestions
     web-search
-    macos
 )
 
 export FZF_BASE=~/.fzf.zsh
