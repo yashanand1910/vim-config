@@ -7,6 +7,8 @@ After cloning this repository, create the symlinks
 ln -s ~/work/config/_vimrc ~/.vimrc
 ln -s ~/work/config/colors ~/.vim/colors
 ln -s ~/work/config/_tmux.conf ~/.tmux.conf
+ln -s ~/work/config/_zshrc ~/.zshrc
+ln -s ~/work/config/_alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
 ### Install vim-plug
 ```shell
@@ -27,18 +29,10 @@ git config merge.tool vimdiff
 git config merge.conflictstyle diff3
 git config mergetool.prompt false
 ```
-[For bash] Install bash-git-prompt
+Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 ```shell
-git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-Add to the ~/.bashrc
-```shell
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-    GIT_PROMPT_ONLY_IN_REPO=1
-    source $HOME/.bash-git-prompt/gitprompt.sh
-fi
-```
-[For zsh] Use (zsh-git-prompt)[https://github.com/olivierverdier/zsh-git-prompt]
 
 ### Install fzf
 ```shell
@@ -48,11 +42,9 @@ brew install ripgrep
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 ```
-
-### Tell fzf to use ripgrep, put in `.zshrc` or `.bashrc`
-```
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
+Alternatively,
+```shell
+sudo yum install ripgrep
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
