@@ -1,4 +1,5 @@
 ## Config
+Hosts my zsh, vim, tmux & alacritty configuration for sync across hosts.
 
 ### Create symlinks
 After cloning this repository, create the symlinks
