@@ -49,6 +49,9 @@ set signcolumn=yes
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Use <ctrl-space> to trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
+
 " For JSON comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -128,6 +131,8 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'tpope/vim-surround' 
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " END LIST OF PLUGINS
 
