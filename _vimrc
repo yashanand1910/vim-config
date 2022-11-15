@@ -14,6 +14,7 @@ set tabstop=4 softtabstop=4
 set number relativenumber nohls incsearch
 set backspace=indent,eol,start " For macOS
 set wildmenu
+set nowrap
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -151,7 +152,7 @@ set termguicolors     " enable true colors support
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
+" colorscheme Ayu
+colorscheme PaperColor
 
 " END ADDITIONAL CONFIGURATION
-
