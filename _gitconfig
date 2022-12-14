@@ -1,0 +1,28 @@
+[alias]
+  s = status
+  c = commit
+  co = checkout
+  b = branch
+  pl = pull
+  p = push
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+  hideResolved = true
+	prompt = false
+	keepBackup = false
+[mergetool "vimdiff"]
+  path = lvim
+  trustExitCode = false
+  layout = "LOCAL,MERGED,REMOTE"
+[commit]
+  path = lvim
+[user]
+	name = Yash Anand
+	email = yashanand1910@gmail.com
+	signingkey = E7FCB215C3E09149
+[commit]
+	gpgsign = true
