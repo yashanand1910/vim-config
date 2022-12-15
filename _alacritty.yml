@@ -3,7 +3,7 @@ window:
     columns: 300
     lines: 75
   decorations: buttonless
-  opacity: 0.8
+  opacity: 0.75
   padding:
     x: 3
     y: 3

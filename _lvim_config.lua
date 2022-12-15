@@ -6,8 +6,8 @@ vim.opt.termguicolors = true
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "tokyonight-night"
-lvim.transparent_window = true
+-- lvim.colorscheme = "tokyonight-night"
+-- lvim.transparent_window = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -20,8 +20,8 @@ lvim.builtin.which_key.mappings["l"]["t"] = { "<cmd>TroubleToggle document_diagn
 lvim.builtin.which_key.mappings["l"]["T"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble (Workspace)" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>Telescope live_grep<cr>", "Live grep" }
 -- diffview
-lvim.builtin.which_key.mappings["g"]["dd"] = { "<cmd>DiffviewOpen<cr>", "Diffview Open" }
-lvim.builtin.which_key.mappings["g"]["dq"] = { "<cmd>DiffviewClose<cr>", "Diffview Open" }
+lvim.builtin.which_key.mappings["g"]["DD"] = { "<cmd>DiffviewOpen<cr>", "Diffview Open" }
+lvim.builtin.which_key.mappings["g"]["DQ"] = { "<cmd>DiffviewClose<cr>", "Diffview Open" }
 -- vim-test
 lvim.builtin.which_key.mappings["t"] = {
   name = "Test",
@@ -130,7 +130,7 @@ lvim.builtin.treesitter.highlight.enable = true
 -- }
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.installer.setup.automatic_installation = false
+lvim.lsp.installer.setup.automatic_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
@@ -237,8 +237,7 @@ lvim.plugins = {
       table.insert(config.sources, {
         name = 'git'
       })
-      cmp.setup(config)
-      require("cmp_git").setup()
+      require("cmp_git").setup(config)
     end
   },
   { "editorconfig/editorconfig-vim" },
@@ -247,7 +246,8 @@ lvim.plugins = {
     config = function ()
       require("scope").setup()
     end
-  }
+  },
+  -- { "nvim-treesitter/nvim-treesitter-angular" }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
