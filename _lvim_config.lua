@@ -2,6 +2,8 @@
 vim.opt.relativenumber = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
+vim.opt.clipboard = ""
+vim.opt.mouse = ""
 
 -- general
 lvim.log.level = "warn"
@@ -50,14 +52,21 @@ lvim.builtin.which_key.mappings["G"] = {
   A = { "<cmd>G add .<cr>", "Add all" },
   c = { "<cmd>G commit<cr>", "Commit" },
   C = { "<cmd>G add . | G commit<cr>", "Commit all" },
-  s = { "<cmd>G status<cr>", "Status" },
+  s = { "<cmd>G<cr>", "Status" },
   l = { "<cmd>G blame<cr>", "Blame" },
   L = { "<cmd>Gclog<cr>", "Log" },
   B = { "<cmd>GBrowse<cr>", "Browse" },
   p = { "<cmd>G -c push.default=current push<cr>", "Push" }
 }
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+-- other
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"   -- move line down in visual mode
+lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"   -- move line up in visual mode 
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"        -- scroll half page down and recenter
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"        -- scroll half page up and recenter
+lvim.keys.insert_mode["<C-a>"] = "<C-o>A"         -- 'A' when in insert mode
+lvim.keys.normal_mode["<leader>R"] = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -92,7 +101,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -140,15 +149,20 @@ lvim.lsp.installer.setup.automatic_installation = false
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "angularls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "prettier"
+  }
+}
 -- formatters.setup {
 --   { command = "black", filetypes = { "python" } },
 --   { command = "isort", filetypes = { "python" } },
@@ -164,10 +178,21 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- }
 
 -- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---   { command = "mvn spotbugs:check", filetypes = { "java" } }
--- }
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    command = "eslint"
+  },
+  {
+    command = "stylelint"
+  }
+}
+local actions = require "lvim.lsp.null-ls.code_actions"
+actions.setup {
+  {
+    command = "eslint"
+  }
+}
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
 --   {
@@ -199,7 +224,7 @@ lvim.plugins = {
   }, {
     "vim-test/vim-test",
     config = function()
-      vim.g["test#strategy"] = "neovim"
+      vim.g["test#strategy"] = "vimux"
       vim.g["test#neovim#term_position"] = "botright 25"
     end
   }, {
@@ -243,7 +268,7 @@ lvim.plugins = {
   { "editorconfig/editorconfig-vim" },
   { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
   { "tiagovla/scope.nvim",
-    config = function ()
+    config = function()
       require("scope").setup()
     end
   },
