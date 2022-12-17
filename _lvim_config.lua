@@ -323,8 +323,6 @@ lvim.plugins = {
 				vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol_text" })
 				vim_item.menu = source_names[entry.source.name]
 				if lvim.use_icons then
-					vim_item.kind = lvim.builtin.cmp.formatting.kind_icons[vim_item.kind]
-
 					if entry.source.name == "copilot" then
 						vim_item.kind_hl_group = "CmpItemKindCopilot"
 					end
@@ -362,6 +360,32 @@ lvim.plugins = {
 	},
 	{ "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
 }
+
+-- DAP config
+local dap = require("dap")
+local mason_registry = require("mason-registry")
+
+dap.adapters.firefox = {
+	type = "executable",
+	command = "node",
+	args = {
+		mason_registry.get_package("firefox-debug-adapter"):get_install_path() .. "/dist/adapter.bundle.js",
+	},
+}
+
+require("dap.ext.vscode").load_launchjs(".dap/launch.json", { firefox = { "typescript", "javascript" } })
+
+-- dap.configurations.typescript = {
+-- 	{
+-- 		name = "Debug with Firefox",
+-- 		type = "firefox",
+-- 		request = "launch",
+-- 		reAttach = true,
+-- 		url = "http://localhost:4200",
+-- 		webRoot = "${workspaceFolder}",
+-- 		firefoxExecutable = "/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox",
+-- 	},
+-- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
