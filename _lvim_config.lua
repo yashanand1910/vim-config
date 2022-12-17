@@ -313,27 +313,48 @@ lvim.plugins = {
 	{
 		"onsails/lspkind.nvim",
 		config = function()
-      -- Override CMP formatter (which is set by LVIM)
+			-- Override CMP formatter (which is set by LVIM)
 			local lspkind = require("lspkind")
 			local source_names = lvim.builtin.cmp.formatting.source_names
-      lvim.builtin.cmp.formatting.max_width = 80
+			lvim.builtin.cmp.formatting.max_width = 80
 			lvim.builtin.cmp.formatting.format = function(entry, vim_item)
 				-- if you have lspkind installed, you can use it like
 				-- in the following line:
 				vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol_text" })
 				vim_item.menu = source_names[entry.source.name]
-				if entry.source.name == "cmp_tabnine" then
-					local detail = (entry.completion_item.data or {}).detail
-					vim_item.kind = ""
-					if detail and detail:find(".*%%.*") then
-						vim_item.kind = vim_item.kind .. " " .. detail
+				if lvim.use_icons then
+					vim_item.kind = lvim.builtin.cmp.formatting.kind_icons[vim_item.kind]
+
+					if entry.source.name == "copilot" then
+						vim_item.kind_hl_group = "CmpItemKindCopilot"
 					end
 
-					if (entry.completion_item.data or {}).multiline then
-						vim_item.kind = vim_item.kind .. " " .. "[ML]"
+					if entry.source.name == "cmp_tabnine" then
+						vim_item.kind_hl_group = "CmpItemKindTabnine"
+						local detail = (entry.completion_item.data or {}).detail
+						vim_item.kind = ""
+						if detail and detail:find(".*%%.*") then
+							vim_item.kind = vim_item.kind .. " " .. detail
+						end
+
+						if (entry.completion_item.data or {}).multiline then
+							vim_item.kind = vim_item.kind .. " " .. "[ML]"
+						end
+					end
+
+					if entry.source.name == "crates" then
+						vim_item.kind_hl_group = "CmpItemKindCrate"
+					end
+
+					if entry.source.name == "lab.quick_data" then
+						vim_item.kind_hl_group = "CmpItemKindConstant"
+					end
+
+					if entry.source.name == "emoji" then
+						vim_item.kind_hl_group = "CmpItemKindEmoji"
 					end
 				end
-        local max_width = lvim.builtin.cmp.formatting.max_width
+				local max_width = lvim.builtin.cmp.formatting.max_width
 				vim_item.abbr = string.sub(vim_item.abbr, 1, max_width)
 				return vim_item
 			end
