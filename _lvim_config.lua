@@ -58,6 +58,9 @@ lvim.builtin.which_key.mappings["G"] = {
 	B = { "<cmd>GBrowse<cr>", "Browse" },
 	p = { "<cmd>G -c push.default=current push<cr>", "Push" },
 }
+-- lspsaga
+lvim.builtin.which_key.mappings["l"]["a"] = { "<cmd>Lspsaga code_action<CR>", "Code Action"}
+lvim.builtin.which_key.mappings["l"]["o"] = { "<cmd>Lspsaga outline<CR>", "Code Outline"}
 -- other
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -144,7 +147,6 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pyright", opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
@@ -159,7 +161,7 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{
-		command = "prettier",
+		command = "prettierd",
 	},
 	{
 		command = "black",
@@ -186,7 +188,7 @@ formatters.setup({
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
 	{
-		command = "eslint",
+		command = "eslint_d",
 	},
 	{
 		command = "stylelint",
@@ -195,10 +197,12 @@ linters.setup({
 		command = "pylint",
 	},
 })
+
+-- set code actions
 local actions = require("lvim.lsp.null-ls.code_actions")
 actions.setup({
 	{
-		command = "eslint",
+		command = "eslint_d",
 	},
 })
 -- linters.setup {
@@ -298,7 +302,7 @@ lvim.plugins = {
 			require("scope").setup()
 		end,
 	},
-	-- { "nvim-treesitter/nvim-treesitter-angular" }
+	-- { "nvim-treesitter/nvim-treesitter-angular" },
 	{
 		"tzachar/cmp-tabnine",
 		run = "./install.sh",
@@ -358,7 +362,19 @@ lvim.plugins = {
 			end
 		end,
 	},
+	{
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+		config = function()
+			local saga = require("lspsaga")
+
+			saga.init_lsp_saga({
+				-- your configuration
+			})
+		end,
+	},
 	{ "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
+	{ "tpope/vim-surround" },
 }
 
 -- DAP config

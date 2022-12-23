@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 
 return {
+	-- term = "wezterm",
 	font = wezterm.font({ family = "JetBrainsMono Nerd Font", weight = "Regular" }),
 	font_rules = {
 		{
@@ -11,7 +12,7 @@ return {
 			}),
 		},
 	},
-	font_antialias = "Subpixel",
+	-- font_antialias = "Subpixel",
 	font_size = 13,
 	line_height = 1,
 	bold_brightens_ansi_colors = true,
