@@ -5,7 +5,7 @@ Hosts my zsh, vim, tmux & alacritty configuration for sync across hosts.
 After cloning this repository, create the symlinks
 ```
 ln -s ~/work/dotfiles/.vimrc ~/.vimrc
-ln -s ~/work/dotfiles/.config.lua ~/.config/lvim/config.lua
+ln -s ~/work/dotfiles/config.lua ~/.config/lvim/config.lua
 ln -s ~/work/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/work/dotfiles/colors ~/.vim/colors
 ln -s ~/work/dotfiles/.tmux.conf ~/.tmux.conf
