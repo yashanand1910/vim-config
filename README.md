@@ -10,7 +10,7 @@ ln -s ~/work/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/work/dotfiles/colors ~/.vim/colors
 ln -s ~/work/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/work/dotfiles/.zshrc ~/.zshrc
-ln -s ~/work/dotfiles/.alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s ~/work/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
 
 ### Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
