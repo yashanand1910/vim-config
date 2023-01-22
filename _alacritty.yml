@@ -1,7 +1,7 @@
 window:
   dimensions:
-    columns: 300
-    lines: 75
+    columns: 240
+    lines: 61
   decorations: buttonless
   opacity: 0.9
   padding:
@@ -11,7 +11,7 @@ window:
 
 font:
   builtin_box_drawing: true
-  size: 13
+  size: 14
   normal:
     family: JetBrainsMono Nerd Font
     style: Light

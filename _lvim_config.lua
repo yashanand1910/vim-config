@@ -3,13 +3,13 @@ vim.opt.relativenumber = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.clipboard = ""
-vim.opt.mouse = ""
+-- vim.opt.mouse = ""
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 -- lvim.colorscheme = "tokyonight-night"
-lvim.transparent_window = true
+-- lvim.transparent_window = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -59,8 +59,7 @@ lvim.builtin.which_key.mappings["G"] = {
 	p = { "<cmd>G -c push.default=current push<cr>", "Push" },
 }
 -- lspsaga
-lvim.builtin.which_key.mappings["l"]["a"] = { "<cmd>Lspsaga code_action<CR>", "Code Action"}
-lvim.builtin.which_key.mappings["l"]["o"] = { "<cmd>Lspsaga outline<CR>", "Code Outline"}
+lvim.builtin.which_key.mappings["l"]["o"] = { "<cmd>Lspsaga outline<CR>", "Code Outline" }
 -- other
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -69,7 +68,9 @@ lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv" -- move line up in visual mode
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz" -- scroll half page down and recenter
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz" -- scroll half page up and recenter
 lvim.keys.insert_mode["<C-a>"] = "<C-o>A" -- 'A' when in insert mode
-lvim.keys.normal_mode["<leader>R"] = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>"
+lvim.builtin.which_key.mappings["R"] = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Swap current word" }
+lvim.builtin.which_key.mappings["Q"] = { "<cmd>quitall<cr>", "Quit all" }
+lvim.builtin.which_key.mappings["W"] = { "<cmd>wall<cr>", "Save all" }
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -161,7 +162,7 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{
-		command = "prettierd",
+		command = "prettier",
 	},
 	{
 		command = "black",
@@ -188,13 +189,16 @@ formatters.setup({
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
 	{
-		command = "eslint_d",
+		command = "eslint",
 	},
 	{
 		command = "stylelint",
 	},
 	{
 		command = "pylint",
+	},
+	{
+		command = "write_good",
 	},
 })
 
@@ -221,9 +225,6 @@ actions.setup({
 --   },
 -- }
 
--- DAP config
--- require "lvim.core.dap"
-
 -- Additional Plugins
 lvim.plugins = {
 	{
@@ -241,11 +242,15 @@ lvim.plugins = {
 		"vim-test/vim-test",
 		config = function()
 			vim.g["test#strategy"] = "vimux"
-			vim.g["test#neovim#term_position"] = "botright 25"
+			vim.g["test#neovim#term_position"] = "right 25"
+      -- vim.g["test#preserve_screen"] = 0
 		end,
 	},
 	{
 		"preservim/vimux",
+    config = function()
+      vim.g["VimuxHeight"] = "50"
+    end
 	},
 	{
 		"mattn/emmet-vim",
@@ -362,48 +367,51 @@ lvim.plugins = {
 			end
 		end,
 	},
-	{
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		config = function()
-			local saga = require("lspsaga")
-
-			saga.init_lsp_saga({
-				-- your configuration
-			})
-		end,
-	},
-	{ "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
+	-- { "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
 	{ "tpope/vim-surround" },
+	{ "tpope/vim-dispatch" },
 }
 
 -- DAP config
 local dap = require("dap")
 local mason_registry = require("mason-registry")
 
-dap.adapters.firefox = {
+dap.adapters.chrome = {
 	type = "executable",
 	command = "node",
 	args = {
-		mason_registry.get_package("firefox-debug-adapter"):get_install_path() .. "/dist/adapter.bundle.js",
+		mason_registry.get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebug.js",
 	},
 }
 
-require("dap.ext.vscode").load_launchjs(".dap/launch.json", { firefox = { "typescript", "javascript" } })
+-- see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
+dap.adapters.codelldb = {
+	type = "server",
+	port = "13000",
+	executable = {
+		command = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/adapter/codelldb",
+		args = { "--port", "13000" },
+	},
+	name = "codelldb",
+}
 
--- dap.configurations.typescript = {
--- 	{
--- 		name = "Debug with Firefox",
--- 		type = "firefox",
--- 		request = "launch",
--- 		reAttach = true,
--- 		url = "http://localhost:4200",
--- 		webRoot = "${workspaceFolder}",
--- 		firefoxExecutable = "/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox",
--- 	},
--- }
+dap.adapters.cppdbg = {
+	id = "cppdbg",
+	type = "executable",
+	command = mason_registry.get_package("cpptools"):get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7",
+}
+
+require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
+	chrome = { "typescript", "javascript" },
+	codelldb = { "c", "cpp", "rust" },
+	cppdbg = { "c", "cpp" },
+})
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   -- change directory based on buffer
+--   command = "silent! lcd %:p:h",
+-- })
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
 --   -- enable wrap mode for json files only
