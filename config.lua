@@ -243,14 +243,14 @@ lvim.plugins = {
 		config = function()
 			vim.g["test#strategy"] = "vimux"
 			vim.g["test#neovim#term_position"] = "right 25"
-      -- vim.g["test#preserve_screen"] = 0
+			-- vim.g["test#preserve_screen"] = 0
 		end,
 	},
 	{
 		"preservim/vimux",
-    config = function()
-      vim.g["VimuxHeight"] = "50"
-    end
+		config = function()
+			vim.g["VimuxHeight"] = "50"
+		end,
 	},
 	{
 		"mattn/emmet-vim",
@@ -368,8 +368,7 @@ lvim.plugins = {
 		end,
 	},
 	-- { "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
-	{ "tpope/vim-surround" },
-	{ "tpope/vim-dispatch" },
+	{ "tpope/vim-surround" }
 }
 
 -- DAP config
@@ -401,10 +400,17 @@ dap.adapters.cppdbg = {
 	command = mason_registry.get_package("cpptools"):get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7",
 }
 
+dap.adapters.ocamlearlybird = {
+	type = "executable",
+	command = "node",
+	args = { vim.fn.expand("$HOME/work/ocamlearlybird/integrations/vscode/extension.js") },
+}
+
 require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
 	chrome = { "typescript", "javascript" },
 	codelldb = { "c", "cpp", "rust" },
 	cppdbg = { "c", "cpp" },
+	ocamlearlybird = { "ocaml" },
 })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
