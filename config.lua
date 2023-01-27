@@ -170,6 +170,9 @@ formatters.setup({
 	{
 		command = "stylua",
 	},
+	{
+		command = "latexindent",
+	},
 })
 -- formatters.setup {
 --   { command = "black", filetypes = { "python" } },
@@ -199,6 +202,10 @@ linters.setup({
 	},
 	{
 		command = "write_good",
+	},
+	{
+		command = "proselint",
+		filetypes = { "tex" },
 	},
 })
 
@@ -368,7 +375,7 @@ lvim.plugins = {
 		end,
 	},
 	-- { "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
-	{ "tpope/vim-surround" }
+	{ "tpope/vim-surround" },
 }
 
 -- DAP config
