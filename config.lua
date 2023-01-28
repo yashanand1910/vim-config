@@ -48,7 +48,7 @@ lvim.builtin.which_key.mappings["o"] = {
 lvim.builtin.which_key.mappings["G"] = {
 	name = "Fugitive",
 	w = { "<cmd>Gwrite<cr>", "Write" },
-	a = { "<cmd>G add %%<cr>", "Add" },
+	a = { "<cmd>G add %<cr>", "Add" },
 	A = { "<cmd>G add .<cr>", "Add all" },
 	c = { "<cmd>G commit<cr>", "Commit" },
 	C = { "<cmd>G add . | G commit<cr>", "Commit all" },
@@ -100,7 +100,7 @@ lvim.builtin.which_key.mappings["W"] = { "<cmd>wall<cr>", "Save all" }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
+lvim.builtin.alpha.active = false
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
