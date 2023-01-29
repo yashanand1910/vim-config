@@ -11,7 +11,7 @@ window:
 
 font:
   builtin_box_drawing: true
-  size: 14
+  size: 17
   normal:
     family: JetBrainsMono Nerd Font
     style: Light

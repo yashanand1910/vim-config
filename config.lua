@@ -102,7 +102,6 @@ lvim.builtin.which_key.mappings["W"] = { "<cmd>wall<cr>", "Save all" }
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = false
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
@@ -124,6 +123,8 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.terminal.active = true
+lvim.builtin.terminal.direction = 'horizontal'
 
 -- generic LSP settings
 
@@ -207,6 +208,9 @@ linters.setup({
 		command = "proselint",
 		filetypes = { "tex" },
 	},
+  {
+    command = "commitlint"
+  }
 })
 
 -- set code actions
@@ -248,7 +252,7 @@ lvim.plugins = {
 	{
 		"vim-test/vim-test",
 		config = function()
-			vim.g["test#strategy"] = "vimux"
+			vim.g["test#strategy"] = "toggleterm"
 			vim.g["test#neovim#term_position"] = "right 25"
 			-- vim.g["test#preserve_screen"] = 0
 		end,
@@ -376,6 +380,7 @@ lvim.plugins = {
 	},
 	-- { "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
 	{ "tpope/vim-surround" },
+	{ "ocaml/vim-ocaml" },
 }
 
 -- DAP config
@@ -420,6 +425,21 @@ require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
 	ocamlearlybird = { "ocaml" },
 })
 
+-- Fix filetype detection for ocamllex files
+-- Workaround for until this gets merged https://github.com/ocaml/vim-ocaml/pull/61
+vim.api.nvim_create_autocmd("BufEnter,BufRead", {
+	pattern = "*.mll",
+	callback = function()
+		vim.opt_local.filetype = "ocamllex"
+	end,
+})
+-- Fix filetype detection for ocamlyacc files
+vim.api.nvim_create_autocmd("BufEnter,BufRead", {
+	pattern = "*.mly",
+	callback = function()
+		vim.opt_local.filetype = "menhir"
+	end,
+})
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   -- change directory based on buffer
@@ -436,5 +456,4 @@ require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
 --     -- let treesitter use bash highlight for zsh files as well
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
--- })
 -- })
