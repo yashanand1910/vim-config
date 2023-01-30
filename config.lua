@@ -3,13 +3,13 @@ vim.opt.relativenumber = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.clipboard = ""
--- vim.opt.mouse = ""
+vim.opt.mouse = ""
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
--- lvim.colorscheme = "tokyonight-night"
 -- lvim.transparent_window = true
+lvim.colorscheme = "tokyonight-night"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -37,6 +37,13 @@ lvim.builtin.which_key.mappings["o"] = {
 	name = "Octo (GitHub)",
 	a = { "<cmd>Octo actions<cr>", "Actions" },
 	s = { "<cmd>Octo search<cr>", "Search" },
+	pl = { "<cmd>Octo pr list<cr>", "PR list" },
+	pa = { "<cmd>Octo pr create<cr>", "PR create" },
+	px = { "<cmd>Octo pr changes<cr>", "PR changes" },
+	pc = { "<cmd>Octo pr checks<cr>", "PR checks" },
+	pp = { "<cmd>Octo pr checkout<cr>", "PR checkout" },
+	pM = { "<cmd>Octo pr merge<cr>", "PR merge" },
+	pC = { "<cmd>Octo pr close<cr>", "PR close" },
 	rs = { "<cmd>Octo review start<cr>", "Start review" },
 	rS = { "<cmd>Octo review submit<cr>", "Submit review" },
 	rr = { "<cmd>Octo review resume<cr>", "Resume review" },
@@ -124,7 +131,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 lvim.builtin.terminal.active = true
-lvim.builtin.terminal.direction = 'horizontal'
+lvim.builtin.terminal.direction = "horizontal"
 
 -- generic LSP settings
 
@@ -192,6 +199,9 @@ formatters.setup({
 -- -- set additional linters
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
+  {
+    command = "actionlint"
+  },
 	{
 		command = "eslint",
 	},
@@ -208,9 +218,9 @@ linters.setup({
 		command = "proselint",
 		filetypes = { "tex" },
 	},
-  {
-    command = "commitlint"
-  }
+	{
+		command = "commitlint",
+	},
 })
 
 -- set code actions
@@ -238,6 +248,44 @@ actions.setup({
 
 -- Additional Plugins
 lvim.plugins = {
+	{
+		"wuelnerdotexe/vim-enfocado",
+		config = function()
+			vim.g["enfocado_style"] = "neon"
+		end,
+	},
+	{ "Yazeed1s/minimal.nvim" },
+	{
+		"projekt0n/github-nvim-theme",
+		version = "v0.0.7",
+	},
+	{
+		"lunarvim/Onedarker.nvim",
+	},
+  {
+    "kartikp10/noctis.nvim",
+    dependencies = { 'rktjmp/lush.nvim' }
+  },
+	{
+		"arzg/vim-colors-xcode",
+	},
+	{
+		"olivercederborg/poimandres.nvim",
+		config = function()
+			require("poimandres").setup({
+				-- leave this setup function empty for default config
+				-- or refer to the configuration section
+				-- for configuration options
+			})
+		end,
+	},
+	{
+		"Yazeed1s/oh-lucy.nvim",
+	},
+	{
+		"tiagovla/tokyodark.nvim",
+	},
+	{ "Mofiqul/dracula.nvim" },
 	{
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
@@ -274,8 +322,8 @@ lvim.plugins = {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		setup = function()
+		build = "cd app && npm install",
+		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
@@ -291,10 +339,10 @@ lvim.plugins = {
 	},
 	{
 		"pwntester/octo.nvim", -- TODO fix omni-completion and fix add comment in PR review
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
-			"kyazdani42/nvim-web-devicons",
+			-- "kyazdani42/nvim-web-devicons",
 		},
 		config = function()
 			require("octo").setup()
@@ -302,7 +350,7 @@ lvim.plugins = {
 	},
 	{
 		"petertriho/cmp-git",
-		requires = "nvim-lua/plenary.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
 		config = function()
 			table.insert(lvim.builtin.cmp.sources, {
 				name = "git",
@@ -311,7 +359,7 @@ lvim.plugins = {
 		end,
 	},
 	{ "editorconfig/editorconfig-vim" },
-	{ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
+	{ "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
 	{
 		"tiagovla/scope.nvim",
 		config = function()
@@ -321,8 +369,8 @@ lvim.plugins = {
 	-- { "nvim-treesitter/nvim-treesitter-angular" },
 	{
 		"tzachar/cmp-tabnine",
-		run = "./install.sh",
-		requires = "hrsh7th/nvim-cmp",
+		build = "./install.sh",
+		dependencies = "hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		config = function()
 			require("cmp_tabnine.config"):setup({
@@ -378,7 +426,7 @@ lvim.plugins = {
 			end
 		end,
 	},
-	-- { "aymericbeaumet/vim-symlink", requires = { "moll/vim-bbye" } },
+	-- { "aymericbeaumet/vim-symlink", dependencies = { "moll/vim-bbye" } },
 	{ "tpope/vim-surround" },
 	{ "ocaml/vim-ocaml" },
 }
