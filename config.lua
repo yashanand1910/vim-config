@@ -8,8 +8,8 @@ vim.opt.mouse = ""
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
--- lvim.transparent_window = true
-lvim.colorscheme = "tokyonight-night"
+lvim.transparent_window = true
+lvim.colorscheme = "tokyonight"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -45,12 +45,15 @@ lvim.builtin.which_key.mappings["o"] = {
 	pM = { "<cmd>Octo pr merge<cr>", "PR merge" },
 	pC = { "<cmd>Octo pr close<cr>", "PR close" },
 	rs = { "<cmd>Octo review start<cr>", "Start review" },
+	rx = { "<cmd>Octo review close<cr>", "Close review" },
 	rS = { "<cmd>Octo review submit<cr>", "Submit review" },
 	rr = { "<cmd>Octo review resume<cr>", "Resume review" },
 	rd = { "<cmd>Octo review discard<cr>", "Discard review" },
 	rC = { "<cmd>Octo review comments<cr>", "View pending review comments" },
 	rc = { "<cmd>Octo review commit<cr>", "Pick commit to review" },
 }
+-- ChatGPT
+lvim.builtin.which_key.mappings["C"] = { "<cmd>ChatGPT<cr>", "Open ChatGPT" }
 -- fugitive (git)
 lvim.builtin.which_key.mappings["G"] = {
 	name = "Fugitive",
@@ -63,7 +66,7 @@ lvim.builtin.which_key.mappings["G"] = {
 	l = { "<cmd>G blame<cr>", "Blame" },
 	L = { "<cmd>Gclog<cr>", "Log" },
 	B = { "<cmd>GBrowse<cr>", "Browse" },
-	p = { "<cmd>G -c push.default=current push<cr>", "Push" },
+	P = { "<cmd>G -c push.default=current push<cr>", "Push" },
 }
 -- lspsaga
 lvim.builtin.which_key.mappings["l"]["o"] = { "<cmd>Lspsaga outline<CR>", "Code Outline" }
@@ -163,6 +166,9 @@ lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(serve
 	return server ~= "angularls" and server ~= "sourcery"
 end, lvim.lsp.automatic_configuration.skipped_servers)
 
+require("lvim.lsp.manager").setup("eslint") -- Workaround: because null-ls eslint is pretty bad
+require("lvim.lsp.manager").setup("emmet_ls")
+
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
 
@@ -181,6 +187,9 @@ formatters.setup({
 	{
 		command = "latexindent",
 	},
+	-- {
+	--   command = "ocamlformat"
+	-- }
 })
 -- formatters.setup {
 --   { command = "black", filetypes = { "python" } },
@@ -199,11 +208,8 @@ formatters.setup({
 -- -- set additional linters
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
-  {
-    command = "actionlint"
-  },
 	{
-		command = "eslint",
+		command = "actionlint",
 	},
 	{
 		command = "stylelint",
@@ -212,11 +218,7 @@ linters.setup({
 		command = "pylint",
 	},
 	{
-		command = "write_good",
-	},
-	{
-		command = "proselint",
-		filetypes = { "tex" },
+		command = "vale",
 	},
 	{
 		command = "commitlint",
@@ -224,12 +226,12 @@ linters.setup({
 })
 
 -- set code actions
-local actions = require("lvim.lsp.null-ls.code_actions")
-actions.setup({
-	{
-		command = "eslint_d",
-	},
-})
+-- local actions = require("lvim.lsp.null-ls.code_actions")
+-- actions.setup({
+-- 	{
+-- 		command = "refactoring",
+-- 	}
+-- })
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
 --   {
@@ -248,27 +250,30 @@ actions.setup({
 
 -- Additional Plugins
 lvim.plugins = {
+	-- themes
+	{
+		"ray-x/starry.nvim",
+		enabled = false,
+		config = function()
+			vim.g.starry_italic_comments = true
+		end,
+	},
 	{
 		"wuelnerdotexe/vim-enfocado",
 		config = function()
 			vim.g["enfocado_style"] = "neon"
 		end,
 	},
-	{ "Yazeed1s/minimal.nvim" },
+	"Yazeed1s/minimal.nvim",
 	{
 		"projekt0n/github-nvim-theme",
 		version = "v0.0.7",
 	},
 	{
-		"lunarvim/Onedarker.nvim",
+		"kartikp10/noctis.nvim",
+		dependencies = { "rktjmp/lush.nvim" },
 	},
-  {
-    "kartikp10/noctis.nvim",
-    dependencies = { 'rktjmp/lush.nvim' }
-  },
-	{
-		"arzg/vim-colors-xcode",
-	},
+	"arzg/vim-colors-xcode",
 	{
 		"olivercederborg/poimandres.nvim",
 		config = function()
@@ -279,13 +284,44 @@ lvim.plugins = {
 			})
 		end,
 	},
+	"Yazeed1s/oh-lucy.nvim",
+	"tiagovla/tokyodark.nvim",
+	"Mofiqul/dracula.nvim",
+
+	-- other plugins
 	{
-		"Yazeed1s/oh-lucy.nvim",
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup()
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
 	},
 	{
-		"tiagovla/tokyodark.nvim",
+		"folke/todo-comments.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
 	},
-	{ "Mofiqul/dracula.nvim" },
+	{
+		"ruifm/gitlinker.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+	},
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	},
 	{
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
@@ -301,7 +337,7 @@ lvim.plugins = {
 		"vim-test/vim-test",
 		config = function()
 			vim.g["test#strategy"] = "toggleterm"
-			vim.g["test#neovim#term_position"] = "right 25"
+			-- vim.g["test#neovim#term_position"] = "right 25"
 			-- vim.g["test#preserve_screen"] = 0
 		end,
 	},
@@ -311,25 +347,12 @@ lvim.plugins = {
 			vim.g["VimuxHeight"] = "50"
 		end,
 	},
+	"mattn/emmet-vim",
+	"tpope/vim-fugitive",
+	"tpope/vim-rhubarb",
 	{
-		"mattn/emmet-vim",
-	},
-	{
-		"tpope/vim-fugitive",
-	},
-	{
-		"tpope/vim-rhubarb",
-	},
-	{
-		"iamcco/markdown-preview.nvim",
-		build = "cd app && npm install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
-	},
-	{
-		"lervag/vimtex",
+		"lervag/vimtex", -- TODO: fix plugin not loading
+		lazy = false,
 		config = function()
 			vim.g["tex_flavor"] = "latex"
 			vim.g["vimtex_view_method"] = "skim"
@@ -339,6 +362,7 @@ lvim.plugins = {
 	},
 	{
 		"pwntester/octo.nvim", -- TODO fix omni-completion and fix add comment in PR review
+		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
@@ -358,7 +382,7 @@ lvim.plugins = {
 			require("cmp_git").setup()
 		end,
 	},
-	{ "editorconfig/editorconfig-vim" },
+	"editorconfig/editorconfig-vim",
 	{ "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
 	{
 		"tiagovla/scope.nvim",
@@ -372,15 +396,13 @@ lvim.plugins = {
 		build = "./install.sh",
 		dependencies = "hrsh7th/nvim-cmp",
 		event = "InsertEnter",
-		config = function()
-			require("cmp_tabnine.config"):setup({
-				show_prediction_strength = true,
-			})
-		end,
+		opts = {
+			show_prediction_strength = true, -- TODO: fix / not working
+		},
 	},
 	{
 		"onsails/lspkind.nvim",
-		config = function()
+		init = function()
 			-- Override CMP formatter (which is set by LVIM)
 			local lspkind = require("lspkind")
 			local source_names = lvim.builtin.cmp.formatting.source_names
@@ -426,9 +448,9 @@ lvim.plugins = {
 			end
 		end,
 	},
-	-- { "aymericbeaumet/vim-symlink", dependencies = { "moll/vim-bbye" } },
-	{ "tpope/vim-surround" },
-	{ "ocaml/vim-ocaml" },
+	{ "aymericbeaumet/vim-symlink", dependencies = { "moll/vim-bbye" } },
+	"tpope/vim-surround",
+	"ocaml/vim-ocaml",
 }
 
 -- DAP config
