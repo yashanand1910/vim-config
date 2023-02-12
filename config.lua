@@ -24,6 +24,8 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>Telescope live_grep<cr>", "Live g
 -- diffview
 lvim.builtin.which_key.mappings["g"]["DD"] = { "<cmd>DiffviewOpen<cr>", "Diffview Open" }
 lvim.builtin.which_key.mappings["g"]["DQ"] = { "<cmd>DiffviewClose<cr>", "Diffview Open" }
+-- todo-comments
+lvim.builtin.which_key.mappings["l"]["x"] = { "<cmd>TodoTrouble<cr>", "TODOs" }
 -- vim-test
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Test",
@@ -53,7 +55,12 @@ lvim.builtin.which_key.mappings["o"] = {
 	rc = { "<cmd>Octo review commit<cr>", "Pick commit to review" },
 }
 -- ChatGPT
-lvim.builtin.which_key.mappings["C"] = { "<cmd>ChatGPT<cr>", "Open ChatGPT" }
+lvim.builtin.which_key.mappings["C"] = {
+	name = "ChatGPT",
+	C = { "<cmd>ChatGPT<cr>", "Open" },
+	a = { "<cmd>ChatGPTActAs<cr>", "Open as" },
+	e = { "<cmd>ChatGPTEditWithInstructions<cr>", "Open with edit instructions" },
+}
 -- fugitive (git)
 lvim.builtin.which_key.mappings["G"] = {
 	name = "Fugitive",
@@ -313,6 +320,9 @@ lvim.plugins = {
 	},
 	{
 		"ruifm/gitlinker.nvim",
+		config = function()
+			require("gitlinker").setup()
+		end,
 		dependencies = "nvim-lua/plenary.nvim",
 	},
 	{
