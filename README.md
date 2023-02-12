@@ -1,5 +1,5 @@
 ## dotfiles
-Hosts my zsh, vim, tmux & alacritty configuration for sync across hosts.
+Hosts my zsh, vim, tmux & kitty configuration for sync across hosts.
 
 ### Create symlinks
 After cloning this repository, create the symlinks
