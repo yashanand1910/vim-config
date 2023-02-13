@@ -75,8 +75,6 @@ lvim.builtin.which_key.mappings["G"] = {
 	B = { "<cmd>GBrowse<cr>", "Browse" },
 	P = { "<cmd>G -c push.default=current push<cr>", "Push" },
 }
--- lspsaga
-lvim.builtin.which_key.mappings["l"]["o"] = { "<cmd>Lspsaga outline<CR>", "Code Outline" }
 -- other
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -232,6 +230,18 @@ linters.setup({
 	},
 })
 
+local null_ls = require("null-ls")
+null_ls.setup({
+	sources = {
+		null_ls.builtins.diagnostics.vale.with({
+			-- WARN: Workaround - Force the severity to be HINT
+			diagnostics_postprocess = function(diagnostic)
+				diagnostic.severity = vim.diagnostic.severity.HINT
+			end,
+		}),
+	},
+})
+
 -- set code actions
 -- local actions = require("lvim.lsp.null-ls.code_actions")
 -- actions.setup({
@@ -362,7 +372,7 @@ lvim.plugins = {
 	"tpope/vim-rhubarb",
 	{
 		"lervag/vimtex", -- TODO: fix plugin not loading
-		lazy = false,
+		-- lazy = false,
 		config = function()
 			vim.g["tex_flavor"] = "latex"
 			vim.g["vimtex_view_method"] = "skim"
