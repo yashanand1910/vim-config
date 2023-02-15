@@ -9,7 +9,7 @@ vim.opt.mouse = ""
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.transparent_window = true
-lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "xcodedarkhc"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -25,7 +25,22 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>Telescope live_grep<cr>", "Live g
 lvim.builtin.which_key.mappings["g"]["DD"] = { "<cmd>DiffviewOpen<cr>", "Diffview Open" }
 lvim.builtin.which_key.mappings["g"]["DQ"] = { "<cmd>DiffviewClose<cr>", "Diffview Open" }
 -- todo-comments
-lvim.builtin.which_key.mappings["l"]["x"] = { "<cmd>TodoTrouble<cr>", "TODOs" }
+lvim.builtin.which_key.mappings["l"]["x"] = {
+	l = { "<cmd>TodoTrouble<cr>", "TODOs" },
+	j = {
+		function()
+			require("todo-comments").jump_next()
+		end,
+		"Jump next (TODOs)",
+	},
+	k = {
+		function()
+			require("todo-comments").jump_prev()
+		end,
+		"Jump prev (TODOs)",
+	},
+}
+
 -- vim-test
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Test",
@@ -230,18 +245,6 @@ linters.setup({
 	},
 })
 
-local null_ls = require("null-ls")
-null_ls.setup({
-	sources = {
-		null_ls.builtins.diagnostics.vale.with({
-			-- WARN: Workaround - Force the severity to be HINT
-			diagnostics_postprocess = function(diagnostic)
-				diagnostic.severity = vim.diagnostic.severity.HINT
-			end,
-		}),
-	},
-})
-
 -- set code actions
 -- local actions = require("lvim.lsp.null-ls.code_actions")
 -- actions.setup({
@@ -322,9 +325,9 @@ lvim.plugins = {
 		dependencies = "nvim-lua/plenary.nvim",
 		config = function()
 			require("todo-comments").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
+				highlight = {
+					pattern = [[.*<(KEYWORDS)\s*]],
+				},
 			})
 		end,
 	},
@@ -334,13 +337,6 @@ lvim.plugins = {
 			require("gitlinker").setup()
 		end,
 		dependencies = "nvim-lua/plenary.nvim",
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
 	},
 	{
 		"folke/trouble.nvim",
@@ -372,7 +368,6 @@ lvim.plugins = {
 	"tpope/vim-rhubarb",
 	{
 		"lervag/vimtex", -- TODO: fix plugin not loading
-		-- lazy = false,
 		config = function()
 			vim.g["tex_flavor"] = "latex"
 			vim.g["vimtex_view_method"] = "skim"
@@ -485,7 +480,7 @@ dap.adapters.chrome = {
 	},
 }
 
--- see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
+-- INFO: see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
 dap.adapters.codelldb = {
 	type = "server",
 	port = "13000",
@@ -502,11 +497,12 @@ dap.adapters.cppdbg = {
 	command = mason_registry.get_package("cpptools"):get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7",
 }
 
-dap.adapters.ocamlearlybird = {
-	type = "executable",
-	command = "node",
-	args = { vim.fn.expand("$HOME/work/ocamlearlybird/integrations/vscode/extension.js") },
-}
+-- TODO: fix / doesn't work
+-- dap.adapters.ocamlearlybird = {
+-- 	type = "executable",
+-- 	command = "node",
+-- 	args = { vim.fn.expand("$HOME/work/ocamlearlybird/integrations/vscode/extension.js") },
+-- }
 
 require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
 	chrome = { "typescript", "javascript" },
@@ -516,7 +512,7 @@ require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
 })
 
 -- Fix filetype detection for ocamllex files
--- Workaround for until this gets merged https://github.com/ocaml/vim-ocaml/pull/61
+-- WARN: Workaround for until this gets merged https://github.com/ocaml/vim-ocaml/pull/61
 vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mll",
 	callback = function()
