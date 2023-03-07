@@ -9,7 +9,7 @@ vim.opt.mouse = ""
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.transparent_window = true
-lvim.colorscheme = "tokyonight-moon"
+lvim.colorscheme = "dracula"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -80,14 +80,17 @@ lvim.builtin.which_key.mappings["C"] = {
 lvim.builtin.which_key.mappings["G"] = {
 	name = "Fugitive",
 	w = { "<cmd>Gwrite<cr>", "Write" },
+	f = { "<cmd>G fetch<cr>", "Fetch" },
 	a = { "<cmd>G add %<cr>", "Add" },
 	A = { "<cmd>G add .<cr>", "Add all" },
-	c = { "<cmd>G commit<cr>", "Commit" },
-	C = { "<cmd>G add . | G commit<cr>", "Commit all" },
+	cc = { "<cmd>G commit<cr>", "Commit" },
+	CC = { "<cmd>G add . | G commit -c HEAD<cr>", "Commit all (prev msg)" },
+	CN = { "<cmd>G add . | G commit<cr>", "Commit all" },
 	s = { "<cmd>G<cr>", "Status" },
 	l = { "<cmd>G blame<cr>", "Blame" },
 	L = { "<cmd>Gclog<cr>", "Log" },
 	B = { "<cmd>GBrowse<cr>", "Browse" },
+	p = { "<cmd>G -c pull.default=current pull<cr>", "Pull" },
 	P = { "<cmd>G -c push.default=current push<cr>", "Push" },
 }
 -- other
@@ -310,6 +313,14 @@ lvim.plugins = {
 
 	-- other plugins
 	{
+		"iamcco/markdown-preview.nvim",
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
+	{
 		"jackMort/ChatGPT.nvim",
 		config = function()
 			require("chatgpt").setup()
@@ -468,36 +479,40 @@ lvim.plugins = {
 	"ocaml/vim-ocaml",
 }
 
--- DAP config
-local dap = require("dap")
-local mason_registry = require("mason-registry")
+-- TODO: fix / notworking (mason_registry.get_package)
 
-dap.adapters.chrome = {
-	type = "executable",
-	command = "node",
-	args = {
-		mason_registry.get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebug.js",
-	},
-}
+-- -- DAP config
+-- local dap = require("dap")
+-- local mason_registry = require("mason-registry")
 
--- INFO: see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
-dap.adapters.codelldb = {
-	type = "server",
-	port = "13000",
-	executable = {
-		command = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/adapter/codelldb",
-		args = { "--port", "13000" },
-	},
-	name = "codelldb",
-}
+-- dap.adapters.chrome = {
+-- 	type = "executable",
+-- 	command = "node",
+-- 	args = {
+-- 		mason_registry.get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebug.js",
+-- 	},
+-- }
 
-dap.adapters.cppdbg = {
-	id = "cppdbg",
-	type = "executable",
-	command = mason_registry.get_package("cpptools"):get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7",
-}
+-- -- INFO: see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
 
--- TODO: fix / doesn't work
+-- dap.adapters.codelldb = {
+-- 	type = "server",
+-- 	port = "13000",
+-- 	executable = {
+-- 		command = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/adapter/codelldb",
+-- 		args = { "--port", "13000" },
+-- 	},
+-- 	name = "codelldb",
+-- }
+
+-- dap.adapters.cppdbg = {
+-- 	id = "cppdbg",
+-- 	type = "executable",
+-- 	command = mason_registry.get_package("cpptools"):get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7",
+-- }
+
+-- -- TODO: fix / doesn't work
+
 -- dap.adapters.ocamlearlybird = {
 -- 	type = "executable",
 -- 	command = "node",
@@ -513,6 +528,7 @@ require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
 
 -- Fix filetype detection for ocamllex files
 -- WARN: Workaround for until this gets merged https://github.com/ocaml/vim-ocaml/pull/61
+
 vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mll",
 	callback = function()
@@ -524,6 +540,15 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mly",
 	callback = function()
 		vim.opt_local.filetype = "menhir"
+	end,
+})
+
+-- TODO : temporary for c0 programs (CMU compiler design)
+
+vim.api.nvim_create_autocmd("BufEnter,BufRead", {
+	pattern = "*.l[1-6]",
+	callback = function()
+		vim.opt_local.filetype = "c"
 	end,
 })
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
