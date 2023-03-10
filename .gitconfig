@@ -26,3 +26,5 @@
 	signingkey = E7FCB215C3E09149
 [commit]
 	gpgsign = true
+[pull]
+	rebase = false
