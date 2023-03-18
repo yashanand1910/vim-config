@@ -9,7 +9,7 @@ vim.opt.mouse = ""
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.transparent_window = true
-lvim.colorscheme = "tokyonight-moon"
+lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -41,6 +41,14 @@ lvim.builtin.which_key.mappings["l"]["x"] = {
 	},
 }
 
+-- vimux
+lvim.builtin.which_key.mappings["v"] = {
+	name = "Vimux",
+	n = { "<cmd>VimuxPromptCommand<cr>", "New command" },
+	c = { "<cmd>VimuxClearTerminalScreen<cr>", "Clear" },
+	i = { "<cmd>VimuxInspectRunner<cr>", "Inspect" },
+	v = { "<cmd>VimuxRunLastCommand<cr>", "Last command" },
+}
 -- vim-test
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Test",
@@ -481,7 +489,7 @@ lvim.plugins = {
 
 -- TODO: fix / notworking (mason_registry.get_package)
 
--- -- DAP config
+-- DAP config
 -- local dap = require("dap")
 -- local mason_registry = require("mason-registry")
 
@@ -499,7 +507,7 @@ lvim.plugins = {
 -- 	type = "server",
 -- 	port = "13000",
 -- 	executable = {
--- 		command = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/adapter/codelldb",
+-- 		command = lvim.builtin.mason.install_root_dir .. "/packages/codelldb" .. "/extension/adapter/codelldb",
 -- 		args = { "--port", "13000" },
 -- 	},
 -- 	name = "codelldb",
@@ -533,10 +541,10 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mll",
 	callback = function()
 		vim.opt_local.filetype = "ocamllex"
-    local clang_client = vim.lsp.get_active_clients({"ocamllsp"})
+		local clang_client = vim.lsp.get_active_clients({ "ocamllsp" })
 		vim.lsp.stop_client(clang_client, true)
-    vim.diagnostic.disable()
-    vim.diagnostic.reset()
+		vim.diagnostic.disable()
+		vim.diagnostic.reset()
 	end,
 })
 -- Fix filetype detection for ocamlyacc files
@@ -544,8 +552,8 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mly",
 	callback = function()
 		vim.opt_local.filetype = "menhir"
-    vim.diagnostic.disable()
-    vim.diagnostic.reset()
+		vim.diagnostic.disable()
+		vim.diagnostic.reset()
 	end,
 })
 
@@ -555,8 +563,8 @@ vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.l[1-6]",
 	callback = function()
 		vim.opt_local.filetype = "c"
-    vim.diagnostic.disable()
-    vim.diagnostic.reset()
+		vim.diagnostic.disable()
+		vim.diagnostic.reset()
 	end,
 })
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
