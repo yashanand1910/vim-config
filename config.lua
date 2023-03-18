@@ -13,6 +13,8 @@ lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
+vim.g.python3_host_prog = "/Users/yashanand/.pyenv/versions/neovim/bin/python"
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -194,10 +196,11 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-	return server ~= "angularls" and server ~= "sourcery"
+	return server ~= "angularls"
 end, lvim.lsp.automatic_configuration.skipped_servers)
 
 require("lvim.lsp.manager").setup("eslint") -- Workaround: because null-ls eslint is pretty bad
+require("lvim.lsp.manager").setup("jedi_language_server")
 require("lvim.lsp.manager").setup("emmet_ls")
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
@@ -246,10 +249,10 @@ linters.setup({
 		command = "stylelint",
 	},
 	{
-		command = "pylint",
+		command = "vale",
 	},
 	{
-		command = "vale",
+		command = "pylint",
 	},
 	{
 		command = "commitlint",
@@ -379,7 +382,8 @@ lvim.plugins = {
 	{
 		"preservim/vimux",
 		config = function()
-			vim.g["VimuxHeight"] = "50"
+			vim.g["VimuxHeight"] = "30"
+			vim.g["VimuxOrientation"] = "h"
 		end,
 	},
 	"mattn/emmet-vim",
