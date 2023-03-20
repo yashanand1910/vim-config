@@ -394,6 +394,7 @@ lvim.plugins = {
 	"tpope/vim-rhubarb",
 	{
 		"lervag/vimtex", -- TODO: fix plugin not loading
+    lazy = false,
 		config = function()
 			vim.g["tex_flavor"] = "latex"
 			vim.g["vimtex_view_method"] = "skim"

@@ -114,6 +114,3 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# opam configuration
-[[ ! -r /Users/yashanand/.opam/opam-init/init.zsh ]] || source /Users/yashanand/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
