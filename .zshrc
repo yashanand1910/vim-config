@@ -122,3 +122,7 @@ source <(ng completion script)
 [[ ! -r /Users/yashanand/.opam/opam-init/init.zsh ]] || source /Users/yashanand/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 test -e /Users/yashanand/.iterm2_shell_integration.zsh && source /Users/yashanand/.iterm2_shell_integration.zsh || true
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
