@@ -209,9 +209,9 @@ require("lvim.lsp.manager").setup("emmet_ls")
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-  {
-    command = "xmlformat"
-  },
+	{
+		command = "xmlformat",
+	},
 	{
 		command = "prettier",
 	},
@@ -326,6 +326,7 @@ lvim.plugins = {
 	"Mofiqul/dracula.nvim",
 
 	-- other plugins
+	"github/copilot.vim",
 	{
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && npm install",
@@ -334,6 +335,7 @@ lvim.plugins = {
 		end,
 		ft = { "markdown" },
 	},
+	{ "zbirenbaum/copilot-cmp", after = { "copilot.lua", "nvim-cmp" } },
 	{
 		"jackMort/ChatGPT.nvim",
 		config = function()
@@ -394,10 +396,10 @@ lvim.plugins = {
 	"tpope/vim-rhubarb",
 	{
 		"lervag/vimtex", -- TODO: fix plugin not loading
-    lazy = false,
+		lazy = false,
 		config = function()
 			vim.g["tex_flavor"] = "latex"
-      vim.g["vimtex_compiler_method"] = "latexmk"
+			vim.g["vimtex_compiler_method"] = "latexmk"
 			vim.g["vimtex_view_method"] = "skim"
 			vim.g["vimtex_view_skim_sync"] = 1
 			vim.g["vimtex_view_skim_activate"] = 1
@@ -495,6 +497,10 @@ lvim.plugins = {
 	"tpope/vim-surround",
 	"ocaml/vim-ocaml",
 }
+
+-- Can not be placed into the config method of the plugins.
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 -- TODO: fix / notworking (mason_registry.get_package)
 
