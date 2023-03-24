@@ -13,6 +13,7 @@ Hosts my zsh, vim, tmux & kitty configuration for sync across hosts.
 9. Install [tpm](https://github.com/tmux-plugins/tpm).
 10. Install [nerd fonts](https://github.com/ryanoasis/nerd-fonts).
 11. Install [tmux-256color](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95) for macOS (for italic fonts).
+12. Install exa with `brew install exa`.
 
 ## Create symlinks
 
