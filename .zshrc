@@ -82,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# Kitty background blur
+# TODO:Kitty background blur
 # Blur {{{
 # export DISPLAY=:0
 # if [[ $(ps -p $PPID -o comm) =~ '^yakuake|kitty$' ]]; then
