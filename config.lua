@@ -411,7 +411,6 @@ lvim.plugins = {
 	},
 	{
 		"pwntester/octo.nvim", -- TODO fix omni-completion and fix add comment in PR review
-		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
