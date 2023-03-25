@@ -209,9 +209,9 @@ require("lvim.lsp.manager").setup("emmet_ls")
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-  {
-    command = "nginx_beautifier"
-  },
+	{
+		command = "nginx_beautifier",
+	},
 	{
 		command = "xmlformat",
 	},
@@ -329,6 +329,7 @@ lvim.plugins = {
 	"Mofiqul/dracula.nvim",
 
 	-- other plugins
+	-- TODO: fix conflicting hotkeys for completion
 	"github/copilot.vim",
 	{
 		"iamcco/markdown-preview.nvim",
