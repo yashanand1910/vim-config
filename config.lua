@@ -336,14 +336,19 @@ lvim.plugins = {
 		build = "cd app && npm install",
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
+			vim.api.nvim_set_keymap("i", "<silent><script><expr> <C-f>", "copilot#Accept<cr>", {})
+			vim.g["copilot_no_tab_map"] = true
 		end,
 		ft = { "markdown" },
 	},
-	{ "zbirenbaum/copilot-cmp", after = { "copilot.lua", "nvim-cmp" } },
 	{
 		"jackMort/ChatGPT.nvim",
 		config = function()
-			require("chatgpt").setup()
+			require("chatgpt").setup({
+				keymaps = {
+					submit = "<C-s>",
+				},
+			})
 		end,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
@@ -383,7 +388,7 @@ lvim.plugins = {
 	{
 		"vim-test/vim-test",
 		config = function()
-			vim.g["test#strategy"] = "toggleterm"
+			vim.g["test#strategy"] = "vimux"
 			-- vim.g["test#neovim#term_position"] = "right 25"
 			-- vim.g["test#preserve_screen"] = 0
 		end,
@@ -559,9 +564,6 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mll",
 	callback = function()
 		vim.opt_local.filetype = "ocamllex"
-		local clang_client = vim.lsp.get_active_clients({ "ocamllsp" })
-		vim.lsp.stop_client(clang_client, true)
-		vim.diagnostic.disable()
 		vim.diagnostic.reset()
 	end,
 })
@@ -570,7 +572,6 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	pattern = "*.mly",
 	callback = function()
 		vim.opt_local.filetype = "menhir"
-		vim.diagnostic.disable()
 		vim.diagnostic.reset()
 	end,
 })
@@ -580,9 +581,7 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.l[1-6]",
 	callback = function()
-		vim.opt_local.filetype = "c"
-		vim.diagnostic.disable()
-		vim.diagnostic.reset()
+		vim.treesitter.start(0, "c")
 	end,
 })
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
