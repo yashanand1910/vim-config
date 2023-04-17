@@ -9,7 +9,7 @@ vim.opt.mouse = ""
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.transparent_window = true
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "tokyonight-night"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -106,8 +106,6 @@ lvim.builtin.which_key.mappings["G"] = {
 -- other
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv" -- move line down in visual mode
-lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv" -- move line up in visual mode
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz" -- scroll half page down and recenter
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz" -- scroll half page up and recenter
 lvim.keys.insert_mode["<C-a>"] = "<C-o>A" -- 'A' when in insert mode
@@ -330,14 +328,19 @@ lvim.plugins = {
 
 	-- other plugins
 	-- TODO: fix conflicting hotkeys for completion
-	"github/copilot.vim",
+	{
+		"github/copilot.vim",
+    lazy = false,
+		init = function()
+			vim.api.nvim_set_keymap("i", "<silent><script><expr> <C-f>", "copilot#Accept<cr>", {})
+			vim.g["copilot_no_tab_map"] = true
+		end,
+	},
 	{
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && npm install",
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
-			vim.api.nvim_set_keymap("i", "<silent><script><expr> <C-f>", "copilot#Accept<cr>", {})
-			vim.g["copilot_no_tab_map"] = true
 		end,
 		ft = { "markdown" },
 	},
