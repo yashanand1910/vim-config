@@ -139,7 +139,7 @@ lvim.builtin.which_key.mappings["W"] = { "<cmd>wall<cr>", "Save all" }
 -- lvim.builtin.theme.options.dim_inactive = true
 -- lvim.builtin.theme.options.style = "storm"
 
--- TODO: User Config for predefined plugins
+-- NOTE: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = false
 lvim.builtin.alpha.mode = "dashboard"
@@ -160,6 +160,17 @@ lvim.builtin.treesitter.ensure_installed = {
 	"rust",
 	"java",
 	"yaml",
+}
+
+-- CUSTOM treesitter parsers
+-- TODO: Fix this, it does not work
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.virgil = {
+	install_info = {
+		url = "~/Code/virgil/bin/dev/virgil-vscode/tree-sitter-virgil", -- local path or git repo
+		files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
+	},
+	filetype = "virgil", -- if filetype does not match the parser name
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -330,10 +341,10 @@ lvim.plugins = {
 	-- TODO: fix conflicting hotkeys for completion
 	{
 		"github/copilot.vim",
-    lazy = false,
+		lazy = false,
 		init = function()
-			vim.api.nvim_set_keymap("i", "<silent><script><expr> <C-f>", "copilot#Accept<cr>", {})
-			vim.g["copilot_no_tab_map"] = true
+			-- vim.api.nvim_set_keymap("i", "<silent><script><expr> <C-f>", "copilot#Accept<cr>", {})
+			-- vim.g["copilot_no_tab_map"] = true
 		end,
 	},
 	{
@@ -407,7 +418,7 @@ lvim.plugins = {
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
 	{
-		"lervag/vimtex", -- TODO: fix plugin not loading
+		"lervag/vimtex",
 		lazy = false,
 		config = function()
 			vim.g["tex_flavor"] = "latex"
@@ -579,7 +590,7 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	end,
 })
 
--- TODO : temporary for c0 programs (CMU compiler design)
+-- NOTE : temporary for c0 programs (CMU compiler design)
 
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.l[1-6]",
