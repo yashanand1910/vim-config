@@ -429,7 +429,7 @@ lvim.plugins = {
 		end,
 	},
 	{
-		"pwntester/octo.nvim", -- TODO fix omni-completion and fix add comment in PR review
+		"pwntester/octo.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
@@ -524,37 +524,36 @@ lvim.plugins = {
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
--- TODO: fix / notworking (mason_registry.get_package)
-
 -- DAP config
--- local dap = require("dap")
--- local mason_registry = require("mason-registry")
+local dap = require("dap")
 
--- dap.adapters.chrome = {
--- 	type = "executable",
--- 	command = "node",
--- 	args = {
--- 		mason_registry.get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebug.js",
--- 	},
--- }
+dap.adapters.chrome = {
+	type = "executable",
+	command = "node",
+	args = {
+		lvim.builtin.mason.install_root_dir .. "/packages/chrome-debug-adapter" .. "/out/src/chromeDebug.js",
+	},
+}
 
 -- -- INFO: see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
 
--- dap.adapters.codelldb = {
--- 	type = "server",
--- 	port = "13000",
--- 	executable = {
--- 		command = lvim.builtin.mason.install_root_dir .. "/packages/codelldb" .. "/extension/adapter/codelldb",
--- 		args = { "--port", "13000" },
--- 	},
--- 	name = "codelldb",
--- }
+dap.adapters.codelldb = {
+	type = "server",
+	port = "13000",
+	executable = {
+		command = lvim.builtin.mason.install_root_dir .. "/packages/codelldb" .. "/extension/adapter/codelldb",
+		args = { "--port", "13000" },
+	},
+	name = "codelldb",
+}
 
--- dap.adapters.cppdbg = {
--- 	id = "cppdbg",
--- 	type = "executable",
--- 	command = mason_registry.get_package("cpptools"):get_install_path() .. "/extension/debugAdapters/bin/OpenDebugAD7",
--- }
+dap.adapters.cppdbg = {
+	id = "cppdbg",
+	type = "executable",
+	command = lvim.builtin.mason.install_root_dir
+		.. "/packages/cpptools"
+		.. "/extension/debugAdapters/bin/OpenDebugAD7",
+}
 
 -- -- TODO: fix / doesn't work
 
@@ -590,7 +589,12 @@ vim.api.nvim_create_autocmd("BufEnter,BufRead", {
 	end,
 })
 
--- NOTE : temporary for c0 programs (CMU compiler design)
+-- NOTE: Workaround for clangd encoding issue (see https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
+require("lspconfig").clangd.setup({ capabilities = capabilities })
+
+-- NOTE : for c0 programs (CMU compiler design)
 
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.l[1-6]",
