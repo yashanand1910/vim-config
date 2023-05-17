@@ -22,8 +22,8 @@
 	name = Yash Anand
 	email = yashanand1910@gmail.com
 [commit]
-	gpgsign = true
+	; gpgsign = true
 [pull]
 	rebase = false
 [core]
-  editor = lvim
+  editor = vi

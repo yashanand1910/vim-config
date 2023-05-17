@@ -115,22 +115,21 @@ call plug#begin()
 
 " BEGIN LIST OF PLUGINS
 
-Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
-Plug 'lervag/vimtex'
+" Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+" Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'turbio/bracey.vim'
-Plug 'puremourning/vimspector'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ayu-theme/ayu-vim'
+" Plug 'puremourning/vimspector'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround' 
-Plug 'vim-test/vim-test'
+" Plug 'vim-test/vim-test'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -149,10 +148,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
 set t_Co=256
 set termguicolors     " enable true colors support
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme Ayu
 colorscheme PaperColor
 
 " END ADDITIONAL CONFIGURATION
