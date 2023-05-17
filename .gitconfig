@@ -15,11 +15,9 @@
 	prompt = false
 	keepBackup = false
 [mergetool "vimdiff"]
-  path = lvim
   trustExitCode = false
   layout = "LOCAL,MERGED,REMOTE"
 [commit]
-  path = lvim
 [user]
 	name = Yash Anand
 	email = yashanand1910@gmail.com
@@ -28,3 +26,5 @@
 	gpgsign = true
 [pull]
 	rebase = false
+[core]
+  editor = lvim
