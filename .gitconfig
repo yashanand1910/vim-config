@@ -21,7 +21,6 @@
 [user]
 	name = Yash Anand
 	email = yashanand1910@gmail.com
-	signingkey = AFA592F4A24B4180
 [commit]
 	gpgsign = true
 [pull]
