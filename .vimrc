@@ -15,6 +15,7 @@ set number relativenumber nohls incsearch
 set backspace=indent,eol,start " For macOS
 set wildmenu
 set nowrap
+set nobackup
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
