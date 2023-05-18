@@ -15,7 +15,7 @@ set number relativenumber nohls incsearch
 set backspace=indent,eol,start " For macOS
 set wildmenu
 set nowrap
-set nobackup
+set noswapfile
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -30,26 +30,18 @@ let g:vimtex_view_skim_activate = 1
 
 " BEGIN INITIAL CONFIGURATION
 
-" delete without yanking
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
-
-" replace currently selected text with default register
-" without yanking it
-vnoremap <leader>p "_dP
-
 " COC:
 " Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
+" set nobackup
+" set nowritebackup
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use <ctrl-space> to trigger completion.
 " inoremap <silent><expr> <c-space> coc#refresh()
@@ -67,48 +59,57 @@ let test#strategy = "vimterminal"
 
 " BEGIN KEYBINDS
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+let mapleader = " " " map leader to space
 
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-"
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" open vimrc
+noremap <leader>Lc :e ~/.vimrc<CR>
 
-" Applying codeAction to the selected region.
-" " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+noremap <leader>w :w<CR>
+noremap <leader>W :wa<CR>
+noremap <leader>q :q<CR>
+noremap <leader>Q :qa<CR>
+noremap <leader>c :bdelete<CR>
 
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-"
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" scroll half page down and recenter
+noremap <C-d> <C-d>zz 
+" scroll half page up and recenter
+noremap <C-u> <C-u>zz 
+" 'A' when in insert mode
+inoremap <C-a> <C-o>A
+" swap current word
+noremap <leader>R :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>
 
-" Run the Code Lens action on the current line.
-nmap <leader>cl  <Plug>(coc-codelens-action)
+" navigate between split buffers
+noremap <silent> <C-k> <C-w>k
+noremap <silent> <C-j> <C-w>j
+noremap <silent> <C-h> <C-w>h
+noremap <silent> <C-l> <C-w>l
+
+" buffer cycle
+noremap <silent> <S-l> :bnext<CR>
+noremap <silent> <S-h> :bprevious<CR>
+
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
 
 " Testing
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>A :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>G :TestVisit<CR>
+noremap <silent> <leader>tt :TestNearest<CR>
+noremap <silent> <leader>tf :TestFile<CR>
+noremap <silent> <leader>ta :TestSuite<CR>
+noremap <silent> <leader>tl :TestLast<CR>
+noremap <silent> <leader>tv :TestVisit<CR>
 
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-nnoremap <silent> <Leader>c :Commits<CR>
-nnoremap <silent> <Leader>s :GFiles?<CR>
-nnoremap <silent> <Leader>p :Files<CR>
+" fzf
+noremap <silent> <Leader>f :Files<CR>
+
+" git
+noremap <silent> <Leader>gc :Commits<CR>
+noremap <silent> <Leader>Gs :G status<CR>
 
 " END KEYBINDS
 
@@ -134,6 +135,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ghifarit53/tokyonight-vim'
 
 " END LIST OF PLUGINS
 
@@ -145,10 +147,33 @@ call plug#end()
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" fixes glitch? in colors when using vim with tmux
-set background=dark
-set t_Co=256
-set termguicolors     " enable true colors support
-colorscheme PaperColor
+" enable true colors support
+set termguicolors     
+
+" tokyonight
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight"
+
+"papercolor
+" set background=dark
+" colorscheme PaperColor
+
+" transparent bg
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
+" airline settings
+let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
+let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline                                            
+let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)
+let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)      
+" let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab                                                    
+" let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right                                                           
+" let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
+let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline                                  
+let g:airline#extensions#tabline#buffer_min_count = 2
+" let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
+" let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
+" let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
 
 " END ADDITIONAL CONFIGURATION
