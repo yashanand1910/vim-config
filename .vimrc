@@ -110,6 +110,13 @@ noremap <silent> <Leader>f :Files<CR>
 " git
 noremap <silent> <Leader>gc :Commits<CR>
 noremap <silent> <Leader>Gs :G status<CR>
+noremap <silent> <Leader>Ga :G add %<CR>
+noremap <silent> <Leader>GA :G add .<CR>
+noremap <silent> <Leader>Gcc :G commit<CR>
+noremap <silent> <Leader>GCC :G add . <bar> G commit -c HEAD<CR>
+noremap <silent> <Leader>GCN :G add . <bar> G commit<CR> 
+noremap <silent> <Leader>GP :G -c push.default=current push<cr>
+noremap <silent> <Leader>GL :Gclog<cr>
 
 " END KEYBINDS
 
