@@ -70,6 +70,12 @@ noremap <leader>q :q<CR>
 noremap <leader>Q :qa<CR>
 noremap <leader>c :bdelete<CR>
 
+" erorrs
+noremap <leader>lt :Errors<CR>
+
+" goto definition (using tags)
+noremap gd <C-]>
+
 " scroll half page down and recenter
 noremap <C-d> <C-d>zz 
 " scroll half page up and recenter
@@ -105,7 +111,7 @@ noremap <silent> <leader>tl :TestLast<CR>
 noremap <silent> <leader>tv :TestVisit<CR>
 
 " fzf
-noremap <silent> <Leader>f :Files<CR>
+noremap <silent> <Leader>f :GFiles<CR>
 
 " git
 noremap <silent> <Leader>gc :Commits<CR>
@@ -158,7 +164,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors     
 
 " tokyonight
-let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 colorscheme tokyonight"
 
@@ -168,6 +174,8 @@ colorscheme tokyonight"
 
 " transparent bg
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
+autocmd TerminalOpen * if &buftype == 'terminal' | resize 10 | endif
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
