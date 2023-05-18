@@ -1,6 +1,6 @@
 # dotfiles
 
-Hosts my zsh, vim, tmux & kitty configuration for sync across hosts.
+Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim config is a super-light subset of lvim config at least in terms of key bindings.
 
 1. Install [Homebrew](https://brew.sh).
 2. Install wget with `brew install wget`.
