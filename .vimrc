@@ -11,7 +11,7 @@ set expandtab
 set smartindent
 set shiftwidth=4
 set tabstop=4 softtabstop=4
-set number relativenumber nohls incsearch
+set number relativenumber incsearch
 set backspace=indent,eol,start " For macOS
 set wildmenu
 set nowrap
@@ -69,6 +69,9 @@ noremap <leader>W :wa<CR>
 noremap <leader>q :q<CR>
 noremap <leader>Q :qa<CR>
 noremap <leader>c :bdelete<CR>
+
+" file explorer
+noremap <leader>e :30vs .<CR>
 
 " erorrs
 noremap <leader>lt :Errors<CR>

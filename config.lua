@@ -167,7 +167,7 @@ lvim.builtin.treesitter.ensure_installed = {
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.virgil = {
 	install_info = {
-		url = "~/Code/virgil/bin/dev/virgil-vscode/tree-sitter-virgil", -- local path or git repo
+		url = "~/Code/cmu/is-summer23/virgil/bin/dev/virgil-vscode/tree-sitter-virgil", -- local path or git repo
 		files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
 	},
 	filetype = "virgil", -- if filetype does not match the parser name
