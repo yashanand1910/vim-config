@@ -30,27 +30,17 @@ let g:vimtex_view_skim_activate = 1
 
 " BEGIN INITIAL CONFIGURATION
 
-" COC:
-" Some servers have issues with backup files, see #649.
-" set nobackup
-" set nowritebackup
-
+" Vim gutter
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use <ctrl-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
+highlight SignColumn guibg=NONE
+highlight GitGutterAdd    guifg=#00aa00 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " For JSON comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
 
 let test#vim#term_position = "topleft 15"
 let test#strategy = "vimterminal"
@@ -126,6 +116,7 @@ noremap <silent> <Leader>GCC :G add . <bar> G commit -c HEAD<CR>
 noremap <silent> <Leader>GCN :G add . <bar> G commit<CR> 
 noremap <silent> <Leader>GP :G -c push.default=current push<cr>
 noremap <silent> <Leader>GL :Gclog<cr>
+noremap <silent> <Leader>Gl :G blame<cr>
 
 " END KEYBINDS
 
@@ -152,6 +143,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'arzg/vim-colors-xcode'
 
 " END LIST OF PLUGINS
 
@@ -167,13 +159,11 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors     
 
 " tokyonight
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight"
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
 
-"papercolor
 " set background=dark
-" colorscheme PaperColor
+colorscheme xcodedark
 
 " transparent bg
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE

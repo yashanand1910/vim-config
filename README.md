@@ -15,6 +15,7 @@ Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim con
 11. Install [tmux-256color](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95) for macOS (for italic fonts).
 12. Install exa with `brew install exa`.
 13. Install GitHub CLI with `brew install gh`.
+14. Install [ripgrep](https://github.com/BurntSushi/ripgrep) if using vim and not lvim.
 
 ## Create symlinks
 

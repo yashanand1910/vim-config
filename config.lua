@@ -4,12 +4,13 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.clipboard = ""
 vim.opt.mouse = ""
+vim.opt.background = "dark"
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.transparent_window = true
-lvim.colorscheme = "tokyonight-night"
+lvim.colorscheme = "xcodedark"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
