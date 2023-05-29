@@ -121,6 +121,7 @@ noremap <silent> <Leader>GCN :G add . <bar> G commit<CR>
 noremap <silent> <Leader>GP :G -c push.default=current push<cr>
 noremap <silent> <Leader>GL :Gclog<cr>
 noremap <silent> <Leader>Gl :G blame<cr>
+noremap <silent> <Leader>gd :Gvdiffsplit<cr>
 
 " END KEYBINDS
 
@@ -150,7 +151,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Themes:
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arzg/vim-colors-xcode'
-Plug 'vimpostor/vim-lumen'
 
 " END LIST OF PLUGINS
 
@@ -173,9 +173,10 @@ set termguicolors
 colorscheme xcodedarkhc
 
 " transparent bg
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
-" autocmd TerminalOpen * if &buftype == 'terminal' | resize 10 | endif
+" terminal buffer sizing
+autocmd TerminalOpen * if &buftype == 'terminal' | resize 10 | endif
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
