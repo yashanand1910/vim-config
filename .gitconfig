@@ -1,30 +1,30 @@
 [alias]
-    s = status
-    c = commit
-    co = checkout
-    b = branch
-    pl = pull
-    p = push
+  s = status
+  c = commit
+  co = checkout
+  b = branch
+  pl = pull
+  p = push
 [diff]
-    tool = vimdiff
+  tool = vimdiff
 [difftool]
-    prompt = false
+  prompt = false
 [merge]
-    tool = vimdiff
-    hideResolved = true
-    prompt = false
-    keepBackup = false
+  tool = vimdiff
+  hideResolved = true
+  prompt = false
+  keepBackup = false
 [mergetool "vimdiff"]
-    trustExitCode = false
-    layout = "LOCAL,MERGED,REMOTE"
+  trustExitCode = false
+  layout = "LOCAL,MERGED,REMOTE"
 [commit]
 [user]
-    name = Yash Anand
-    email = yashanand1910@gmail.com
-	signingkey = AFA592F4A24B4180
+  name = Yash Anand
+  email = yashanand1910@gmail.com
+  signingkey = AFA592F4A24B4180
 [commit]
-    gpgsign = true
+  gpgsign = true
 [pull]
-    rebase = false
+  rebase = false
 [core]
-    editor = vi
+  editor = vi
