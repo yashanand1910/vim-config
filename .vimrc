@@ -105,6 +105,10 @@ noremap <silent> <leader>tv :TestVisit<CR>
 
 " fzf
 noremap <silent> <Leader>f :GFiles<CR>
+noremap <silent> <Leader>r :Rg<CR>
+noremap <silent> <Leader>sc :Colors<CR>
+noremap <silent> <Leader>sh :Helptags<CR>
+noremap <silent> <Leader>ls :BLines<CR>
 
 " git
 noremap <silent> <Leader>gc :Commits<CR>
@@ -142,8 +146,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Themes:
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arzg/vim-colors-xcode'
+Plug 'vimpostor/vim-lumen'
 
 " END LIST OF PLUGINS
 
@@ -163,12 +170,12 @@ set termguicolors
 " let g:tokyonight_enable_italic = 1
 
 " set background=dark
-colorscheme xcodedark
+colorscheme xcodedarkhc
 
 " transparent bg
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
-autocmd TerminalOpen * if &buftype == 'terminal' | resize 10 | endif
+" autocmd TerminalOpen * if &buftype == 'terminal' | resize 10 | endif
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
