@@ -170,7 +170,7 @@ set termguicolors
 " let g:tokyonight_enable_italic = 1
 
 " set background=dark
-colorscheme xcodedarkhc
+colorscheme xcodedark
 
 " transparent bg
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
