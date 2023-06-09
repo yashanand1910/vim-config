@@ -16,6 +16,7 @@ set backspace=indent,eol,start " For macOS
 set wildmenu
 set nowrap
 set noswapfile
+set hlsearch
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -68,6 +69,9 @@ noremap <leader>lt :Errors<CR>
 
 " goto definition (using tags)
 noremap gd <C-]>
+
+" hide search highlights
+noremap <silent> <leader>h :noh<CR>
 
 " scroll half page down and recenter
 noremap <C-d> <C-d>zz 

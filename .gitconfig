@@ -17,7 +17,6 @@
 [mergetool "vimdiff"]
   trustExitCode = false
   layout = "LOCAL,MERGED,REMOTE"
-[commit]
 [user]
   name = Yash Anand
   email = yashanand1910@gmail.com
@@ -26,5 +25,7 @@
   gpgsign = true
 [pull]
   rebase = false
+[push]
+  autoSetupRemote = true
 [core]
   editor = vi
