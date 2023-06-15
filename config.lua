@@ -228,8 +228,14 @@ formatters.setup({
 	{
 		command = "prettier",
 	},
+	-- {
+	-- 	command = "black",
+	-- },
 	{
-		command = "black",
+		command = "isort",
+	},
+	{
+		command = "blue",
 	},
 	{
 		command = "stylua",
@@ -268,8 +274,11 @@ linters.setup({
 		command = "vale",
 	},
 	{
-		command = "pylint",
+		command = "flake8",
 	},
+	-- {
+	-- 	command = "pylint",
+	-- },
 	{
 		command = "commitlint",
 	},
@@ -344,7 +353,9 @@ lvim.plugins = {
 		"github/copilot.vim",
 		lazy = false,
 		init = function()
-			-- vim.api.nvim_set_keymap("i", "<silent><script><expr> <C-f>", "copilot#Accept<cr>", {})
+			-- vim.keymap.set("i", "<C-f>", function()
+			-- 	-- return vim.g["copilot#Accept"]("")
+			-- end, { expr = true })
 			-- vim.g["copilot_no_tab_map"] = true
 		end,
 	},
