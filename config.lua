@@ -348,7 +348,15 @@ lvim.plugins = {
 	"Mofiqul/dracula.nvim",
 
 	-- other plugins
-	-- TODO: fix conflicting hotkeys for completion
+	{
+		"ianding1/leetcode.vim",
+		config = function()
+			vim.g["leetcode_browser"] = "firefox"
+			-- FIXME: problem set does not work
+			-- vim.g["leetcode_problemset"] = "studyplan/leetcode-75"
+		end,
+	},
+	-- TODO: fix conflicting hotkeys for completion. Should use <C-f> to mimic terminal completion keybind.
 	{
 		"github/copilot.vim",
 		lazy = false,
@@ -575,8 +583,8 @@ dap.adapters.cppdbg = {
 -- 	args = { vim.fn.expand("$HOME/work/ocamlearlybird/integrations/vscode/extension.js") },
 -- }
 
-require("dap.ext.vscode").load_launchjs(".dap/launch.json", {
-	chrome = { "typescript", "javascript" },
+require("dap.ext.vscode").load_launchjs(".vscode/launch.json", {
+	chrome = { "typescript", "javascript", "typescriptreact" },
 	codelldb = { "c", "cpp", "rust" },
 	cppdbg = { "c", "cpp" },
 	ocamlearlybird = { "ocaml" },
@@ -607,7 +615,6 @@ capabilities.offsetEncoding = { "utf-16" }
 require("lspconfig").clangd.setup({ capabilities = capabilities })
 
 -- NOTE : for c0 programs (CMU compiler design)
-
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.l[1-6]",
 	callback = function()
