@@ -538,6 +538,26 @@ lvim.plugins = {
 	{ "aymericbeaumet/vim-symlink", dependencies = { "moll/vim-bbye" } },
 	"tpope/vim-surround",
 	"ocaml/vim-ocaml",
+	{
+		"simrat39/rust-tools.nvim",
+		config = function()
+			-- local lsp_installer_servers = require("nvim-lsp-installer.servers")
+			-- local _, requested_server = lsp_installer_servers.get_server("rust_analyzer")
+			local installed_dap = require("dap")
+			require("rust-tools").setup({
+				server = {
+					on_init = require("lvim.lsp").common_on_init,
+					on_attach = function(client, bufnr)
+						require("lvim.lsp").common_on_attach(client, bufnr)
+					end,
+				},
+				dap = {
+					adapter = installed_dap.adapters.codelldb,
+				},
+			})
+		end,
+		ft = { "rust", "rs" },
+	},
 }
 
 -- Can not be placed into the config method of the plugins.
