@@ -20,9 +20,9 @@
 [user]
   name = Yash Anand
   email = yashanand1910@gmail.com
-  signingkey = AFA592F4A24B4180 # not unsafe to share
+	signingkey = AFA592F4A24B4180
 [commit]
-  gpgsign = true
+  gpgsign = false
 [pull]
   rebase = false
 [push]

@@ -152,6 +152,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" XXX: Switch to ALE or smth
+Plug 'vim-syntastic/syntastic'
+
 " Themes:
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arzg/vim-colors-xcode'
@@ -195,5 +198,15 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 " let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
 " let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
 " let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " END ADDITIONAL CONFIGURATION
