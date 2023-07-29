@@ -394,11 +394,7 @@ lvim.plugins = {
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
 		config = function()
-			require("todo-comments").setup({
-				highlight = {
-					pattern = [[.*<(KEYWORDS)\s*]],
-				},
-			})
+			require("todo-comments").setup()
 		end,
 	},
 	{
@@ -588,6 +584,14 @@ dap.adapters.codelldb = {
 }
 
 dap.adapters.cppdbg = {
+	id = "cppdbg",
+	type = "executable",
+	command = lvim.builtin.mason.install_root_dir
+		.. "/packages/cpptools"
+		.. "/extension/debugAdapters/bin/OpenDebugAD7",
+}
+
+dap.adapters.rust = {
 	id = "cppdbg",
 	type = "executable",
 	command = lvim.builtin.mason.install_root_dir
