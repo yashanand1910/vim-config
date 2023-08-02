@@ -6,7 +6,7 @@ Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim con
 2. Install wget with `brew install wget`.
 3. Install tmux with `brew install tmux`.
 4. Install [Kitty](https://sw.kovidgoyal.net/kitty/binary/)
-5. Install fzf with `brew install fzf`.
+5. Install [fzf](https://github.com/junegunn/fzf) with `brew install fzf`.
 6. Install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md).
 7. Install neovim with `brew install neovim`.
 8. Install [lvim](https://www.lunarvim.org/docs/installation).
