@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='lvim'
 else
-  export EDITOR='lvim'
+  export EDITOR='vi'
 fi
 
 # Compilation flags
