@@ -61,6 +61,9 @@ noremap <leader>q :q<CR>
 noremap <leader>Q :qa<CR>
 noremap <leader>c :bdelete<CR>
 
+" terminal
+noremap <leader>T :terminal<CR>
+
 " file explorer
 noremap <leader>e :30vs .<CR>
 
