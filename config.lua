@@ -113,6 +113,7 @@ lvim.keys.insert_mode["<C-a>"] = "<C-o>A" -- 'A' when in insert mode
 lvim.builtin.which_key.mappings["R"] = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Swap current word" }
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>quitall<cr>", "Quit all" }
 lvim.builtin.which_key.mappings["W"] = { "<cmd>wall<cr>", "Save all" }
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -270,9 +271,9 @@ linters.setup({
 	{
 		command = "stylelint",
 	},
-	{
-		command = "vale",
-	},
+	-- {
+	-- 	command = "vale",
+	-- },
 	{
 		command = "flake8",
 	},
@@ -555,6 +556,13 @@ lvim.plugins = {
 		ft = { "rust", "rs" },
 	},
 }
+
+-- Disable autoselect on completion
+---@diagnostic disable-next-line: redundant-parameter
+require("cmp").setup({
+	-- Default setup in README.md
+	preselect = require("cmp").PreselectMode.None,
+})
 
 -- Can not be placed into the config method of the plugins.
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"

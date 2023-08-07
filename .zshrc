@@ -130,3 +130,7 @@ if [[  "$(uname)" == "Linux" ]]; then
   [[ ! -r /home/yashanand.linux/.opam/opam-init/init.zsh ]] || source /home/yashanand.linux/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
   export GPG_TTY=$(tty)
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
