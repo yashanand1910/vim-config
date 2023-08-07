@@ -97,11 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='lvim'
-else
-  export EDITOR='vi'
-fi
+export EDITOR='vi'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

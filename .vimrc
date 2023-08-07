@@ -59,7 +59,10 @@ noremap <leader>w :w<CR>
 noremap <leader>W :wa<CR>
 noremap <leader>q :q<CR>
 noremap <leader>Q :qa<CR>
-noremap <leader>c :bdelete<CR>
+noremap <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
+
+" terminal
+noremap <leader>T :terminal<CR>
 
 " file explorer
 noremap <leader>e :30vs .<CR>
