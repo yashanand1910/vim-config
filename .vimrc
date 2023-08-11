@@ -112,6 +112,7 @@ noremap <silent> <leader>tv :TestVisit<CR>
 
 " fzf
 noremap <silent> <Leader>f :GFiles<CR>
+noremap <silent> <Leader>F :Files<CR>
 noremap <silent> <Leader>r :Rg<CR>
 noremap <silent> <Leader>sc :Colors<CR>
 noremap <silent> <Leader>sh :Helptags<CR>
