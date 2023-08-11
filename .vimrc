@@ -93,7 +93,6 @@ noremap <silent> <C-l> <C-w>l
 
 " buffer cycle
 noremap <silent> <S-l> :bnext<CR>
-noremap <silent> <S-h> :bprevious<CR>
 
 " delete without yanking
 nnoremap <leader>d "_d
