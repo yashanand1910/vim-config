@@ -59,6 +59,7 @@ lvim.builtin.which_key.mappings["t"] = {
 	c = { "<cmd>TestClass<cr>", "Test class" },
 	f = { "<cmd>TestFile<cr>", "Test file" },
 	a = { "<cmd>TestSuite<cr>", "Test suite" },
+	v = { "<cmd>TestVisit<cr>", "Test visit" },
 }
 -- Octo (GitHub)
 lvim.builtin.which_key.mappings["o"] = {
@@ -165,7 +166,7 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 -- CUSTOM treesitter parsers
--- TODO: Fix this, it does not work
+-- FIXME: it does not work
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.virgil = {
 	install_info = {
@@ -213,6 +214,7 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 require("lvim.lsp.manager").setup("eslint") -- Workaround: because null-ls eslint is pretty bad
 require("lvim.lsp.manager").setup("jedi_language_server")
 require("lvim.lsp.manager").setup("emmet_ls")
+require("lvim.lsp.manager").setup("pylsp")
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -274,9 +276,9 @@ linters.setup({
 	-- {
 	-- 	command = "vale",
 	-- },
-	{
-		command = "flake8",
-	},
+	-- {
+	-- 	command = "flake8",
+	-- },
 	-- {
 	-- 	command = "pylint",
 	-- },
@@ -422,6 +424,9 @@ lvim.plugins = {
 			vim.g["test#strategy"] = "vimux"
 			-- vim.g["test#neovim#term_position"] = "right 25"
 			-- vim.g["test#preserve_screen"] = 0
+			-- NOTE: Workaround if jest autodetection fails
+			vim.g["test#javascript#jest#executable"] = "yarn test"
+			vim.g["test#javascript#runner"] = "jest"
 		end,
 	},
 	{
