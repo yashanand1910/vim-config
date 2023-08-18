@@ -1,0 +1,7 @@
+lazy-lock.json
+.luarc.json
+
+lua/config.lua
+
+# macOS
+.DS_Store

@@ -1,6 +1,6 @@
 # dotfiles
 
-Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim config is a super-light subset of lvim config at least in terms of key bindings.
+Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim config is a super-light subset of neovim config at least in terms of key bindings.
 
 1. Install [Homebrew](https://brew.sh).
 2. Install wget with `brew install wget`.
@@ -9,7 +9,6 @@ Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim con
 5. Install [fzf](https://github.com/junegunn/fzf) with `brew install fzf`.
 6. Install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md).
 7. Install neovim with `brew install neovim`.
-8. Install [lvim](https://www.lunarvim.org/docs/installation).
 9. Install [tpm](https://github.com/tmux-plugins/tpm).
 10. Install [nerd fonts](https://github.com/ryanoasis/nerd-fonts).
 11. Install [tmux-256color](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95) for macOS (for italic fonts).
@@ -23,7 +22,7 @@ After cloning this repository, create the symlinks
 
 ```bash
 ln -s ~/Code/dotfiles/.vimrc ~/.vimrc
-ln -s ~/Code/dotfiles/config.lua ~/.config/lvim/config.lua
+ln -s ~/Code/dotfiles/nvim ~/.config/nvim/
 ln -s ~/Code/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/Code/dotfiles/colors ~/.vim/colors
 ln -s ~/Code/dotfiles/.tmux.conf ~/.tmux.conf
