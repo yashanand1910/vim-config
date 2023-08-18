@@ -160,6 +160,7 @@ Plug 'vim-syntastic/syntastic'
 " Themes:
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arzg/vim-colors-xcode'
+Plug 'wojciechkepka/vim-github-dark'
 
 " END LIST OF PLUGINS
 

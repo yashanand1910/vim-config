@@ -5,12 +5,13 @@ vim.opt.termguicolors = true
 vim.opt.clipboard = ""
 vim.opt.mouse = ""
 vim.opt.background = "dark"
+vim.opt.guicursor = "" -- restore default cursor
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.transparent_window = true
-lvim.colorscheme = "xcodedark"
+lvim.colorscheme = "github_dimmed"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -20,6 +21,9 @@ vim.g.python3_host_prog = "/Users/yashanand/.pyenv/versions/neovim/bin/python"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+-- remap DAP keys
+lvim.builtin.which_key.mappings["D"] = lvim.builtin.which_key.mappings["d"]
+lvim.builtin.which_key.mappings["d"] = {}
 -- trouble
 lvim.builtin.which_key.mappings["l"]["t"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Trouble (Document)" }
 lvim.builtin.which_key.mappings["l"]["T"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble (Workspace)" }
@@ -114,6 +118,8 @@ lvim.keys.insert_mode["<C-a>"] = "<C-o>A" -- 'A' when in insert mode
 lvim.builtin.which_key.mappings["R"] = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Swap current word" }
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>quitall<cr>", "Quit all" }
 lvim.builtin.which_key.mappings["W"] = { "<cmd>wall<cr>", "Save all" }
+lvim.keys.normal_mode["<leader>d"] = '"_d' -- delete without yanking
+lvim.keys.visual_mode["<leader>d"] = '"_d' -- delete without yanking
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
@@ -207,14 +213,15 @@ lvim.lsp.installer.setup.automatic_installation = false
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-	return server ~= "angularls"
-end, lvim.lsp.automatic_configuration.skipped_servers)
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+-- 	return server ~= "angularls"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 
 require("lvim.lsp.manager").setup("eslint") -- Workaround: because null-ls eslint is pretty bad
-require("lvim.lsp.manager").setup("jedi_language_server")
 require("lvim.lsp.manager").setup("emmet_ls")
 require("lvim.lsp.manager").setup("pylsp")
+require("lvim.lsp.manager").setup("angularls")
+require("lvim.lsp.manager").setup("nginx-language-server")
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -378,21 +385,21 @@ lvim.plugins = {
 		end,
 		ft = { "markdown" },
 	},
-	{
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				keymaps = {
-					submit = "<C-s>",
-				},
-			})
-		end,
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	},
+	-- {
+	-- 	"jackMort/ChatGPT.nvim",
+	-- 	config = function()
+	-- 		require("chatgpt").setup({
+	-- 			keymaps = {
+	-- 				submit = "<C-s>",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- },
 	{
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
