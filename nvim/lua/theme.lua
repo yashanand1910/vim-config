@@ -2,14 +2,24 @@
 -- Theme configuration, such as colorscheme etc.
 --]]
 
+-- Transparency
+
+vim.g.transparent_enabled = true
+
 -- Colorscheme --
 
 vim.cmd [[
 try
-  colorscheme tokyonight-night
+  colorscheme tokyonight-moon
 catch
   colorscheme default
 endtry
 ]]
 
-vim.g.transparent_enabled = true
+-- Brighten line numbers
+
+local colors = require("tokyonight.colors")
+
+vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = "#FFFFFF" })
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = colors.default.dark5 })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = colors.default.dark5 })

@@ -106,13 +106,23 @@ vim.api.nvim_create_autocmd("FileType", {
 -- }}}
 
 -- {{{ Spell check in relevant buffer filetypes
+local spellcheck_augroup = vim.api.nvim_create_augroup("SpellCheck", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("SpellCheck", { clear = true }),
+  group = spellcheck_augroup,
   pattern = { "markdown", "tex", "text" },
   callback = function()
     vim.opt_local.spell = true
-    vim.g.spellcheck_status = true
   end
+})
+-- }}}
+
+-- {{{ Update spellcheck status
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = spellcheck_augroup,
+  pattern = "*",
+  callback = function()
+    vim.g.spellcheck_status = vim.api.nvim_get_option_value('spell', { scope = 'local' })
+  end,
 })
 -- }}}
 

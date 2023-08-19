@@ -34,8 +34,8 @@ M.format_mode = function()
     ["nt"] = "N TERM",
   }
   local current_mode = vim.api.nvim_get_mode().mode
-  return string.format("[ %s ]",
-    (modes[current_mode] ~= nil) and (modes[current_mode]) or (current_mode), "]"):upper()
+  return string.format("  %s ",
+    (modes[current_mode] ~= nil) and (modes[current_mode]) or (current_mode), " "):upper()
 end
 
 --[[ update_mode_colors()
@@ -76,10 +76,7 @@ end
 -- @requires vim.g.spellcheck_status variable created in nvim's LSP settings
 --]]
 M.spellcheck_status = function()
-  if #(vim.lsp.get_active_clients({ bufnr = 0 })) == 0 then
-    return ""
-  end
-  return (vim.g.spellcheck_status) and ("%#PastelculaBlueAccent#󰴓 ") or (" ")
+  return (vim.g.spellcheck_status) and ("%#PastelculaBlueAccent# 󰴓 ") or ("")
 end
 
 --[[ file_icon()

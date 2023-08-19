@@ -88,13 +88,20 @@ noremap <leader>R :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>
 " buffer cycle
 noremap <silent> <S-l> :bnext<CR>
 noremap <silent> <S-h> :bprev<CR>
+" navigate between split buffers
+noremap <silent> <C-k> <C-w>k
+noremap <silent> <C-j> <C-w>j
+noremap <silent> <C-h> <C-w>h
+noremap <silent> <C-l> <C-w>l
 
 " delete without yanking
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
-" replace currently selected text with default register
-" without yanking it
+" yank to end of line
+nnoremap Y y$
+
+" replace currently selected text with default register without yanking it
 vnoremap <leader>p "_dP
 
 " Testing
@@ -157,6 +164,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arzg/vim-colors-xcode'
 Plug 'wojciechkepka/vim-github-dark'
+Plug 'tribela/vim-transparent'
 
 " END LIST OF PLUGINS
 
@@ -172,19 +180,26 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors     
 
 " tokyonight
-" let g:tokyonight_style = 'night' " available: night, storm
-" let g:tokyonight_enable_italic = 1
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
 
-" set background=dark
-colorscheme xcodedark
+set background=dark
+colorscheme tokyonight
 
 " transparent bg
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+let g:transparent_groups = ['Normal', 'Comment', 'Constant', 'Special', 'Identifier',
+                            \ 'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String',
+                            \ 'Function', 'Conditional', 'Repeat', 'Operator', 'Structure',
+                            \ 'LineNr', 'NonText', 'SignColumn', 'CursorLineNr', 'EndOfBuffer']
+" GitSigns
+let g:transparent_groups += ['GitGutterAdd', 'GitGutterChange', 'GitGutterDelete']
 
 " terminal buffer sizing
 autocmd TerminalOpen * if &buftype == 'terminal' | resize 10 | endif
 
 " airline settings
+let g:airline_theme = "tokyonight"
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
 let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline                                            
 let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)

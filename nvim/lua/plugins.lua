@@ -2,7 +2,7 @@
 -- This file does:
 --   - Initialize the list of plug-ins to be installed
 --   - Bootstrap Lazy plugin manager and install plug-ins
---   - Initialize plug-ins using eacch setup() function
+--   - Initialize plug-ins using each setup() function
 --   - For some plug-ins, provide a small configuration work in `config`
 --     This is limited to basic config, and extensive config for some plug-ins will be done elsewhere
 --   - For some plug-ins, install external dependencies
@@ -20,7 +20,38 @@ local plugins = {
     lazy = false,
     priority = 1000,
     opts = {
-      transparent = true
+      dim_inactive = true,
+      transparent = true,
+      on_highlights = function(hl, c)
+        local prompt = "#2d3149"
+        hl.TelescopeNormal = {
+          bg = c.bg_dark,
+          fg = c.fg_dark,
+        }
+        hl.TelescopeBorder = {
+          bg = c.bg_dark,
+          fg = c.bg_dark,
+        }
+        hl.TelescopePromptNormal = {
+          bg = prompt,
+        }
+        hl.TelescopePromptBorder = {
+          bg = prompt,
+          fg = prompt,
+        }
+        hl.TelescopePromptTitle = {
+          bg = prompt,
+          fg = prompt,
+        }
+        hl.TelescopePreviewTitle = {
+          bg = c.bg_dark,
+          fg = c.bg_dark,
+        }
+        hl.TelescopeResultsTitle = {
+          bg = c.bg_dark,
+          fg = c.bg_dark,
+        }
+      end,
     },
   },
   "projekt0n/github-nvim-theme",
@@ -52,23 +83,13 @@ local plugins = {
   },
   { "nvim-telescope/telescope-file-browser.nvim", }, --> File browser extension for Telescope
   {
-    "nvim-tree/nvim-tree.lua",                      --> File tree
-    config = function()
-      -- Disable netrw
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      require("nvim-tree").setup()
-
-      -- Automatically open Nvimtree if directory is open
-      local open_nvim_tree = function(data)
-        -- buffer is a directory
-        if vim.fn.isdirectory(data.file) ~= 1 then return end
-        vim.cmd.cd(data.file)                --> change to the directory
-        require("nvim-tree.api").tree.open() --> open the tree
-      end
-      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-    end,
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
   },
   {
     "stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
@@ -78,6 +99,8 @@ local plugins = {
     "lewis6991/gitsigns.nvim", --> Git information
     config = true
   },
+
+  -- Convenience
   {
     "windwp/nvim-autopairs", --> Autopair
     config = true
@@ -90,7 +113,7 @@ local plugins = {
   },
 
   -- LSP
-  { "neovim/nvim-lspconfig", }, --> Neovim defult LSP engine
+  { "neovim/nvim-lspconfig", }, --> Neovim default LSP engine
   {
     "williamboman/mason.nvim",  --> LSP Manager
     config = true

@@ -47,9 +47,9 @@ local key_opt = {
   { 'n', "<leader>ss", function() builtin.current_buffer_fuzzy_find() end,              "Search current buffer" },
   { 'n', "<leader>se", function() telescope.extensions.file_browser.file_browser() end, "Browse files" },
   { 'n', "<leader>sh", function() builtin.help_tags() end,                              "Search help" },
-  { 'n', "<leader>sl", function() builtin.search_history() end,                         "Search history" },
+  { 'n', "<leader>sl", function() builtin.resume() end,                                 "Last search results" },
   { 'n', "<leader>sc", function() builtin.colorscheme() end,                            "Search colorschemes" },
-  { 'n', "<leader>e",  ":NvimTreeToggle<CR>",                                           "File tree toggle" },
+  { 'n', "<leader>e",  ":Neotree toggle<CR>",                                           "File tree toggle" },
 
   -- Git --
   -- GitHub --
@@ -72,10 +72,8 @@ local key_opt = {
     'n',
     "<leader>S",
     function()
-      vim.g.spellcheck_status = not vim.g.spellcheck_status
-      vim.cmd [[
-        set spell!
-      ]]
+      vim.cmd [[ setlocal spell! ]]
+      vim.g.spellcheck_status = vim.api.nvim_get_option_value('spell', { scope = 'local' })
     end,
     "[s]pell [t]oggle: turn spell check on/off for the current buffer",
   },
@@ -114,6 +112,18 @@ local key_opt = {
     ":ls<CR>:echo '[nvim] Choose a buf to delete (blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>:bdelete<SPACE>",
     "[k]ill : Choose a buffer to kill",
   },
+  {
+    'n', "<C-h>", "<C-w>h", "Switch to left split buffer",
+  },
+  {
+    'n', "<C-l>", "<C-w>l", "Switch to right split buffer",
+  },
+  {
+    'n', "<C-j>", "<C-w>j", "Switch to bottom split buffer",
+  },
+  {
+    'n', "<C-k>", "<C-w>k", "Switch to top split buffer",
+  },
 
   -- Window --
   {
@@ -150,14 +160,26 @@ local key_opt = {
   { 'n', '<leader>lf', function() vim.lsp.buf.format() end,           "Format" },
   { 'n', '<leader>la', function() vim.lsp.buf.code_action() end,      "Code action" },
   { 'n', '<leader>ls', function() builtin.lsp_document_symbols() end, "Search symbols" },
-  { 'n', '<leader>lm', function() builtin.man_pages(get_cursor) end,  "Search man pages" },
+  { 'n', '<leader>lm', function() builtin.man_pages() end,            "Search man pages" },
 
-  -- Plugins --
-  { 'n', 'Pm',         ":Mason<CR>",                                  "Open Mason" },
-  { 'n', 'Pl',         ":Lazy<CR>",                                   "Open Lazy" },
+  -- Config --
+  {
+    'n',
+    "<leader>Ci",
+    ":tabnew ~/.config/nvim/init.lua<CR>",
+    "Open nvim config (init.lua)",
+  },
+  {
+    'n',
+    "<leader>Cp",
+    ":tabnew ~/.config/nvim/lua/plugins.lua<CR>",
+    "Open nvim config (plugins.lua)",
+  },
+  { 'n', '<leader>Cm', ":Mason<CR>",  "Open Mason" },
+  { 'n', '<leader>Cl', ":Lazy<CR>",   "Open Lazy" },
 
   -- Terminal --
-  { 't', "<ESC>",      "<C-\\><C-n>",                                 "[ESC]: exit insert mode for the terminal" },
+  { 't', "<ESC>",      "<C-\\><C-n>", "[ESC]: exit insert mode for the terminal" },
   {
     'n',
     "<leader>T",
@@ -168,12 +190,6 @@ local key_opt = {
   },
 
   -- Other --
-  {
-    'n',
-    "<leader>\\c",
-    ":tabnew ~/.config/nvim/init.lua<CR>",
-    "Open nvim config (init.lua)",
-  },
 }
 -- }}}
 

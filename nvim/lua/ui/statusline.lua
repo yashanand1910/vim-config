@@ -24,11 +24,11 @@ Statusline.build = function()
     -- vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), --> current working directory
 
     -- File info
-    "  ",
-    "%f", --> Current file/path relative to the current folder
-    "%m", --> [-] for read only, [+] for modified buffer
-    "%r", --> [RO] for read only, I know it's redundant
-    "%<", --> Truncation starts here (and to the left) if file is too long
+    -- "  ",
+    -- "%f", --> Current file/path relative to the current folder
+    -- "%m", --> [-] for read only, [+] for modified buffer
+    -- "%r", --> [RO] for read only, I know it's redundant
+    -- "%<", --> Truncation starts here (and to the left) if file is too long
 
     -- Git
     " %#PastelculaRedAccent#",
@@ -43,11 +43,9 @@ Statusline.build = function()
 
     -- Spellcheck status
     components.spellcheck_status(),
-    " ",
 
     -- Linter status
     components.linter_status(),
-    " ",
 
     -- LSP server
     "%#PastelculaYellowAccent#",
