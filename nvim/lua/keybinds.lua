@@ -5,6 +5,7 @@
 local keymap = vim.keymap;
 local telescope = require("telescope")
 local builtin = require('telescope.builtin')
+local get_cursor = require('telescope.themes').get_cursor({})
 telescope.load_extension("file_browser")
 
 -- TODO: Switch to using which-key (https://github.com/folke/which-key.nvim)
@@ -51,6 +52,8 @@ local key_opt = {
   { 'n', "<leader>e",  ":NvimTreeToggle<CR>",                                           "File tree toggle" },
 
   -- Git --
+  -- GitHub --
+  -- Testing --
 
   -- Spell check --
   {
@@ -62,7 +65,7 @@ local key_opt = {
   {
     'n',
     "<C-s>",
-    "z=",
+    function() builtin.spell_suggest(get_cursor) end,
     "[s]pell: toggle spell suggestion window for the word under the cursor",
   },
   {
@@ -142,7 +145,7 @@ local key_opt = {
   { 'n', '<leader>lf', function() vim.lsp.buf.format() end,           "Format" },
   { 'n', '<leader>la', function() vim.lsp.buf.code_action() end,      "Code action" },
   { 'n', '<leader>ls', function() builtin.lsp_document_symbols() end, "Search symbols" },
-  { 'n', '<leader>lm', function() builtin.man_pages() end,            "Search man pages" },
+  { 'n', '<leader>lm', function() builtin.man_pages(get_cursor) end,  "Search man pages" },
 
   -- Plugins --
   { 'n', 'pm',         ":Mason<CR>",                                  "Open Mason" },

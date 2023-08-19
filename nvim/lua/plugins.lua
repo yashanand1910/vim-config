@@ -19,6 +19,22 @@ local plugins = {
   "projekt0n/github-nvim-theme",
   "xiyaowong/transparent.nvim",
 
+  -- Buffer & tabs scoping
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require("bufferline").setup {}
+    end
+  },
+  {
+    "tiagovla/scope.nvim",
+    config = function()
+      require("scope").setup {}
+    end
+  },
+
   -- Syntax, file, search
   { "nvim-treesitter/nvim-treesitter", }, --> Incremental highlighting
   {
