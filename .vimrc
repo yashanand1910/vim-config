@@ -186,6 +186,11 @@ let g:tokyonight_enable_italic = 1
 set background=dark
 colorscheme tokyonight
 
+" brighten line numbers
+highlight LineNr guifg=#FFFFFF
+highlight LineNrBelow guifg=#737aa2
+highlight LineNrAbove guifg=#737aa2
+
 " transparent bg
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 let g:transparent_groups = ['Normal', 'Comment', 'Constant', 'Special', 'Identifier',
