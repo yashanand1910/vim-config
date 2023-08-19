@@ -41,37 +41,35 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ["<C-j>"] = cmp.mapping.select_next_item(),         --> <C-n>
-    ["<C-k>"] = cmp.mapping.select_prev_item(),         --> <C-p>
-    ["<C-e>"] = cmp.mapping.abort(),                    --> Close the completion window
-    ["<C-[>"] = cmp.mapping.scroll_docs(-4),            --> Scroll through the information window next to the item
-    ["<C-]>"] = cmp.mapping.scroll_docs(4),             --> ^
-    ["<C-n>"] = cmp.mapping.complete(),                 --> Brings up completion window
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),            --> Scroll through the information window next to the item
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),             --> ^
     ["<CR>"] = cmp.mapping.confirm({ select = false }), --> True to automatically select the first item without pressing tab
 
-    -- Setting up tab behavior
-    ["<TAB>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-        --elseif has_words_before() then
-        --cmp.mapping.complete()
-        -- This gets annoying when you just want to indent
-        -- visit https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings to re-enable has_words_before() function
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ["<S-TAB>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    -- -- Setting up tab behavior
+    -- ["<TAB>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --     --elseif has_words_before() then
+    --     --cmp.mapping.complete()
+    --     -- This gets annoying when you just want to indent
+    --     -- visit https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings to re-enable has_words_before() function
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
+    -- ["<S-TAB>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
   }),
   sources = cmp.config.sources(
   -- Ordered by priority

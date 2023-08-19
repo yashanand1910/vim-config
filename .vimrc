@@ -4,7 +4,7 @@ filetype plugin on
 set exrc
 set hidden
 set noerrorbells
-set scrolloff=8
+set scrolloff=7
 set smartcase
 set ignorecase
 set expandtab
@@ -17,6 +17,7 @@ set wildmenu
 set nowrap
 set noswapfile
 set hlsearch
+set undofile
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -53,7 +54,7 @@ let test#strategy = "vimterminal"
 let mapleader = " " " map leader to space
 
 " open vimrc
-noremap <leader>Lc :e ~/.vimrc<CR>
+noremap <leader>\c :tabnew ~/.vimrc<CR>
 
 noremap <leader>w :w<CR>
 noremap <leader>W :wa<CR>
@@ -85,14 +86,9 @@ inoremap <C-a> <C-o>A
 " swap current word
 noremap <leader>R :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>
 
-" navigate between split buffers
-noremap <silent> <C-k> <C-w>k
-noremap <silent> <C-j> <C-w>j
-noremap <silent> <C-h> <C-w>h
-noremap <silent> <C-l> <C-w>l
-
 " buffer cycle
-noremap <silent> <S-l> :bnext<CR>
+noremap <silent> <leader>] :bnext<CR>
+noremap <silent> <leader>[ :bprev<CR>
 
 " delete without yanking
 nnoremap <leader>d "_d
@@ -111,11 +107,11 @@ noremap <silent> <leader>tv :TestVisit<CR>
 
 " fzf
 noremap <silent> <Leader>f :GFiles<CR>
-noremap <silent> <Leader>F :Files<CR>
-noremap <silent> <Leader>r :Rg<CR>
+noremap <silent> <Leader>sf :Files<CR>
+noremap <silent> <Leader>sg :Rg<CR>
 noremap <silent> <Leader>sc :Colors<CR>
 noremap <silent> <Leader>sh :Helptags<CR>
-noremap <silent> <Leader>ls :BLines<CR>
+noremap <silent> <Leader>ss :BLines<CR>
 
 " git
 noremap <silent> <Leader>gc :Commits<CR>
@@ -196,7 +192,7 @@ let g:airline#extensions#tabline#tabs_label = ''       " can put text here like 
 let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)      
 " let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab                                                    
 " let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right                                                           
-" let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
+let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
 let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline                                  
 let g:airline#extensions#tabline#buffer_min_count = 2
 " let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               

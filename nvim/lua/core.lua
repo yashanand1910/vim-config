@@ -4,6 +4,8 @@
 --]]
 local opt = vim.opt
 
+vim.g.python3_host_prog = "/Users/yashanand/.pyenv/versions/neovim/bin/python"
+
 --------------------------------------------------------- OPT: ---------------------------------------------------------
 
 do
@@ -29,11 +31,13 @@ do
     { "list",          true }, --> Needed for listchars
     { "listchars", --> Listing special chars
       { tab = "⇥ ", leadmultispace = "│ ", trail = "␣", nbsp = "⍽" } },
-    { "showbreak", "↪" }, --> Beginning of wrapped lines
+    { "wrap", false }, --> Beginning of wrapped lines
+    { "showbreak", "↪" }, --> Beginning of wrapped lines if wrap is set
     -- Fold --
     { "foldmethod", "expr" }, --> Leave the fold up to treesitter
     { "foldlevel", 1 }, --> Ignored when expr, but when folding by "marker", it only folds folds w/in a fold only
     { "foldenable", false }, --> True for "marker" + level = 1, false for TS folding
+    { "undofile", true }, --> Persistent undo
   }
   -- Folding using TreeSitter --
   opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -44,34 +48,24 @@ end
 
 do
   local edit_opt = {
-    { "tabstop",      2 },      --> How many characters Vim /treats/renders/ <TAB> as
-    { "softtabstop",  0 },      --> How many chracters the /cursor/ moves with <TAB> and <BS> -- 0 to disable
-    { "expandtab",    true },   --> Use space instead of tab
-    { "shiftwidth",   2 },      --> Number of spaces to use for auto-indentation, <<, >>, etc.
-    { "spelllang",    "en" },   --> Engrish
+    { "tabstop",      2 },        --> How many characters Vim /treats/renders/ <TAB> as
+    { "softtabstop",  0 },        --> How many chracters the /cursor/ moves with <TAB> and <BS> -- 0 to disable
+    { "expandtab",    true },     --> Use space instead of tab
+    { "shiftwidth",   2 },        --> Number of spaces to use for auto-indentation, <<, >>, etc.
+    { "spelllang",    "en" },     --> English
     { "spellsuggest", "best,8" }, --> Suggest 8 words for spell suggestion
-    { "spell",        false },  --> autocmd will enable spellcheck in Tex or markdown
+    { "spell",        false },    --> autocmd will enable spellcheck in Tex or markdown
   }
   for _, v in ipairs(edit_opt) do
     opt[v[1]] = v[2]
   end
-  -- Trimming extra whitespaces --
-  -- \s: white space char, \+ :one or more, $: end of the line, e: suppresses warning, no need for <CR> for usercmd
-  vim.api.nvim_create_user_command("TrimWhitespace", ":let save=@/<BAR>:%s/\\s\\+$//e<BAR>:let @/=save<BAR>",
-    { nargs = 0 })
-  -- Show the changes made since the last write
-  vim.api.nvim_create_user_command("ShowChanges", ":w !diff % -",
-    { nargs = 0 })
-  -- Change curr window local dir to the dir of curr file
-  vim.api.nvim_create_user_command("CD", ":lcd %:h",
-    { nargs = 0 })
 end
 
 do
   local win_opt = {
     { "number",         true }, --> Line number
     { "relativenumber", true },
-    { "numberwidth",    3 },  --> Width of the number
+    { "numberwidth",    3 },    --> Width of the number
     { "cursorline",     true },
     { "cursorcolumn",   true },
   }
@@ -138,7 +132,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
   callback = function() vim.cmd("startinsert") end
 })
 
--- Automatically close terminal unless exit code isn't 0
+-- {{{ Automatically close terminal unless exit code isn't 0
 vim.api.nvim_create_autocmd("TermClose", {
   group = term_augroup,
   callback = function()

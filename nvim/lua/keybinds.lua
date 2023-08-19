@@ -3,6 +3,11 @@
 --]]
 
 local keymap = vim.keymap;
+local telescope = require("telescope")
+local builtin = require('telescope.builtin')
+telescope.load_extension("file_browser")
+
+-- TODO: Switch to using which-key (https://github.com/folke/which-key.nvim)
 
 -- Leader --
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { noremap = true }) --> Unbind space
@@ -24,40 +29,28 @@ end
 -- {{{ Keybinding table
 local key_opt = {
   -- Convenience --
-  { 'i', "jk",        "<ESC>",              "[j]o[k]er: Better ESC" },
-  { 'n', "<leader>a", "gg<S-v>G",           "[a]ll: select all" },
-  { 'n', "gx",        url_handler,          "Open URL under the cursor using shell open command" },
+  { 'n', "gx",         url_handler,                                                     "Open URL under the cursor using shell open command" },
+  { 'n', "<leader>d",  '"_d',                                                           "Delete without yanking" },
+  { 'v', "<leader>d",  '"_d',                                                           "Delete without yanking" },
 
-  -- Search --
-  { 'n', "n",         "nzz",                "Highlight next search and center the screen" },
-  { 'n', "N",         "Nzz",                "Highlight prev search and center the screen" },
-  { 'n', "<leader>/", "<CMD>let @/=''<CR>", "[/]: clear search" }, --> @/ is the macro for the last search
+  -- Notepad --
+  { 'n', "<leader>N",  ":Notepad<CR>",                                                  "Open notepad" },
 
-  -- Copy and paste --
-  { 'x', "<leader>y", '"+y',                "[y]ank: yank to the system clipboard (+)" },
-  {
-    'n',
-    "<leader>p",
-    "<CMD>reg", --> will be overriden in Telescope config
-    "[p]aste: choose from a register",
-  },
-  {
-    'x',
-    "<leader>p",
-    '"_dP', --> First, [d]elete the selection and send content to _ void reg then [P]aste (b4 cursor unlike small p)
-    "[p]aste: paste the current selection without overriding the reg",
-  },
+  -- Search & navigation --
+  { 'n', "<leader>h",  ":noh<CR>",                                                      "Clear search highlights" },
+  { 'n', "<leader>sp", function() builtin.registers() end,                              "Search registers" },
+  { 'n', "<leader>sk", function() builtin.keymaps() end,                                "Search keymaps" },
+  { 'n', "<leader>f",  function() builtin.git_files() end,                              "Search git files" },
+  { 'n', "<leader>sf", function() builtin.find_files() end,                             "Search files" },
+  { 'n', "<leader>sg", function() builtin.live_grep() end,                              "Live grep" },
+  { 'n', "<leader>ss", function() builtin.current_buffer_fuzzy_find() end,              "Search current buffer" },
+  { 'n', "<leader>se", function() telescope.extensions.file_browser.file_browser() end, "Browse files" },
+  { 'n', "<leader>sh", function() builtin.help_tags() end,                              "Search help" },
+  { 'n', "<leader>sl", function() builtin.search_history() end,                         "Search history" },
+  { 'n', "<leader>sc", function() builtin.colorscheme() end,                            "Search colorschemes" },
+  { 'n', "<leader>e",  ":NvimTreeToggle<CR>",                                           "File tree toggle" },
 
-  -- Terminal --
-  { 't', "<ESC>",     "<C-\\><C-n>",        "[ESC]: exit insert mode for the terminal" },
-  {
-    'n',
-    "<leader>z",
-    function() --> will be overriden in misc.lua terminal location picker
-      vim.cmd("botright " .. math.ceil(vim.fn.winheight(0) * (1 / 3)) .. "sp | term")
-    end,
-    "[z]sh: Launch a terminal below",
-  },
+  -- Git --
 
   -- Spell check --
   {
@@ -79,11 +72,30 @@ local key_opt = {
     "[s]pell [t]oggle: turn spell check on/off for the current buffer",
   },
 
+  -- Motion --
+  {
+    'n', "<C-d>", "<C-d>zz", "Scroll down half page and recenter"
+  },
+  {
+    'n', "<C-u>", "<C-u>zz", "Scroll up half page and recenter"
+  },
+  {
+    'i', "<C-a>", "<C-o>A", "Jump to end of line"
+  },
+
+  -- Editing --
+  {
+    'n',
+    "<leader>R",
+    ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+    "Replace word under cursor"
+  },
+
   -- Buffer --
   {
     'n',
-    "<leader>b",
-    ":ls<CR>:b<SPACE>", --> will be overriden in Telescope config
+    "<leader>bl",
+    function() builtin.buffers() end,
     "[b]uffer: open the buffer list",
   },
   { 'n', "<leader>[", "<CMD>bprevious<CR>", "[[]: navigate to prev buffer" },
@@ -97,60 +109,62 @@ local key_opt = {
 
   -- Window --
   {
-    'n',
-    "<leader>+",
-    "<CMD>exe 'resize ' . (winheight(0) * 3/2)<CR>",
-    "[+]: Increase the current window height by one-third",
+    'n', "<leader>w", ":w<CR>", "Write",
   },
   {
-    'n',
-    "<leader>-",
-    "<CMD>exe 'resize ' . (winheight(0) * 2/3)<CR>",
-    "[-]: Decrease the current window height by one-third",
+    'n', "<leader>W", ":wa<CR>", "Write all",
   },
   {
-    'n',
-    "<leader>>",
-    function()
-      local width = math.ceil(vim.api.nvim_win_get_width(0) * 3 / 2)
-      vim.cmd("vertical resize " .. width)
-    end,
-    "[>]: Increase the current window width by one-third",
+    'n', "<leader>q", ":q<CR>", "Quit",
   },
   {
-    'n',
-    "<leader><",
-    function()
-      local width = math.ceil(vim.api.nvim_win_get_width(0) * 2 / 3)
-      vim.cmd("vertical resize " .. width)
-    end,
-    "[<]: Decrease the current window width by one-third",
+    'n', "<leader>Q", ":qa<CR>", "Quit all",
+  },
+  {
+    'n', "<leader>c", ":bp<bar>sp<bar>bn<bar>bd<CR>", "Buffer close",
   },
 
   -- Tab --
   {
     'n',
-    "<leader>t",
+    "<leader>bt",
     ":ls<CR>:echo '[nvim] Choose a buf to create a new tab w/ (blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>:tab sb<SPACE>",
     "[t]ab: create a new tab",
   },
-  { 'n',
-    "<leader>q",
-    "<CMD>tabclose<CR>",
-    "[q]uit: close current tab",
-  },
-  { 'n', "<leader>1", "1gt", }, --> Go to 1st tab
-  { 'n', "<leader>2", "2gt", },
-  { 'n', "<leader>3", "3gt", },
-  { 'n', "<leader>4", "4gt", },
-  { 'n', "<leader>5", "5gt", },
 
   -- LSP --
+  { 'n', 'K',          function() vim.lsp.buf.hover() end,            "Open manual/doc" },
+  { 'n', 'gd',         function() vim.lsp.buf.definition() end,       "Goto definition" },
+  { 'n', 'gr',         function() builtin.lsp_references() end,       "Search references" },
+  { 'n', '<leader>lj', function() vim.diagnostic.goto_next() end,     "Jump to next diagnostic" },
+  { 'n', '<leader>lk', function() vim.diagnostic.goto_prev() end,     "Jump to prev diagnostic" },
+  { 'n', '<leader>ll', function() builtin.diagnostics() end,          "Search diagnostics" },
+  { 'n', '<leader>lf', function() vim.lsp.buf.format() end,           "Format" },
+  { 'n', '<leader>la', function() vim.lsp.buf.code_action() end,      "Code action" },
+  { 'n', '<leader>ls', function() builtin.lsp_document_symbols() end, "Search symbols" },
+  { 'n', '<leader>lm', function() builtin.man_pages() end,            "Search man pages" },
+
+  -- Plugins --
+  { 'n', 'pm',         ":Mason<CR>",                                  "Open Mason" },
+  { 'n', 'pl',         ":Lazy<CR>",                                   "Open Lazy" },
+
+  -- Terminal --
+  { 't', "<ESC>",      "<C-\\><C-n>",                                 "[ESC]: exit insert mode for the terminal" },
   {
     'n',
-    "<leader>ca",
-    function() vim.notify_once("This keybinding requires lsp.lua module") end,
-    "[c]ode [a]ction: open the menu to perform LSP features",
+    "<leader>T",
+    function() --> will be overriden in misc.lua terminal location picker
+      vim.cmd("topleft " .. math.ceil(vim.fn.winheight(0) * (1 / 3)) .. "sp | term")
+    end,
+    "Open terminal",
+  },
+
+  -- Other --
+  {
+    'n',
+    "<leader>\\c",
+    ":tabnew ~/.config/nvim/init.lua<CR>",
+    "Open nvim config (init.lua)",
   },
 }
 -- }}}

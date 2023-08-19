@@ -15,16 +15,21 @@ local plugins = {
   { "nvim-tree/nvim-web-devicons", }, --> Icons for barbar, Telescope, and more
 
   -- UI
-  {
-    "folke/tokyonight.nvim", --> colorscheme
-  },
+  "folke/tokyonight.nvim",
+  "projekt0n/github-nvim-theme",
+  "xiyaowong/transparent.nvim",
 
   -- Syntax, file, search
   { "nvim-treesitter/nvim-treesitter", }, --> Incremental highlighting
   {
     "nvim-telescope/telescope.nvim",      --> Expandable fuzzy finer
-    -- ! Latest version to support Neovim 0.8
-    version = "0.1.1",
+    config = function()
+      require('telescope').setup({
+        defaults = {
+          layout_strategy = 'flex'
+        }
+      })
+    end
   },
   { "nvim-telescope/telescope-file-browser.nvim", }, --> File browser extension for Telescope
   {
@@ -58,6 +63,7 @@ local plugins = {
     "windwp/nvim-autopairs", --> Autopair
     config = function() require("nvim-autopairs").setup() end,
   },
+  "tpope/vim-surround",
   {
     "terrortylor/nvim-comment", --> Commenting region
     config = function() require("nvim_comment").setup() end,

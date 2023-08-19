@@ -6,8 +6,10 @@
 
 vim.cmd [[
 try
-  colorscheme tokyonight-storm
+  colorscheme tokyonight
 catch
   colorscheme default
 endtry
 ]]
+
+vim.g.transparent_enabled = true

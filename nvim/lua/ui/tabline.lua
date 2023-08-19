@@ -82,16 +82,16 @@ M.build = function()
 
     -- Reset button (%T)
     s = s .. "%T"
+
     -- BG highlight and left spacing
     s = s .. " %#TabLineFill# "
   end
 
   -- Number of buffer and tab on the far right
-  -- s = s .. "%=" --> spacer
-  -- s = s .. string.format("   #Tab: %i", fn.tabpagenr("$")) --> Tab num
-  -- s = s .. " |"
-  -- s = s .. string.format("   #Buf: %i", #get_listed_bufs()) --> Buf num
-  -- s = s .. " " --> right margin
+  s = s .. "%=" --> spacer
+  s = s .. string.format(" #tab %i", fn.tabpagenr("$")) --> Tab num
+  s = s .. string.format(" #buf %i", #get_listed_bufs()) --> Buf num
+  s = s .. " " --> right margin
   return s
 end
 

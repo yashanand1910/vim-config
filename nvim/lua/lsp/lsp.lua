@@ -32,29 +32,29 @@ end
 -- @arg client: name of the client name used by Neovim
 -- @arg bufnr: buffer number used by Neovim
 --]]
-local on_attach = function(client, bufnr)
-  -- Basic settings
-  set_diagnostics_config()
-  -- Global var for auto formatting toggle
-  if not vim.g.linter_status then vim.g.linter_status = true end
-  if client.server_capabilities.documentFormattingProvider then
-    -- User command to toggle code format only available when LSP is detected
-    vim.api.nvim_create_user_command("LspLinterToggle", function()
-        vim.g.linter_status = not vim.g.linter_status
-        print(string.format("Linter %s!", (vim.g.linter_status) and ("on!") or ("off!")))
-      end,
-      { nargs = 0 })
-
-    -- Autocmd for code formatting on the write
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("Format", { clear = false }),
-      buffer = bufnr,
-      callback = function()
-        if vim.g.linter_status then vim.lsp.buf.format() end
-      end
-    })
-  end
-end
+-- local on_attach = function(client, bufnr)
+--   -- Basic settings
+--   set_diagnostics_config()
+--   -- Global var for auto formatting toggle
+--   if not vim.g.linter_status then vim.g.linter_status = true end
+--   if client.server_capabilities.documentFormattingProvider then
+--     -- User command to toggle code format only available when LSP is detected
+--     vim.api.nvim_create_user_command("LspLinterToggle", function()
+--         vim.g.linter_status = not vim.g.linter_status
+--         print(string.format("Linter %s!", (vim.g.linter_status) and ("on!") or ("off!")))
+--       end,
+--       { nargs = 0 })
+--
+--     -- Autocmd for code formatting on the write
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       group = vim.api.nvim_create_augroup("Format", { clear = false }),
+--       buffer = bufnr,
+--       callback = function()
+--         if vim.g.linter_status then vim.lsp.buf.format() end
+--       end
+--     })
+--   end
+-- end
 
 -- List of LSP server used later
 -- Always check the memory usage of each language server. :LSpInfo to identify LSP server
@@ -93,7 +93,7 @@ mason_lspconfig.setup_handlers({
             },
           },
           diagnostics = {
-            globals = { "vim" } --> Make diagnostics tolerate vim.fun.stuff
+            globals = { "vim", "on_attach" } --> Make diagnostics tolerate vim.fun.stuff
           },
           workspace = {
             library = vim.api.nvim_get_runtime_file("lua", true), --> Expose some Neovim API

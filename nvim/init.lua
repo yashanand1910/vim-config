@@ -23,7 +23,6 @@ if tabline then tabline.setup() end
 -- Core config modules
 safe_require("core")
 safe_require("plugins")
-safe_require("keybinds")
 
 -- Theme config modules
 safe_require("theme")
@@ -40,3 +39,6 @@ safe_require("config.treesitter")
 
 -- Miscellaneous configurations
 safe_require("misc")
+
+-- Keybindings
+safe_require("keybinds")
