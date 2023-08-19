@@ -5,8 +5,11 @@
 local keymap = vim.keymap;
 local telescope = require("telescope")
 local builtin = require('telescope.builtin')
+-- Telescope layout modes
 local get_cursor = require('telescope.themes').get_cursor({})
+-- Load telescope extensions
 telescope.load_extension("file_browser")
+telescope.load_extension("dap")
 
 -- TODO: Switch to using which-key (https://github.com/folke/which-key.nvim)
 
@@ -30,30 +33,109 @@ end
 -- {{{ Keybinding table
 local key_opt = {
   -- Convenience --
-  { 'n', "gx",         url_handler,                                                     "Open URL under the cursor using shell open command" },
-  { 'n', "<leader>d",  '"_d',                                                           "Delete without yanking" },
-  { 'v', "<leader>d",  '"_d',                                                           "Delete without yanking" },
+  { 'n', "gx",          url_handler,                                                     "Open URL under the cursor using shell open command" },
+  { 'n', "\\d",         '"_d',                                                           "Delete without yanking" },
+  { 'v', "<leaderd",    '"_d',                                                           "Delete without yanking" },
 
   -- Notepad --
-  { 'n', "<leader>N",  ":Notepad<CR>",                                                  "Open notepad" },
+  { 'n', "<leader>N",   ":Notepad<CR>",                                                  "Open notepad" },
 
   -- Search & navigation --
-  { 'n', "<leader>h",  ":noh<CR>",                                                      "Clear search highlights" },
-  { 'n', "<leader>sp", function() builtin.registers() end,                              "Search registers" },
-  { 'n', "<leader>sk", function() builtin.keymaps() end,                                "Search keymaps" },
-  { 'n', "<leader>f",  function() builtin.git_files() end,                              "Search git files" },
-  { 'n', "<leader>sf", function() builtin.find_files() end,                             "Search files" },
-  { 'n', "<leader>sg", function() builtin.live_grep() end,                              "Live grep" },
-  { 'n', "<leader>ss", function() builtin.current_buffer_fuzzy_find() end,              "Search current buffer" },
-  { 'n', "<leader>se", function() telescope.extensions.file_browser.file_browser() end, "Browse files" },
-  { 'n', "<leader>sh", function() builtin.help_tags() end,                              "Search help" },
-  { 'n', "<leader>sl", function() builtin.resume() end,                                 "Last search results" },
-  { 'n', "<leader>sc", function() builtin.colorscheme() end,                            "Search colorschemes" },
-  { 'n', "<leader>e",  ":Neotree toggle<CR>",                                           "File tree toggle" },
+  { 'n', "<leader>h",   ":noh<CR>",                                                      "Clear search highlights" },
+  { 'n', "<leader>sp",  function() builtin.registers() end,                              "Search registers" },
+  { 'n', "<leader>sk",  function() builtin.keymaps() end,                                "Search keymaps" },
+  { 'n', "<leader>f",   function() builtin.git_files() end,                              "Search git files" },
+  { 'n', "<leader>sf",  function() builtin.find_files() end,                             "Search files" },
+  { 'n', "<leader>sg",  function() builtin.live_grep() end,                              "Live grep" },
+  { 'n', "<leader>ss",  function() builtin.builtin() end,                                "Search builtin options" },
+  { 'n', "<leader>se",  function() telescope.extensions.file_browser.file_browser() end, "Browse files" },
+  { 'n', "<leader>sh",  function() builtin.help_tags() end,                              "Search help" },
+  { 'n', "<leader>sl",  function() builtin.resume() end,                                 "Last search results" },
+  { 'n', "<leader>sc",  function() builtin.colorscheme() end,                            "Search colorschemes" },
+  { 'n', "<leader>e",   ":Neotree toggle<CR>",                                           "File tree toggle" },
 
   -- Git --
+  { 'n', "<leader>gDD", ":DiffviewOpen<CR>",                                             "Git diff view open" },
+  { 'n', "<leader>gDQ", ":DiffviewClose<CR>",                                            "Git diff view close" },
+  { 'n', "<leader>gs",  ":G<CR>",                                                        "Git status" },
+  { 'n', "<leader>gc",  function() builtin.git_commits() end,                            "Git commits" },
+  { 'n', "<leader>ga",  ":G add %<CR>",                                                  "Git add current file" },
+  { 'n', "<leader>gA",  ":G add .<CR>",                                                  "Git add all" },
+  { 'n', "<leader>gCC", ":G commit -c HEAD<CR>",                                         "Git commit (using last commit)" },
+  { 'n', "<leader>gCN", ":G commit<CR>",                                                 "Git commit" },
+  { 'n', "<leader>gp",  ":G -c pull.default=current pull<CR>",                           "Git pull" },
+  { 'n', "<leader>gP",  ":G -c pull.default=current push<CR>",                           "Git push" },
+
   -- GitHub --
   -- Testing --
+
+  -- Debugging --
+  { 'n', "<leader>ds",  function() require("dap").continue() end,                        "Debugger start" },
+  { 'n', "<leader>du",  function() require("dapui").toggle() end,                        "Debugger UI toggle" },
+  { 'n', "<leader>de",  function() require("dapui").eval() end,                          "Debugger evaluate expression" },
+  { 'n', "<leader>db",  function() require("dap").toggle_breakpoint() end,               "Debugger toggle breakpoint" },
+  { 'n', "<leader>dd",  function() telescope.extensions.dap.commands() end,              "Debugger search commands" },
+  { 'n', "<leader>dlv", function() telescope.extensions.dap.variables() end,             "Debugger variables list" },
+  { 'n', "<leader>dlf", function() telescope.extensions.dap.frames() end,                "Debugger frames list" },
+  { 'n',
+    "<leader>dlb",
+    function()
+      require("dapui").float_element('breakpoints',
+        {
+          position = 'center',
+          enter = true,
+          height = 40,
+          width = 100
+        })
+    end,
+    "Debugger breakpoints"
+  },
+  { 'n',
+    "<leader>dls",
+    function()
+      require("dapui").float_element('scopes',
+        {
+          position = 'center',
+          enter = true,
+          height = 40,
+          width = 100
+        })
+    end,
+    "Debugger scopes"
+  },
+  { 'n',
+    "<leader>dlc",
+    function()
+      require("dapui").float_element('console',
+        {
+          position = 'center',
+          enter = true,
+          height = 40,
+          width = 100
+        })
+    end,
+    "Debugger console"
+  },
+  { 'n',
+    "<leader>dlr",
+    function()
+      require("dapui").float_element('repl',
+        {
+          position = 'center',
+          enter = true,
+          height = 40,
+          width = 100
+        })
+    end,
+    "Debugger console"
+  },
+  { 'n', "<leader>dc", function() require("dap").run_to_cursor() end, "Debugger continue till cursor" },
+  { 'n', "<leader>do", function() require("dap").step_over() end,     "Debugger step over" },
+  { 'n', "<leader>di", function() require("dap").step_into() end,     "Debugger step into" },
+  { 'n', "<leader>dO", function() require("dap").step_out() end,      "Debugger step out" },
+  { 'n', "<leader>dB", function() require("dap").step_back() end,     "Debugger step back" },
+  { 'n', "<leader>dp", function() require("dap").pause() end,         "Debugger pause thread" },
+
 
   -- Spell check
   {
@@ -123,6 +205,10 @@ local key_opt = {
   },
   {
     'n', "<C-k>", "<C-w>k", "Switch to top split buffer",
+  },
+  {
+    'n', "<leader>bd", ":%bd|e#|bd#<CR>",
+    "Close all buffers but this one",
   },
 
   -- Window --

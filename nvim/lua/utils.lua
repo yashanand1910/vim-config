@@ -226,7 +226,7 @@ function M.launch_notepad()
       row = 1,                                                 --> Top of the window
       col = math.ceil(vim.o.columns * 0.5),                    --> Far right; should add up to 1 with win_width
     })
-    vim.api.nvim_win_set_option(M.notepad_win, "winblend", 50) --> Semi transparent buffer
+    vim.api.nvim_win_set_option(M.notepad_win, "winblend", 20) --> Semi transparent buffer
     vim.api.nvim_win_set_option(M.notepad_win, "spell", true)  --> Workaround to set spell option
     vim.g.spellcheck_status = true
 

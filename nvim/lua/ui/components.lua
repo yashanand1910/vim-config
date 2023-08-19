@@ -76,7 +76,7 @@ end
 -- @requires vim.g.spellcheck_status variable created in nvim's LSP settings
 --]]
 M.spellcheck_status = function()
-  return (vim.g.spellcheck_status) and ("%#PastelculaBlueAccent# 󰴓 ") or ("")
+  return (vim.g.spellcheck_status) and ("%#PastelculaBlueAccent#󰴓 ") or ("")
 end
 
 --[[ file_icon()

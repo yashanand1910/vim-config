@@ -95,10 +95,14 @@ local plugins = {
     "stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
     config = function() require("oil").setup() end,
   },
+
+  -- Git
   {
     "lewis6991/gitsigns.nvim", --> Git information
     config = true
   },
+  "sindrets/diffview.nvim",
+  "tpope/vim-fugitive",
 
   -- Convenience
   {
@@ -109,6 +113,11 @@ local plugins = {
   "tpope/vim-commentary",          --> Commenting region
   {
     "norcalli/nvim-colorizer.lua", --> Color highlighter
+    config = function() require("colorizer").setup() end,
+  },
+  {
+    "folke/todo-comments.nvim", --> TODO comments highlighting
+    dependencies = "nvim-lua/plenary.nvim",
     config = true
   },
 
@@ -132,6 +141,15 @@ local plugins = {
   "hrsh7th/cmp-nvim-lua",              --> nvim-cmp source for Neovim API
   "hrsh7th/nvim-cmp",                  --> Completion Engine
 
+  -- Debugging
+  "mfussenegger/nvim-dap",
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = true
+  },
+  "nvim-telescope/telescope-dap.nvim",
+
   -- Text editing
   {
     "iamcco/markdown-preview.nvim",                       --> MarkdownPreview to toggle
@@ -142,7 +160,18 @@ local plugins = {
     "lervag/vimtex", --> LaTeX integration
     config = function() vim.g.tex_flavor = "latex" end,
     ft = { "plaintex", "tex" },
-  }
+  },
+
+  -- Misc
+  {
+    "folke/neodev.nvim",
+    opts = {},
+    config = function()
+      require("neodev").setup({
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      })
+    end
+  } --> For configuring lua_ls for nvim config files
 }
 
 --- {{{ Lazy.nvim installation

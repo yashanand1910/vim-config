@@ -121,15 +121,15 @@ noremap <silent> <Leader>ss :BLines<CR>
 
 " git
 noremap <silent> <Leader>gc :Commits<CR>
-noremap <silent> <Leader>Gs :G status<CR>
-noremap <silent> <Leader>Ga :G add %<CR>
-noremap <silent> <Leader>GA :G add .<CR>
-noremap <silent> <Leader>Gcc :G commit<CR>
-noremap <silent> <Leader>GCC :G add . <bar> G commit -c HEAD<CR>
-noremap <silent> <Leader>GCN :G add . <bar> G commit<CR> 
-noremap <silent> <Leader>GP :G -c push.default=current push<cr>
-noremap <silent> <Leader>GL :Gclog<cr>
-noremap <silent> <Leader>Gl :G blame<cr>
+noremap <silent> <Leader>gs :G<CR>
+noremap <silent> <Leader>ga :G add %<CR>
+noremap <silent> <Leader>gA :G add .<CR>
+noremap <silent> <Leader>gcc :G commit<CR>
+noremap <silent> <Leader>gCC :G add . <bar> G commit -c HEAD<CR>
+noremap <silent> <Leader>gCN :G add . <bar> G commit<CR> 
+noremap <silent> <Leader>gP :G -c push.default=current push<cr>
+noremap <silent> <Leader>gL :Gclog<cr>
+noremap <silent> <Leader>gl :G blame<cr>
 noremap <silent> <Leader>gd :Gvdiffsplit<cr>
 
 " END KEYBINDS

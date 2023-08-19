@@ -9,6 +9,7 @@ local function safe_require(module)
     return loaded_module
   end
   vim.notify("Error loading the module: " .. module)
+  vim.notify(loaded_module)
   return nil
 end
 
