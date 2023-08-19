@@ -11,6 +11,7 @@ Statusline = {} --> global so that luaeval can keep calling build() function
 -- Build a table with statusline components
 -- @return Lua table of Vim statusline components
 --]]
+---@diagnostic disable-next-line: duplicate-set-field
 Statusline.build = function()
   return table.concat({
     -- Mode
@@ -18,15 +19,16 @@ Statusline.build = function()
     components.format_mode(),
 
     -- folder, file name, and status
-    "%#PastelculaOrangeAccent# ",
-    " ",
-    vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), --> current working directory
+    -- "%#PastelculaOrangeAccent# ",
+    -- " ",
+    -- vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), --> current working directory
+
     -- File info
     "  ",
     "%f", --> Current file/path relative to the current folder
     "%m", --> [-] for read only, [+] for modified buffer
     "%r", --> [RO] for read only, I know it's redundant
-    "%<", --> Truncation starts here (and to the left) if file is too logn
+    "%<", --> Truncation starts here (and to the left) if file is too long
 
     -- Git
     " %#PastelculaRedAccent#",
@@ -38,6 +40,14 @@ Statusline.build = function()
 
     -- LSP status
     components.lsp_status(),
+
+    -- Spellcheck status
+    components.spellcheck_status(),
+    " ",
+
+    -- Linter status
+    components.linter_status(),
+    " ",
 
     -- LSP server
     "%#PastelculaYellowAccent#",
@@ -56,6 +66,7 @@ end
 --[[ setup()
 -- Set vim.o.statusline to luaeval of the build function
 --]]
+---@diagnostic disable-next-line: duplicate-set-field
 Statusline.setup = function()
   vim.opt.statusline = "%{%v:lua.Statusline.build()%}"
 end

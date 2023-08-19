@@ -67,7 +67,7 @@ do
     { "relativenumber", true },
     { "numberwidth",    3 },    --> Width of the number
     { "cursorline",     true },
-    { "cursorcolumn",   true },
+    { "cursorcolumn",   false },
   }
   for _, v in pairs(win_opt) do
     opt[v[1]] = v[2]
@@ -109,7 +109,10 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("SpellCheck", { clear = true }),
   pattern = { "markdown", "tex", "text" },
-  callback = function() vim.opt_local.spell = true end
+  callback = function()
+    vim.opt_local.spell = true
+    vim.g.spellcheck_status = true
+  end
 })
 -- }}}
 

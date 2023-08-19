@@ -55,7 +55,7 @@ local key_opt = {
   -- GitHub --
   -- Testing --
 
-  -- Spell check --
+  -- Spell check
   {
     'i',
     "<C-s>",
@@ -70,8 +70,13 @@ local key_opt = {
   },
   {
     'n',
-    "<leader>st",
-    "<CMD>set spell!<CR>",
+    "<leader>S",
+    function()
+      vim.g.spellcheck_status = not vim.g.spellcheck_status
+      vim.cmd [[
+        set spell!
+      ]]
+    end,
     "[s]pell [t]oggle: turn spell check on/off for the current buffer",
   },
 
@@ -101,8 +106,8 @@ local key_opt = {
     function() builtin.buffers() end,
     "[b]uffer: open the buffer list",
   },
-  { 'n', "<leader>[", "<CMD>bprevious<CR>", "[[]: navigate to prev buffer" },
-  { 'n', "<leader>]", "<CMD>bnext<CR>",     "[]]: navigate to next buffer" },
+  { 'n', "<S-h>", "<CMD>bprevious<CR>", "Navigate to prev buffer" },
+  { 'n', "<S-l>", "<CMD>bnext<CR>",     "Navigate to next buffer" },
   {
     'n',
     "<leader>k",
@@ -148,8 +153,8 @@ local key_opt = {
   { 'n', '<leader>lm', function() builtin.man_pages(get_cursor) end,  "Search man pages" },
 
   -- Plugins --
-  { 'n', 'pm',         ":Mason<CR>",                                  "Open Mason" },
-  { 'n', 'pl',         ":Lazy<CR>",                                   "Open Lazy" },
+  { 'n', 'Pm',         ":Mason<CR>",                                  "Open Mason" },
+  { 'n', 'Pl',         ":Lazy<CR>",                                   "Open Lazy" },
 
   -- Terminal --
   { 't', "<ESC>",      "<C-\\><C-n>",                                 "[ESC]: exit insert mode for the terminal" },

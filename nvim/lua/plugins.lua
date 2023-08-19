@@ -11,11 +11,18 @@
 -- Plug-in list
 local plugins = {
   -- dependencies
-  { "nvim-lua/plenary.nvim", },       --> Lua function library for Neovim (used by Telescope)
-  { "nvim-tree/nvim-web-devicons", }, --> Icons for barbar, Telescope, and more
+  "nvim-lua/plenary.nvim",       --> Lua function library for Neovim (used by Telescope)
+  "nvim-tree/nvim-web-devicons", --> Icons for barbar, Telescope, and more
 
   -- UI
-  "folke/tokyonight.nvim",
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true
+    },
+  },
   "projekt0n/github-nvim-theme",
   "xiyaowong/transparent.nvim",
 
@@ -24,15 +31,11 @@ local plugins = {
     'akinsho/bufferline.nvim',
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require("bufferline").setup {}
-    end
+    config = true
   },
   {
     "tiagovla/scope.nvim",
-    config = function()
-      require("scope").setup {}
-    end
+    config = true
   },
 
   -- Syntax, file, search
@@ -49,7 +52,7 @@ local plugins = {
   },
   { "nvim-telescope/telescope-file-browser.nvim", }, --> File browser extension for Telescope
   {
-    "kyazdani42/nvim-tree.lua",                      --> File tree
+    "nvim-tree/nvim-tree.lua",                      --> File tree
     config = function()
       -- Disable netrw
       vim.g.loaded_netrw = 1
@@ -73,41 +76,38 @@ local plugins = {
   },
   {
     "lewis6991/gitsigns.nvim", --> Git information
-    config = function() require("gitsigns").setup() end,
+    config = true
   },
   {
     "windwp/nvim-autopairs", --> Autopair
-    config = function() require("nvim-autopairs").setup() end,
+    config = true
   },
   "tpope/vim-surround",
-  {
-    "terrortylor/nvim-comment", --> Commenting region
-    config = function() require("nvim_comment").setup() end,
-  },
+  "tpope/vim-commentary",          --> Commenting region
   {
     "norcalli/nvim-colorizer.lua", --> Color highlighter
-    config = function() require("colorizer").setup() end,
+    config = true
   },
 
   -- LSP
   { "neovim/nvim-lspconfig", }, --> Neovim defult LSP engine
   {
     "williamboman/mason.nvim",  --> LSP Manager
-    config = function() require("mason").setup() end,
+    config = true
   },
-  { "williamboman/mason-lspconfig.nvim", },                                     --> Bridge between Mason and lspconfig
-  { "theopn/friendly-snippets", },                                              --> VS Code style snippet collection
+  "williamboman/mason-lspconfig.nvim", --> Bridge between Mason and lspconfig
+  "theopn/friendly-snippets",          --> VS Code style snippet collection
   {
-    "L3MON4D3/LuaSnip",                                                         --> Snippet engine that accepts VS Code style snippets
-    config = function() require("luasnip.loaders.from_vscode").lazy_load() end, --> Load snippets from friendly snippets
+    "L3MON4D3/LuaSnip",                --> Snippet engine that accepts VS Code style snippets
+    config = true                      --> Load snippets from friendly snippets
   },
-  { "saadparwaiz1/cmp_luasnip", },                                              --> nvim_cmp and LuaSnip bridge
-  { "hrsh7th/cmp-nvim-lsp", },                                                  --> nvim-cmp source for LSP engine
-  { "hrsh7th/cmp-buffer", },                                                    --> nvim-cmp source for buffer words
-  { "hrsh7th/cmp-path", },                                                      --> nvim-cmp source for file path
-  { "hrsh7th/cmp-cmdline", },                                                   --> nvim-cmp source for :commands
-  { "hrsh7th/cmp-nvim-lua" },                                                   --> nvim-cmp source for Neovim API
-  { "hrsh7th/nvim-cmp", },                                                      --> Completion Engine
+  "saadparwaiz1/cmp_luasnip",          --> nvim_cmp and LuaSnip bridge
+  "hrsh7th/cmp-nvim-lsp",              --> nvim-cmp source for LSP engine
+  "hrsh7th/cmp-buffer",                --> nvim-cmp source for buffer words
+  "hrsh7th/cmp-path",                  --> nvim-cmp source for file path
+  "hrsh7th/cmp-cmdline",               --> nvim-cmp source for :commands
+  "hrsh7th/cmp-nvim-lua",              --> nvim-cmp source for Neovim API
+  "hrsh7th/nvim-cmp",                  --> Completion Engine
 
   -- Text editing
   {

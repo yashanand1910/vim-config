@@ -56,12 +56,37 @@ M.update_mode_colors = function()
   return mode_color
 end
 
+--[[ linter_status()
+-- Format a string on whether Linter toggle variable in nvim is on or off
+--
+-- @return a string indicating whether Linter is on or off (if LSP server is not attached, Linter is considered off)
+-- @requires vim.g.linter_status variable created in nvim's LSP settings
+--]]
+M.linter_status = function()
+  if #(vim.lsp.get_active_clients({ bufnr = 0 })) == 0 then
+    return ""
+  end
+  return (vim.g.linter_status) and ("%#PastelculaGreenAccent#󰃢 ") or ("%#PastelculaRedAccent#󰃢 ")
+end
+
+--[[ spellcheck_status()
+-- Format a string on whether Spellcheck toggle variable in nvim is on or off
+--
+-- @return a string indicating whether Spellcheck is on or off
+-- @requires vim.g.spellcheck_status variable created in nvim's LSP settings
+--]]
+M.spellcheck_status = function()
+  if #(vim.lsp.get_active_clients({ bufnr = 0 })) == 0 then
+    return ""
+  end
+  return (vim.g.spellcheck_status) and ("%#PastelculaBlueAccent#󰴓 ") or (" ")
+end
+
 --[[ file_icon()
 -- Returns highlighted icon from nvim-web-devicons plug-in
 -- usage:
 -- M.has_devicons. M.devicons = pcall(require, "nvim-web-devicons")
 -- require("ui.components").file_icon(M.has_devicons, M.devicons, vim.fn.bufname("%"))
---
 --
 -- @arg status First pcall return value
 -- @arg module Second pcall return value

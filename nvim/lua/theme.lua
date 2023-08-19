@@ -6,7 +6,7 @@
 
 vim.cmd [[
 try
-  colorscheme tokyonight
+  colorscheme tokyonight-night
 catch
   colorscheme default
 endtry

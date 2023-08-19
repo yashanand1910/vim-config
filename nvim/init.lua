@@ -17,8 +17,6 @@ local highlights = safe_require("ui.highlights")
 if highlights then highlights.setup() end
 local statusline = safe_require("ui.statusline")
 if statusline then statusline.setup() end
--- local tabline = safe_require("ui.tabline")
--- if tabline then tabline.setup() end
 
 -- Core config modules
 safe_require("core")

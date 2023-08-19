@@ -3,6 +3,7 @@
 --]]
 local treesitter = require("nvim-treesitter.configs")
 
+---@diagnostic disable-next-line: missing-fields
 treesitter.setup({
   ensure_installed = { "bash", "c", "lua", "markdown", "python", "vim" },
   sync_install = false,
