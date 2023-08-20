@@ -35,7 +35,13 @@ local key_opt = {
   -- Convenience --
   { 'n', "gx",          url_handler,                                                     "Open URL under the cursor" },
   { 'n', "\\d",         '"_d',                                                           "Delete without yanking" },
-  { 'v', "<leaderd",    '"_d',                                                           "Delete without yanking" },
+  { 'v', "\\d",         '"_d',                                                           "Delete without yanking" },
+  { 'n', "<A-j>",       ':m .+1<CR>==',                                                  "Move current line down" },
+  { 'n', "<A-k>",       ':m .-2<CR>==',                                                  "Move current line up" },
+  { 'i', "<A-j>",       '<Esc>:m .+1<CR>==gi',                                           "Move current line down" },
+  { 'i', "<A-k>",       '<Esc>:m .-2<CR>==gi',                                           "Move current line up" },
+  { 'v', "<A-j>",       ":m '>+1<CR>gv-gv",                                              "Move current block down" },
+  { 'v', "<A-k>",       ":m '<-2<CR>gv-gv",                                              "Move current block up" },
 
   -- Notepad --
   { 'n', "<leader>N",   ":Notepad<CR>",                                                  "Open notepad" },
@@ -58,6 +64,7 @@ local key_opt = {
   { 'n', "<leader>gDD", ":DiffviewOpen<CR>",                                             "Git diff view open" },
   { 'n', "<leader>gDQ", ":DiffviewClose<CR>",                                            "Git diff view close" },
   { 'n', "<leader>gs",  ":G<CR>",                                                        "Git status" },
+  { 'n', "<leader>gd",  ":Gvdiffsplit<CR>",                                              "Git diff current file" },
   { 'n', "<leader>gc",  function() builtin.git_commits() end,                            "Git commits" },
   { 'n', "<leader>ga",  ":G add %<CR>",                                                  "Git add current file" },
   { 'n', "<leader>gA",  ":G add .<CR>",                                                  "Git add all" },
@@ -71,11 +78,23 @@ local key_opt = {
   { 'n',
     "<leader>gy",
     function()
-      require("gitlinker").get_buf_range_url("n", { action_callback = require "gitlinker.actions".open_in_browser })
+      require("gitlinker").get_buf_range_url("n", { action_callback = require "gitlinker.actions".copy_to_clipboard })
     end,
     "Git yank permalink" },
   { 'v',
     "<leader>gy",
+    function()
+      require("gitlinker").get_buf_range_url("v", { action_callback = require "gitlinker.actions".copy_to_clipboard })
+    end,
+    "Git yank permalink" },
+  { 'n',
+    "<leader>gY",
+    function()
+      require("gitlinker").get_buf_range_url("n", { action_callback = require "gitlinker.actions".open_in_browser })
+    end,
+    "Git yank permalink" },
+  { 'v',
+    "<leader>gY",
     function()
       require("gitlinker").get_buf_range_url("v", { action_callback = require "gitlinker.actions".open_in_browser })
     end,
@@ -215,6 +234,10 @@ local key_opt = {
   },
 
   -- Buffer --
+  { 'n', "<C-Up>",    ":resize -2<CR>",          "Buffer resize up" },
+  { 'n', "<C-Down>",  ":resize +2<CR>",          "Buffer resize down" },
+  { 'n', "<C-Left>",  ":vertical resize -2<CR>", "Buffer resize left" },
+  { 'n', "<C-Right>", ":vertical resize +2<CR>", "Buffer resize right" },
   {
     'n',
     "<leader>bl",

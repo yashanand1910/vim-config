@@ -78,10 +78,13 @@ noremap <silent> <leader>h :noh<CR>
 
 " scroll half page down and recenter
 noremap <C-d> <C-d>zz 
+
 " scroll half page up and recenter
 noremap <C-u> <C-u>zz 
+
 " 'A' when in insert mode
 inoremap <C-a> <C-o>A
+
 " swap current word
 noremap <leader>R :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>
 
@@ -93,6 +96,11 @@ noremap <silent> <C-k> <C-w>k
 noremap <silent> <C-j> <C-w>j
 noremap <silent> <C-h> <C-w>h
 noremap <silent> <C-l> <C-w>l
+"buffer resize
+noremap <C-Up> :resize -2<CR>
+noremap <C-Down> :resize +2<CR>
+noremap <C-Left> :vertical resize -2<CR>
+noremap <C-Right> :vertical resize +2<CR>
 
 " delete without yanking
 nnoremap <leader>d "_d

@@ -105,7 +105,8 @@ local plugins = {
     config = true,
   },
 
-  -- Formatting
+  -- Formatting & linting
+  "mfussenegger/nvim-lint",
   "editorconfig/editorconfig-vim",
 
   -- Git
