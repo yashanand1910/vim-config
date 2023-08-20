@@ -1,14 +1,17 @@
-# TODOs
+# TODOs (for port to clean nvim)
 
 - [x] Notepad save mechanism
 - [x] Ctrl-jhkl motion to split buffers
-- [x] Tokyonight LNO coloring
+- [x] Brighten Tokyonight LNO coloring
 - [x] Buffer clearing keybinds
 - [x] Explore telescope extensions (e.g. DAP)
 - [x] Fix multiple LSP status not showing
-- [-] Port lvim config
-- [ ] Fix tabline colors when multiple tabs
+- [x] Port lvim config
+- [x] Brighten comments in Tokyonight
+- [ ] :GBrowse not working
+- [ ] Octo PR open hotkey to be same as :GBrowse hotkey (using FT)
+- [ ] Octo PR markdown view issue
 - [ ] Hotkey for easily shifting up/down lines
 - [ ] Change colors and icons for DAP (e.g. breakpoint)
-- [ ] Port to using which key (?)
+- [ ] Fix tabline colors when multiple tabs
 - [ ] Neovim starting screen should not disappear

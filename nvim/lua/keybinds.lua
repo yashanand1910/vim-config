@@ -33,7 +33,7 @@ end
 -- {{{ Keybinding table
 local key_opt = {
   -- Convenience --
-  { 'n', "gx",          url_handler,                                                     "Open URL under the cursor using shell open command" },
+  { 'n', "gx",          url_handler,                                                     "Open URL under the cursor" },
   { 'n', "\\d",         '"_d',                                                           "Delete without yanking" },
   { 'v', "<leaderd",    '"_d',                                                           "Delete without yanking" },
 
@@ -68,24 +68,46 @@ local key_opt = {
   { 'n', "<leader>gl",  ":Gclog<CR>",                                                    "Git log" },
   { 'n', "<leader>gb",  ":G blame<CR>",                                                  "Git blame" },
   { 'n', "<leader>gB",  ":GBrowse<CR>",                                                  "Git browse" },
+  { 'n',
+    "<leader>gy",
+    function()
+      require("gitlinker").get_buf_range_url("n", { action_callback = require "gitlinker.actions".open_in_browser })
+    end,
+    "Git yank permalink" },
+  { 'v',
+    "<leader>gy",
+    function()
+      require("gitlinker").get_buf_range_url("v", { action_callback = require "gitlinker.actions".open_in_browser })
+    end,
+    "Git yank permalink" },
 
   -- GitHub --
+  { 'n', "<leader>oa",  ":Octo actions<CR>",                                 "GitHub search commands" },
+  { 'n', "<leader>opl", ":Octo pr list<CR>",                                 "GitHub PR list" },
+  { 'n', "<leader>opa", ":Octo pr create<CR>",                               "GitHub PR create" },
+  { 'n', "<leader>opp", ":Octo pr checkout<CR>",                             "GitHub PR checkout" },
+  { 'n', "<leader>opM", ":Octo pr merge<CR>",                                "GitHub PR merge" },
+  { 'n', "<leader>ors", ":Octo review start<CR>",                            "GitHub PR start review" },
+  { 'n', "<leader>orx", ":Octo review close<CR>",                            "GitHub PR close review" },
+  { 'n', "<leader>orS", ":Octo review submit<CR>",                           "GitHub PR submit review" },
+  { 'n', "<leader>orr", ":Octo review resume<CR>",                           "GitHub PR resume review" },
+  { 'n', "<leader>ord", ":Octo review discard<CR>",                          "GitHub PR discard review" },
 
   -- Testing --
-  { 'n', "<leader>tt",  ":TestNearest<CR>",                                              "Test nearest" },
-  { 'n', "<leader>tc",  ":TestClass<CR>",                                                "Test class" },
-  { 'n', "<leader>tf",  ":TestFile<CR>",                                                 "Test file" },
-  { 'n', "<leader>ts",  ":TestSuite<CR>",                                                "Test suite" },
-  { 'n', "<leader>tv",  ":TestVisit<CR>",                                                "Test visit" },
+  { 'n', "<leader>tt",  ":TestNearest<CR>",                                  "Test nearest" },
+  { 'n', "<leader>tc",  ":TestClass<CR>",                                    "Test class" },
+  { 'n', "<leader>tf",  ":TestFile<CR>",                                     "Test file" },
+  { 'n', "<leader>ts",  ":TestSuite<CR>",                                    "Test suite" },
+  { 'n', "<leader>tv",  ":TestVisit<CR>",                                    "Test visit" },
 
   -- Debugging --
-  { 'n', "<leader>ds",  function() require("dap").continue() end,                        "Debugger start" },
-  { 'n', "<leader>du",  function() require("dapui").toggle() end,                        "Debugger UI toggle" },
-  { 'n', "<leader>de",  function() require("dapui").eval() end,                          "Debugger evaluate expression" },
-  { 'n', "<leader>db",  function() require("dap").toggle_breakpoint() end,               "Debugger toggle breakpoint" },
-  { 'n', "<leader>dd",  function() telescope.extensions.dap.commands() end,              "Debugger search commands" },
-  { 'n', "<leader>dlv", function() telescope.extensions.dap.variables() end,             "Debugger variables list" },
-  { 'n', "<leader>dlf", function() telescope.extensions.dap.frames() end,                "Debugger frames list" },
+  { 'n', "<leader>ds",  function() require("dap").continue() end,            "Debugger start" },
+  { 'n', "<leader>du",  function() require("dapui").toggle() end,            "Debugger UI toggle" },
+  { 'n', "<leader>de",  function() require("dapui").eval() end,              "Debugger evaluate expression" },
+  { 'n', "<leader>db",  function() require("dap").toggle_breakpoint() end,   "Debugger toggle breakpoint" },
+  { 'n', "<leader>dd",  function() telescope.extensions.dap.commands() end,  "Debugger search commands" },
+  { 'n', "<leader>dlv", function() telescope.extensions.dap.variables() end, "Debugger variables list" },
+  { 'n', "<leader>dlf", function() telescope.extensions.dap.frames() end,    "Debugger frames list" },
   { 'n',
     "<leader>dlb",
     function()
@@ -260,6 +282,7 @@ local key_opt = {
   { 'n', '<leader>la', function() vim.lsp.buf.code_action() end,      "Code action" },
   { 'n', '<leader>ls', function() builtin.lsp_document_symbols() end, "Search symbols" },
   { 'n', '<leader>lm', function() builtin.man_pages() end,            "Search man pages" },
+  { 'n', '<leader>lc', ":Copilot panel<CR>",                          "Copilot panel" },
 
   -- Config --
   {
@@ -272,6 +295,12 @@ local key_opt = {
     'n',
     "<leader>Cp",
     ":tabnew ~/.config/nvim/lua/plugins.lua<CR>",
+    "Open nvim config (plugins.lua)",
+  },
+  {
+    'n',
+    "<leader>Ck",
+    ":tabnew ~/.config/nvim/lua/keybinds.lua<CR>",
     "Open nvim config (plugins.lua)",
   },
   { 'n', '<leader>Cm', ":Mason<CR>",  "Open Mason" },

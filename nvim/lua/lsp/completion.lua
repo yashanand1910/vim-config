@@ -30,6 +30,7 @@ local kind_icons = {
   Variable = " ",
 }
 
+---@diagnostic disable-next-line: missing-fields
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -74,6 +75,7 @@ cmp.setup({
   sources = cmp.config.sources(
   -- Ordered by priority
     {
+      { name = "git" },
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "nvim_lua" },
@@ -84,12 +86,14 @@ cmp.setup({
       { name = "path" },
     }
   ),
+  ---@diagnostic disable-next-line: missing-fields
   formatting = {
     format = function(entry, vim_item)
       -- Kind icons
       vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
       -- Source
       vim_item.menu = ({
+        git = "[Git]",
         nvim_lsp = "[LSP]",
         luasnip = "[LuaSnip]",
         nvim_lua = "[NvimAPI]",
@@ -101,7 +105,12 @@ cmp.setup({
   },
 })
 
+-- Now we setup cmp_git
+-- FIXME: This is not working
+require("cmp_git").setup()
+
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+---@diagnostic disable-next-line: missing-fields
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
@@ -110,6 +119,7 @@ cmp.setup.cmdline({ '/', '?' }, {
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+---@diagnostic disable-next-line: missing-fields
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({

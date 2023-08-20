@@ -16,6 +16,15 @@ local plugins = {
 
   -- UI
   {
+    "lukas-reineke/indent-blankline.nvim", --> Indentation guides
+    config = function()
+      require("indent_blankline").setup {
+        -- context is off by default
+        show_current_context = true,
+      }
+    end
+  },
+  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
@@ -69,7 +78,7 @@ local plugins = {
     config = true
   },
 
-  -- Syntax, file, search
+  -- File, search
   { "nvim-treesitter/nvim-treesitter", }, --> Incremental highlighting
   {
     "nvim-telescope/telescope.nvim",      --> Expandable fuzzy finer
@@ -96,6 +105,9 @@ local plugins = {
     config = function() require("oil").setup() end,
   },
 
+  -- Formatting
+  "editorconfig/editorconfig-vim",
+
   -- Git
   {
     "lewis6991/gitsigns.nvim", --> Git information
@@ -103,6 +115,27 @@ local plugins = {
   },
   "sindrets/diffview.nvim",
   "tpope/vim-fugitive",
+  "tpope/vim-rhubarb",     --> Enables :Gbrowse
+  {
+    'pwntester/octo.nvim', --> GitHub integration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = true
+  },
+  {
+    "petertriho/cmp-git",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    }
+  },
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true
+  },
 
   -- Terminal
   {
@@ -114,6 +147,11 @@ local plugins = {
   },
 
   -- Convenience
+  {
+    "folke/which-key.nvim", --> Keybindings helper
+    event = "VeryLazy",
+    config = true
+  },
   {
     "windwp/nvim-autopairs", --> Autopair
     config = true
@@ -129,7 +167,6 @@ local plugins = {
     dependencies = "nvim-lua/plenary.nvim",
     config = true
   },
-  -- Lazy
   {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",

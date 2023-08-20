@@ -45,7 +45,6 @@ lvim.builtin.which_key.mappings["l"]["x"] = {
     "Jump prev (TODOs)",
   },
 }
-
 -- vimux
 lvim.builtin.which_key.mappings["v"] = {
   name = "Vimux",
