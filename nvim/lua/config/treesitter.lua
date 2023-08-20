@@ -20,3 +20,6 @@ treesitter.setup({
     end,
   }
 })
+
+-- Enable treesitter for Octo buffers
+vim.treesitter.language.register('markdown', 'octo')

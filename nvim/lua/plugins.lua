@@ -102,7 +102,7 @@ local plugins = {
   },
   {
     "stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
-    config = function() require("oil").setup() end,
+    config = true,
   },
 
   -- Formatting

@@ -11,7 +11,7 @@ local get_cursor = require('telescope.themes').get_cursor({})
 telescope.load_extension("file_browser")
 telescope.load_extension("dap")
 
--- TODO: Switch to using which-key (https://github.com/folke/which-key.nvim)
+-- TODO: Reorganize for which-key (https://github.com/folke/which-key.nvim)
 
 -- Leader --
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { noremap = true }) --> Unbind space

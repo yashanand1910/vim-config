@@ -9,3 +9,7 @@ local utils = require("utils")
 do
   vim.api.nvim_create_user_command("Notepad", utils.launch_notepad, { nargs = 0 })
 end
+
+do
+  vim.api.nvim_create_user_command("Browse", "silent exec '!open <args>'", { nargs = 1 })
+end

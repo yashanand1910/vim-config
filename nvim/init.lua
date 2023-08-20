@@ -23,9 +23,6 @@ if statusline then statusline.setup() end
 safe_require("core")
 safe_require("plugins")
 
--- Theme config modules
-safe_require("theme")
-
 -- LSP configurations
 safe_require("lsp.lsp")
 safe_require("lsp.completion")
@@ -41,3 +38,6 @@ safe_require("misc")
 
 -- Keybindings
 safe_require("keybinds")
+
+-- Theme config modules
+safe_require("theme")

@@ -8,8 +8,7 @@
 - [x] Fix multiple LSP status not showing
 - [x] Port lvim config
 - [x] Brighten comments in Tokyonight
-- [ ] :GBrowse not working
-- [ ] Octo PR open hotkey to be same as :GBrowse hotkey (using FT)
+- [x] :GBrowse not working
 - [ ] Octo PR markdown view issue
 - [ ] Hotkey for easily shifting up/down lines
 - [ ] Change colors and icons for DAP (e.g. breakpoint)
