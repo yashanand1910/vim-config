@@ -124,12 +124,12 @@ noremap <silent> <Leader>gc :Commits<CR>
 noremap <silent> <Leader>gs :G<CR>
 noremap <silent> <Leader>ga :G add %<CR>
 noremap <silent> <Leader>gA :G add .<CR>
-noremap <silent> <Leader>gcc :G commit<CR>
-noremap <silent> <Leader>gCC :G add . <bar> G commit -c HEAD<CR>
-noremap <silent> <Leader>gCN :G add . <bar> G commit<CR> 
+noremap <silent> <Leader>gCC :G commit -c HEAD<CR>
+noremap <silent> <Leader>gCN :G commit<CR> 
 noremap <silent> <Leader>gP :G -c push.default=current push<cr>
+noremap <silent> <Leader>gp :G -c push.default=current pull<cr>
 noremap <silent> <Leader>gL :Gclog<cr>
-noremap <silent> <Leader>gl :G blame<cr>
+noremap <silent> <Leader>gb :G blame<cr>
 noremap <silent> <Leader>gd :Gvdiffsplit<cr>
 
 " END KEYBINDS

@@ -104,6 +104,15 @@ local plugins = {
   "sindrets/diffview.nvim",
   "tpope/vim-fugitive",
 
+  -- Terminal
+  {
+    "preservim/vimux",
+    config = function()
+      vim.g["VimuxHeight"] = "30"
+      vim.g["VimuxOrientation"] = "h"
+    end,
+  },
+
   -- Convenience
   {
     "windwp/nvim-autopairs", --> Autopair
@@ -119,6 +128,19 @@ local plugins = {
     "folke/todo-comments.nvim", --> TODO comments highlighting
     dependencies = "nvim-lua/plenary.nvim",
     config = true
+  },
+  -- Lazy
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
   },
 
   -- LSP
@@ -140,6 +162,7 @@ local plugins = {
   "hrsh7th/cmp-cmdline",               --> nvim-cmp source for :commands
   "hrsh7th/cmp-nvim-lua",              --> nvim-cmp source for Neovim API
   "hrsh7th/nvim-cmp",                  --> Completion Engine
+  "github/copilot.vim",                --> GitHub Copilot
 
   -- Debugging
   "mfussenegger/nvim-dap",
@@ -149,6 +172,23 @@ local plugins = {
     config = true
   },
   "nvim-telescope/telescope-dap.nvim",
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = true
+  },
+
+  -- Testing
+  {
+    "vim-test/vim-test",
+    config = function()
+      vim.g["test#strategy"] = "vimux"
+      -- vim.g["test#neovim#term_position"] = "right 25"
+      -- vim.g["test#preserve_screen"] = 0
+      -- NOTE: Workaround if jest autodetection fails
+      vim.g["test#javascript#jest#executable"] = "yarn test"
+      vim.g["test#javascript#runner"] = "jest"
+    end,
+  },
 
   -- Text editing
   {

@@ -65,9 +65,18 @@ local key_opt = {
   { 'n', "<leader>gCN", ":G commit<CR>",                                                 "Git commit" },
   { 'n', "<leader>gp",  ":G -c pull.default=current pull<CR>",                           "Git pull" },
   { 'n', "<leader>gP",  ":G -c pull.default=current push<CR>",                           "Git push" },
+  { 'n', "<leader>gl",  ":Gclog<CR>",                                                    "Git log" },
+  { 'n', "<leader>gb",  ":G blame<CR>",                                                  "Git blame" },
+  { 'n', "<leader>gB",  ":GBrowse<CR>",                                                  "Git browse" },
 
   -- GitHub --
+
   -- Testing --
+  { 'n', "<leader>tt",  ":TestNearest<CR>",                                              "Test nearest" },
+  { 'n', "<leader>tc",  ":TestClass<CR>",                                                "Test class" },
+  { 'n', "<leader>tf",  ":TestFile<CR>",                                                 "Test file" },
+  { 'n', "<leader>ts",  ":TestSuite<CR>",                                                "Test suite" },
+  { 'n', "<leader>tv",  ":TestVisit<CR>",                                                "Test visit" },
 
   -- Debugging --
   { 'n', "<leader>ds",  function() require("dap").continue() end,                        "Debugger start" },
@@ -129,15 +138,19 @@ local key_opt = {
     end,
     "Debugger console"
   },
-  { 'n', "<leader>dc", function() require("dap").run_to_cursor() end, "Debugger continue till cursor" },
-  { 'n', "<leader>do", function() require("dap").step_over() end,     "Debugger step over" },
-  { 'n', "<leader>di", function() require("dap").step_into() end,     "Debugger step into" },
-  { 'n', "<leader>dO", function() require("dap").step_out() end,      "Debugger step out" },
-  { 'n', "<leader>dB", function() require("dap").step_back() end,     "Debugger step back" },
-  { 'n', "<leader>dp", function() require("dap").pause() end,         "Debugger pause thread" },
+  { 'n', "<leader>dc", function() require("dap").run_to_cursor() end,       "Debugger continue till cursor" },
+  { 'n', "<leader>do", function() require("dap").step_over() end,           "Debugger step over" },
+  { 'n', "<leader>di", function() require("dap").step_into() end,           "Debugger step into" },
+  { 'n', "<leader>dO", function() require("dap").step_out() end,            "Debugger step out" },
+  { 'n', "<leader>dB", function() require("dap").step_back() end,           "Debugger step back" },
+  { 'n', "<leader>dp", function() require("dap").pause() end,               "Debugger pause thread" },
 
+  -- Comments --
+  { 'n', "<leader>xl", ":TodoTelescope<CR>",                                "TODO comments list" },
+  { 'n', "<leader>xj", function() require('todo-comments').jump_next() end, "TODO jump to next" },
+  { 'n', "<leader>xk", function() require('todo-comments').jump_prev() end, "TODO jump to previous" },
 
-  -- Spell check
+  -- Spell check --
   {
     'i',
     "<C-s>",
@@ -274,6 +287,10 @@ local key_opt = {
     end,
     "Open terminal",
   },
+  { 'n', "<leader>vn", ":VimuxPromptCommand<CR>",       "Tmux new command" },
+  { 'n', "<leader>vc", ":VimuxClearTerminalScreen<CR>", "Tmux clear" },
+  { 'n', "<leader>vi", ":VimuxInspectRunner<CR>",       "Tmux inspect" },
+  { 'n', "<leader>vv", ":VimuxRunLastCommand<CR>",      "Tmux last command" },
 
   -- Other --
 }

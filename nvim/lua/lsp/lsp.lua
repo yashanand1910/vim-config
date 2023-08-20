@@ -60,7 +60,7 @@ end
 -- Always check the memory usage of each language server. :LSpInfo to identify LSP server
 -- and use "sudo lsof -p PID" to check for associated files
 local server_list = {
-  "bashls", "clangd", "lua_ls", "pylsp", "texlab",
+  "bashls", "clangd", "lua_ls", "pylsp", "texlab", "jsonls"
 }
 
 -- nvim_cmp capabilities
@@ -93,6 +93,7 @@ mason_lspconfig.setup_handlers({
           },
           workspace = {
             library = vim.api.nvim_get_runtime_file("lua", true), --> Expose some Neovim API
+            checkThirdParty = false,                              --> Disable third party library check
           },
           telemetry = {
             enable = false,

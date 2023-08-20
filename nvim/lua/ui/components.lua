@@ -66,7 +66,7 @@ M.linter_status = function()
   if #(vim.lsp.get_active_clients({ bufnr = 0 })) == 0 then
     return ""
   end
-  return (vim.g.linter_status) and ("%#PastelculaGreenAccent#󰃢 ") or ("%#PastelculaRedAccent#󰃢 ")
+  return (vim.g.linter_status) and ("%#PastelculaGreenAccent#󰃢 ") or ("")
 end
 
 --[[ spellcheck_status()
@@ -127,12 +127,25 @@ end
 --         Else "LSP: lsp-client-name"
 --]]
 M.lsp_server = function()
+  local s = " "
+  local n = 0
   for _, client in ipairs(vim.lsp.get_active_clients()) do
     if client.attached_buffers[vim.api.nvim_get_current_buf()] then
-      return "  " .. client.name
+      local name = nil
+      if client.name == "copilot" then
+        name = ""
+      else
+        name = client.name
+      end
+      s = s .. " " .. name
+      n = n + 1
     end
   end
-  return ""
+  if n == 0 then
+    return ""
+  else
+    return s
+  end
 end
 
 --[[ lsp_status()
