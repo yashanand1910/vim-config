@@ -2,27 +2,6 @@
   "title": "Comfortable CTRL-W to delete-backward-word",
   "rules": [
     {
-      "description": "Caps lock to CTRL",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "caps_lock",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_control"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "description": "CTRL-W to delete-backward-word",
       "manipulators": [
         {
