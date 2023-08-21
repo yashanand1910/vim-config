@@ -5,12 +5,17 @@
   ],
   "rules": [
     {
-      "description": "(Vim 1/11) caps_lock -> on, caps_lock, esc, control+[ or any pointing_button -> off",
+      "description": "(Vim 1/13) ctrl-c -> on, ctrl-c, esc, control+[ or any pointing_button -> off",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "caps_lock"
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
           },
           "to_if_alone": [
             {
@@ -23,7 +28,7 @@
               "halt": true,
               "set_notification_message": {
                 "id": "vim_mode_plus_enabled",
-                "text": "NORMAL - Vim Mode Enabled"
+                "text": "Normal mode"
               }
             }
           ],
@@ -37,7 +42,7 @@
             {
               "set_notification_message": {
                 "id": "vim_mode_plus_enabled",
-                "text": "NORMAL - Vim Mode Enabled"
+                "text": "Normal mode"
               }
             }
           ],
@@ -46,6 +51,12 @@
               "set_variable": {
                 "name": "vim_mode",
                 "value": 0
+              }
+            },
+            {
+              "set_notification_message": {
+                "id": "vim_mode_plus_enabled",
+                "text": ""
               }
             }
           ],
@@ -74,7 +85,12 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "caps_lock"
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
           },
           "to": [
             {
@@ -254,7 +270,7 @@
       ]
     },
     {
-      "description": "(Vim 2/11) finger on trackpad + any key -> off",
+      "description": "(Vim 2/12) finger on trackpad + any key -> off",
       "available_since": "12.6.9",
       "manipulators": [
         {
@@ -292,7 +308,7 @@
       ]
     },
     {
-      "description": "(Vim 3/11) visual mode + h,j,k,l,e,b,0,^,$,gg,G,{,} + d,y,c,x",
+      "description": "(Vim 3/13) visual mode + h,j,k,l,e,b,0,^,$,gg,G,{,} + d,y,c,x",
       "manipulators": [
         {
           "type": "basic",
@@ -1232,7 +1248,7 @@
       ]
     },
     {
-      "description": "(Vim 4/11) dd,de,db,d0,d^,d$,dgg,dG,d{,d}",
+      "description": "(Vim 4/13) dd,de,db,d0,d^,d$,dgg,dG,d{,d}",
       "manipulators": [
         {
           "type": "basic",
@@ -1873,7 +1889,7 @@
       ]
     },
     {
-      "description": "(Vim 5/11) yy,ye,yb,y0,y^,y$,ygg,yG,y{,y}",
+      "description": "(Vim 5/13) yy,ye,yb,y0,y^,y$,ygg,yG,y{,y}",
       "manipulators": [
         {
           "type": "basic",
@@ -2521,7 +2537,7 @@
       ]
     },
     {
-      "description": "(Vim 6/11) cc,ce,cb,c0,c^,c$,cgg,cG,c{,c}",
+      "description": "(Vim 6/13) cc,ce,cb,c0,c^,c$,cgg,cG,c{,c}",
       "manipulators": [
         {
           "type": "basic",
@@ -3289,7 +3305,7 @@
       ]
     },
     {
-      "description": "(Vim 7/11) x,X,p,P,u,control+r",
+      "description": "(Vim 7/13) x,X,p,P,u,control+r",
       "manipulators": [
         {
           "type": "basic",
@@ -3490,7 +3506,7 @@
       ]
     },
     {
-      "description": "(Vim 8/11) h,j,k,l (+ control/option/command/shift),e,b,0,^,$,gg,G,{,}",
+      "description": "(Vim 8/13) h,j,k,l (+ control/option/command/shift),e,b,0,^,$,gg,G,{,}",
       "manipulators": [
         {
           "type": "basic",
@@ -3500,8 +3516,7 @@
               "optional": [
                 "control",
                 "option",
-                "command",
-                "shift"
+                "command"
               ]
             }
           },
@@ -3608,8 +3623,7 @@
               "optional": [
                 "control",
                 "option",
-                "command",
-                "shift"
+                "command"
               ]
             }
           },
@@ -4052,7 +4066,7 @@
       ]
     },
     {
-      "description": "(Vim 9/11) i,I,a,A,o,O",
+      "description": "(Vim 9/13) i,I,a,A,o,O",
       "manipulators": [
         {
           "type": "basic",
@@ -4327,7 +4341,7 @@
       ]
     },
     {
-      "description": "(Vim 10/11) s,m,spacebar -> Hammerspoon modals",
+      "description": "(Vim 10/13) s,m,spacebar -> Hammerspoon modals",
       "manipulators": [
         {
           "type": "basic",
@@ -4452,7 +4466,162 @@
       ]
     },
     {
-      "description": "(Vim 11/11) disable unused keys",
+      "description": "(Vim 11/13) shift-H/L -> tab/shift-tab",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": [
+                "left_control"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": [
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": [
+                "left_control",
+                "left_shift"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "(Vim 12/13) ctrl-o/i -> cmd-[/]",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "open_bracket",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "(Vim 13/13) disable unused keys",
       "manipulators": [
         {
           "type": "basic",

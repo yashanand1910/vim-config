@@ -2,6 +2,47 @@
   "title": "Vim Extras",
   "rules": [
     {
+      "description": "Remap Ctrl-m to ENTER",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ],
+              "optional": [
+                "left_shift",
+                "left_command",
+                "left_option",
+                "right_shift",
+                "right_command",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "com.googlecode.iterm2",
+                "net.kovidgoyal.kitty",
+                "co.zeit.hyper",
+                "com.apple.Terminal",
+                "io.alacritty"
+              ],
+              "type": "frontmost_application_unless"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Remap Ctrl-j to ENTER",
       "manipulators": [
         {
