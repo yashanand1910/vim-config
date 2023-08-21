@@ -57,6 +57,8 @@ M.update_mode_colors = function()
 end
 
 --[[ linter_status()
+-- XXX: Replace to recognize nvim-lint
+--
 -- Format a string on whether Linter toggle variable in nvim is on or off
 --
 -- @return a string indicating whether Linter is on or off (if LSP server is not attached, Linter is considered off)
@@ -66,7 +68,7 @@ M.linter_status = function()
   if #(vim.lsp.get_active_clients({ bufnr = 0 })) == 0 then
     return ""
   end
-  return (vim.g.linter_status) and ("%#PastelculaGreenAccent#󰃢 ") or ("")
+  return (vim.g.linter_status) and ("󰃢 ") or ("")
 end
 
 --[[ spellcheck_status()
@@ -76,7 +78,7 @@ end
 -- @requires vim.g.spellcheck_status variable created in nvim's LSP settings
 --]]
 M.spellcheck_status = function()
-  return (vim.g.spellcheck_status) and ("%#PastelculaBlueAccent#󰴓 ") or ("")
+  return (vim.g.spellcheck_status) and ("󰴓 ") or ("")
 end
 
 --[[ file_icon()
@@ -127,7 +129,7 @@ end
 --         Else "LSP: lsp-client-name"
 --]]
 M.lsp_server = function()
-  local s = " "
+  local s = ""
   local n = 0
   for _, client in ipairs(vim.lsp.get_active_clients()) do
     if client.attached_buffers[vim.api.nvim_get_current_buf()] then

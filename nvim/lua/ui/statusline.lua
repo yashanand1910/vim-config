@@ -31,7 +31,7 @@ Statusline.build = function()
     -- "%<", --> Truncation starts here (and to the left) if file is too long
 
     -- Git
-    " %#PastelculaRedAccent#",
+    " %#PastelculaGreyAccent#",
     components.git_status(),
 
     -- Spacer
@@ -42,17 +42,17 @@ Statusline.build = function()
     components.lsp_status(),
 
     -- Spellcheck status
+    "%#PastelculaLightGreyAccent#",
     components.spellcheck_status(),
 
     -- Linter status
     components.linter_status(),
 
     -- LSP server
-    "%#PastelculaYellowAccent#",
     components.lsp_server(),
 
     -- File information
-    "%#PastelculaPurpleAccent#",
+    "%#PastelculaGreyAccent#",
     "   %Y ", --> Same as vim.bo.filetype:upper()
 
     components.ff_and_enc(),
