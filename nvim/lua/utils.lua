@@ -232,8 +232,7 @@ function M.launch_notepad()
 
     -- Keymaps
     local keymaps_opts = { silent = true, buffer = M.notepad_buf }
-    vim.keymap.set('n', "<ESC>", function() M.launch_notepad() end, keymaps_opts)
-    vim.keymap.set('n', "q", function() M.launch_notepad() end, keymaps_opts)
+    vim.keymap.set('n', "q", ":close<CR>", keymaps_opts)
   else
     vim.api.nvim_win_hide(M.notepad_win)
   end

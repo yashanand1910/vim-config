@@ -306,6 +306,7 @@ local key_opt = {
   { 'n', '<leader>ls', function() builtin.lsp_document_symbols() end, "Search symbols" },
   { 'n', '<leader>lm', function() builtin.man_pages() end,            "Search man pages" },
   { 'n', '<leader>lc', ":Copilot panel<CR>",                          "Copilot panel" },
+  { 'n', '<leader>ld', ":ToggleDiag<CR>",                             "Toggle diagnostics" },
 
   -- Config --
   {

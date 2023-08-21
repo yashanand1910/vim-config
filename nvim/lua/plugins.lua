@@ -149,6 +149,12 @@ local plugins = {
 
   -- Convenience
   {
+    "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim", --> Toggle LSP diagnostics
+    config = function()
+      require('toggle_lsp_diagnostics').init()
+    end
+  },
+  {
     "folke/which-key.nvim", --> Keybindings helper
     event = "VeryLazy",
     config = true
@@ -242,14 +248,23 @@ local plugins = {
 
   -- Misc
   {
-    "folke/neodev.nvim",
+    "folke/neodev.nvim", --> For configuring lua_ls for nvim config files
     opts = {},
     config = function()
       require("neodev").setup({
         library = { plugins = { "nvim-dap-ui" }, types = true },
       })
     end
-  } --> For configuring lua_ls for nvim config files
+  },
+  {
+    "ianding1/leetcode.vim", --> Leetcode integration
+    config = function()
+      vim.g["leetcode_browser"] = "firefox"
+      -- FIXME: problem set does not work
+
+      -- vim.g["leetcode_problemset"] = "studyplan/leetcode-75"
+    end
+  }
 }
 
 --- {{{ Lazy.nvim installation
