@@ -149,12 +149,6 @@ local plugins = {
 
   -- Convenience
   {
-    "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim", --> Toggle LSP diagnostics
-    config = function()
-      require('toggle_lsp_diagnostics').init()
-    end
-  },
-  {
     "folke/which-key.nvim", --> Keybindings helper
     event = "VeryLazy",
     config = true
