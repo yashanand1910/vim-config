@@ -82,6 +82,59 @@
           ]
         }
       ]
+    },
+    {
+      "description": "Remap Ctrl-e/y to page down/up",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ],
+              "optional": [
+                "left_shift",
+                "left_command",
+                "left_option",
+                "right_shift",
+                "right_command",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ],
+              "optional": [
+                "left_shift",
+                "left_command",
+                "left_option",
+                "right_shift",
+                "right_command",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
