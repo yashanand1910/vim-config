@@ -28,6 +28,8 @@ ln -s ~/Code/dotfiles/colors ~/.vim/colors
 ln -s ~/Code/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/Code/dotfiles/.zshrc ~/.zshrc
 ln -s ~/Code/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s ~/Code/dotfiles/karabiner/karabiner.json ~/.config/karabiner/
+ln -s ~/Code/dotfiles/karabiner/assets ~/.config/karabiner/
 ...
 ```
 
