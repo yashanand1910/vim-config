@@ -1335,6 +1335,9 @@
               "modifiers": [
                 "left_command"
               ]
+            },
+            {
+              "key_code": "delete_or_backspace"
             }
           ],
           "conditions": [
@@ -4437,16 +4440,16 @@
           },
           "to": [
             {
-              "key_code": "left_arrow",
+              "key_code": "up_arrow"
+            },
+            {
+              "key_code": "right_arrow",
               "modifiers": [
                 "left_command"
               ]
             },
             {
               "key_code": "return_or_enter"
-            },
-            {
-              "key_code": "up_arrow"
             },
             {
               "set_variable": {
