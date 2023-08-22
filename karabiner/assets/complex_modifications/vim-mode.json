@@ -1248,7 +1248,7 @@
       ]
     },
     {
-      "description": "(Vim 4/13) dd,de,db,d0,d^,d$,dgg,dG,d{,d}",
+      "description": "(Vim 4/13) dd,de,db,d0,d^,d$,D,dgg,dG,d{,d}",
       "manipulators": [
         {
           "type": "basic",
@@ -1625,6 +1625,49 @@
         {
           "type": "basic",
           "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            },
+            {
+              "key_code": "x",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
             "key_code": "g"
           },
           "to": [
@@ -1889,7 +1932,7 @@
       ]
     },
     {
-      "description": "(Vim 5/13) yy,ye,yb,y0,y^,y$,ygg,yG,y{,y}",
+      "description": "(Vim 5/13) yy,ye,yb,y0,y^,y$,Y,ygg,yG,y{,y}",
       "manipulators": [
         {
           "type": "basic",
@@ -2258,6 +2301,49 @@
             },
             {
               "name": "y_pressed",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            },
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
               "type": "variable_if",
               "value": 1
             }
@@ -2978,6 +3064,61 @@
             },
             {
               "name": "c_pressed",
+              "type": "variable_if",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            },
+            {
+              "key_code": "x",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "set_variable": {
+                "name": "vim_mode",
+                "value": 0
+              }
+            },
+            {
+              "set_notification_message": {
+                "id": "vim_mode_plus_enabled",
+                "text": ""
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
               "type": "variable_if",
               "value": 1
             }
