@@ -188,14 +188,19 @@
           ],
           "conditions": [
             {
+              "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "com.googlecode.iterm2",
                 "net.kovidgoyal.kitty",
-                "co.zeit.hyper",
-                "com.apple.Terminal",
-                "io.alacritty"
-              ],
-              "type": "frontmost_application_unless"
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
             }
           ]
         },
@@ -224,14 +229,19 @@
           ],
           "conditions": [
             {
+              "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "com.googlecode.iterm2",
                 "net.kovidgoyal.kitty",
-                "co.zeit.hyper",
-                "com.apple.Terminal",
-                "io.alacritty"
-              ],
-              "type": "frontmost_application_unless"
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
             }
           ]
         }
