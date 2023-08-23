@@ -51,13 +51,22 @@ local key_opt = {
   },
 
   -- Notepad --
-  { 'n', "<leader>N",   ":Notepad<CR>",                                                  "Open notepad" },
+  { 'n', "<leader>N",  ":Notepad<CR>",                     "Open notepad" },
 
   -- Search & navigation --
-  { 'n', "<leader>h",   ":noh<CR>",                                                      "Clear search highlights" },
-  { 'n', "<leader>sp",  function() builtin.registers() end,                              "Search registers" },
-  { 'n', "<leader>sk",  function() builtin.keymaps() end,                                "Search keymaps" },
-  { 'n', "<leader>f",   function() builtin.git_files() end,                              "Search git files" },
+  { 'n', "<leader>h",  ":noh<CR>",                         "Clear search highlights" },
+  { 'n', "<leader>sp", function() builtin.registers() end, "Search registers" },
+  { 'n', "<leader>sk", function() builtin.keymaps() end,   "Search keymaps" },
+  {
+    'n',
+    "<leader>f",
+    -- git_files() will fail in non-git repositories
+    function()
+      local status, _ = pcall(builtin.git_files)
+      if (not status) then builtin.find_files() end
+    end,
+    "Search git files"
+  },
   { 'n', "<leader>sf",  function() builtin.find_files() end,                             "Search files" },
   { 'n', "<leader>sg",  function() builtin.live_grep() end,                              "Live grep" },
   { 'n', "<leader>ss",  function() builtin.builtin() end,                                "Search builtin options" },
