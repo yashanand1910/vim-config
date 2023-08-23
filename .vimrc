@@ -53,7 +53,7 @@ let test#strategy = "vimterminal"
 let mapleader = " " " map leader to space
 
 " open vimrc
-noremap <leader>\c :tabnew ~/.vimrc<CR>
+noremap <leader>Ci :tabnew ~/.vimrc<CR>
 
 noremap <leader>w :w<CR>
 noremap <leader>W :wa<CR>
