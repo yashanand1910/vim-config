@@ -33,15 +33,22 @@ end
 -- {{{ Keybinding table
 local key_opt = {
   -- Convenience --
-  { 'n', "gx",          url_handler,                                                     "Open URL under the cursor" },
-  { 'n', "\\d",         '"_d',                                                           "Delete without yanking" },
-  { 'v', "\\d",         '"_d',                                                           "Delete without yanking" },
-  { 'n', "<A-j>",       ':m .+1<CR>==',                                                  "Move current line down" },
-  { 'n', "<A-k>",       ':m .-2<CR>==',                                                  "Move current line up" },
-  { 'i', "<A-j>",       '<Esc>:m .+1<CR>==gi',                                           "Move current line down" },
-  { 'i', "<A-k>",       '<Esc>:m .-2<CR>==gi',                                           "Move current line up" },
-  { 'v', "<A-j>",       ":m '>+1<CR>gv-gv",                                              "Move current block down" },
-  { 'v', "<A-k>",       ":m '<-2<CR>gv-gv",                                              "Move current block up" },
+  { 'n', "gx",        url_handler,           "Open URL under the cursor" },
+  { 'n', "\\d",       '"_d',                 "Delete without yanking" },
+  { 'v', "\\d",       '"_d',                 "Delete without yanking" },
+  { 'n', "<A-j>",     ':m .+1<CR>==',        "Move current line down" },
+  { 'n', "<A-k>",     ':m .-2<CR>==',        "Move current line up" },
+  { 'i', "<A-j>",     '<Esc>:m .+1<CR>==gi', "Move current line down" },
+  { 'i', "<A-k>",     '<Esc>:m .-2<CR>==gi', "Move current line up" },
+  { 'v', "<A-j>",     ":m '>+1<CR>gv-gv",    "Move current block down" },
+  { 'v', "<A-k>",     ":m '<-2<CR>gv-gv",    "Move current block up" },
+  { 'n', "<leader>r", ":IncRename ",         "Replace word under cursor" },
+  {
+    'n',
+    "<leader>R",
+    ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+    "Replace word under cursor"
+  },
 
   -- Notepad --
   { 'n', "<leader>N",   ":Notepad<CR>",                                                  "Open notepad" },
@@ -223,14 +230,6 @@ local key_opt = {
   },
   {
     'i', "<C-a>", "<C-o>A", "Jump to end of line"
-  },
-
-  -- Editing --
-  {
-    'n',
-    "<leader>R",
-    ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
-    "Replace word under cursor"
   },
 
   -- Buffer --

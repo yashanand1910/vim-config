@@ -15,6 +15,20 @@ local plugins = {
   "nvim-tree/nvim-web-devicons", --> Icons for barbar, Telescope, and more
 
   -- UI
+  'MunifTanjim/nui.nvim', --> A UI library many are dependent on
+  "rcarriga/nvim-notify", --> Pretty notifications
+  {
+    "folke/noice.nvim",   --> Replaces UI for messages, cmdline, and popupmenu
+    event = "VeryLazy",
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  },
   {
     "lukas-reineke/indent-blankline.nvim", --> Indentation guides
     config = function()
@@ -149,6 +163,10 @@ local plugins = {
 
   -- Convenience
   {
+    "smjonas/inc-rename.nvim", --> Incremental rename
+    config = true
+  },
+  {
     "folke/which-key.nvim", --> Keybindings helper
     event = "VeryLazy",
     config = true
@@ -201,6 +219,16 @@ local plugins = {
   "hrsh7th/cmp-nvim-lua",              --> nvim-cmp source for Neovim API
   "hrsh7th/nvim-cmp",                  --> Completion Engine
   "github/copilot.vim",                --> GitHub Copilot
+  {
+    'nvimdev/lspsaga.nvim',            --> LSP improvements (mainly breadcrumb)
+    config = function()
+      require('lspsaga').setup({})
+    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'
+    }
+  },
 
   -- Debugging
   "mfussenegger/nvim-dap",
@@ -236,7 +264,13 @@ local plugins = {
   },
   {
     "lervag/vimtex", --> LaTeX integration
-    config = function() vim.g.tex_flavor = "latex" end,
+    config = function()
+      vim.g.tex_flavor = "latex"
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_view_method = "skim"
+      vim.g.vimtex_view_skim_sync = 1
+      vim.g.vimtex_view_skim_activate = 1
+    end,
     ft = { "plaintex", "tex" },
   },
 

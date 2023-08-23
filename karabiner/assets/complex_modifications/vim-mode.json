@@ -17,7 +17,7 @@
               ]
             }
           },
-          "to_if_alone": [
+          "to": [
             {
               "set_variable": {
                 "name": "vim_mode",
@@ -32,21 +32,35 @@
               }
             }
           ],
-          "to_if_held_down": [
+          "conditions": [
             {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 1
-              }
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "net.kovidgoyal.kitty",
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss"
+              ]
             },
             {
-              "set_notification_message": {
-                "id": "vim_mode_plus_enabled",
-                "text": "Normal mode"
-              }
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 0
             }
-          ],
-          "to_after_key_up": [
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
             {
               "set_variable": {
                 "name": "vim_mode",
@@ -73,22 +87,18 @@
             },
             {
               "name": "vim_mode",
-              "type": "variable_unless",
+              "type": "variable_if",
               "value": 1
             }
-          ],
-          "parameters": {
-            "basic.to_if_alone_threshold_milliseconds": 0,
-            "basic.to_if_held_down_threshold_milliseconds": 100
-          }
+          ]
         },
         {
           "type": "basic",
           "from": {
-            "key_code": "c",
+            "key_code": "quote",
             "modifiers": {
               "mandatory": [
-                "control"
+                "left_control"
               ]
             }
           },
@@ -104,6 +114,12 @@
                 "id": "vim_mode_plus_enabled",
                 "text": ""
               }
+            },
+            {
+              "key_code": "quote",
+              "modifiers": [
+                "left_control"
+              ]
             }
           ],
           "conditions": [

@@ -27,7 +27,7 @@ end
 -- Always check the memory usage of each language server. :LSpInfo to identify LSP server
 -- and use "sudo lsof -p PID" to check for associated files
 local server_list = {
-  "bashls", "clangd", "lua_ls", "pylsp", "texlab", "jsonls"
+  "bashls", "clangd", "lua_ls", "pylsp", "texlab", "jsonls", "tsserver", "angularls", "eslint"
 }
 
 -- nvim_cmp capabilities

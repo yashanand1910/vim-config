@@ -38,7 +38,6 @@ do
     { "foldlevel", 1 }, --> Ignored when expr, but when folding by "marker", it only folds folds w/in a fold only
     { "foldenable", false }, --> True for "marker" + level = 1, false for TS folding
     { "undofile", true }, --> Persistent undo
-    { "cmdheight", 0 }, --> Hide cmdline
   }
   -- Folding using TreeSitter --
   opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -69,6 +68,7 @@ do
     { "numberwidth",    3 },    --> Width of the number
     { "cursorline",     true },
     { "cursorcolumn",   false },
+    { "cmdheight",      0 }, --> Hide cmdline
   }
   for _, v in pairs(win_opt) do
     opt[v[1]] = v[2]
