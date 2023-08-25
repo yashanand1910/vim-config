@@ -82,8 +82,10 @@ noremap <C-d> <C-d>zz
 " scroll half page up and recenter
 noremap <C-u> <C-u>zz 
 
-" 'A' when in insert mode
-inoremap <C-a> <C-o>A
+" Jump to end of line in insert mode
+inoremap <C-e> <C-o>A
+" Jump to start of line in insert mode
+inoremap <C-a> <C-o>I
 
 " swap current word
 noremap <leader>R :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>

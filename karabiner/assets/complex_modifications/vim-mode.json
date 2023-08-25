@@ -1041,6 +1041,9 @@
                 "id": "visual_mode_enabled",
                 "text": ""
               }
+            },
+            {
+              "key_code": "left_arrow"
             }
           ],
           "conditions": [

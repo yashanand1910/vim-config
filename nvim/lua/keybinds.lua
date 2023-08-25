@@ -49,6 +49,10 @@ local key_opt = {
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     "Replace word under cursor"
   },
+  { 'n', "<C-d>",      "<C-d>zz",                          "Scroll down half page and recenter" },
+  { 'n', "<C-u>",      "<C-u>zz",                          "Scroll up half page and recenter" },
+  { 'i', "<C-e>",      "<C-o>A",                           "Jump to end of line" },
+  { 'i', "<C-a>",      "<C-o>I",                           "Jump to start of line" },
 
   -- Notepad --
   { 'n', "<leader>N",  ":Notepad<CR>",                     "Open notepad" },
@@ -228,17 +232,6 @@ local key_opt = {
       vim.g.spellcheck_status = vim.api.nvim_get_option_value('spell', { scope = 'local' })
     end,
     "[s]pell [t]oggle: turn spell check on/off for the current buffer",
-  },
-
-  -- Motion --
-  {
-    'n', "<C-d>", "<C-d>zz", "Scroll down half page and recenter"
-  },
-  {
-    'n', "<C-u>", "<C-u>zz", "Scroll up half page and recenter"
-  },
-  {
-    'i', "<C-a>", "<C-o>A", "Jump to end of line"
   },
 
   -- Buffer --
