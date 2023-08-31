@@ -78,7 +78,8 @@ local key_opt = {
   { 'n', "<leader>sh",  function() builtin.help_tags() end,                              "Search help" },
   { 'n', "<leader>sl",  function() builtin.resume() end,                                 "Last search results" },
   { 'n', "<leader>sc",  function() builtin.colorscheme() end,                            "Search colorschemes" },
-  { 'n', "<leader>e",   ":Neotree toggle<CR>",                                           "File tree toggle" },
+  { 'n', "<leader>e",   function() require("oil").toggle_float() end,                    "File tree float toggle (oil)" },
+  { 'n', "<leader>E",   ":NvimTreeToggle<CR>",                                           "File tree toggle" },
 
   -- Git --
   { 'n', "<leader>gDD", ":DiffviewOpen<CR>",                                             "Git diff view open" },

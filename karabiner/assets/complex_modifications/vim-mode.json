@@ -2041,6 +2041,9 @@
               "modifiers": [
                 "left_command"
               ]
+            },
+            {
+              "key_code": "left_arrow"
             }
           ],
           "conditions": [

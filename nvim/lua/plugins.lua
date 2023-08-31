@@ -106,13 +106,9 @@ local plugins = {
   },
   { "nvim-telescope/telescope-file-browser.nvim", }, --> File browser extension for Telescope
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    },
+    "nvim-tree/nvim-tree.lua",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = true
   },
   {
     "stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
