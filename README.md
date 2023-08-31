@@ -15,6 +15,8 @@ Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim con
 12. Install exa with `brew install exa`.
 13. Install GitHub CLI with `brew install gh`.
 14. Install [ripgrep](https://github.com/BurntSushi/ripgrep) if using vim and not lvim.
+15. Install [homerow](https://www.homerow.app)
+16. Install [Karabiner-Elements](https://karabiner-elements.pqrs.org/index.html)
 
 ## Create symlinks
 
