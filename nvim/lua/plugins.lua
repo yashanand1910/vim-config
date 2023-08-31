@@ -271,6 +271,7 @@ local plugins = {
   },
 
   -- Misc
+  { 'aymericbeaumet/vim-symlink', requires = { 'moll/vim-bbye' } }, --> Resolve sym links
   {
     "folke/neodev.nvim", --> For configuring lua_ls for nvim config files
     opts = {},
