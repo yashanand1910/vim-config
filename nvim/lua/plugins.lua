@@ -196,6 +196,10 @@ local plugins = {
   },
 
   -- LSP
+  {
+    'stevearc/conform.nvim',
+    opts = {}
+  },
   { "neovim/nvim-lspconfig", }, --> Neovim default LSP engine
   {
     "williamboman/mason.nvim",  --> LSP Manager
@@ -271,9 +275,8 @@ local plugins = {
   },
 
   -- Misc
-  { 'aymericbeaumet/vim-symlink', requires = { 'moll/vim-bbye' } }, --> Resolve sym links
   {
-    "folke/neodev.nvim", --> For configuring lua_ls for nvim config files
+    "folke/neodev.nvim",                                            --> For configuring lua_ls for nvim config files
     opts = {},
     config = function()
       require("neodev").setup({

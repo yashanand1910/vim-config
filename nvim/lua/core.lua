@@ -68,6 +68,7 @@ do
     { "numberwidth",    3 },    --> Width of the number
     { "cursorline",     true },
     { "cursorcolumn",   false },
+    { "signcolumn",     "yes" },
     { "cmdheight",      0 }, --> Hide cmdline
   }
   for _, v in pairs(win_opt) do

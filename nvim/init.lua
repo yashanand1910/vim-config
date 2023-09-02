@@ -26,6 +26,7 @@ safe_require("plugins")
 -- LSP configurations
 safe_require("lsp.lsp")
 safe_require("lsp.completion")
+safe_require("lsp.formatter")
 
 -- Debugger configurations
 safe_require("debugger.dap")

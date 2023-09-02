@@ -61,5 +61,8 @@ require("noice").setup({
   },
   cmdline = {
     view = "cmdline"
-  }
+  },
+  messages = {
+    enabled = false
+  },
 })
