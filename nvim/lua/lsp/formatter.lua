@@ -14,5 +14,7 @@ formatter.setup({
       formatters = { "isort", "black" },
       run_all_formatters = true,
     },
+    c = { "clang_format" },
+    cpp = { "clang_format" }
   },
 })
