@@ -31,7 +31,7 @@ Statusline.build = function()
     -- "%<", --> Truncation starts here (and to the left) if file is too long
 
     -- Git
-    " %#PastelculaOrangeAccent#",
+    " %#PastelculaGreyAccent#",
     components.git_status(),
 
     -- Spacer
