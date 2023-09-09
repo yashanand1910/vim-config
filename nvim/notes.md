@@ -12,6 +12,7 @@
 - [x] Gitlinker not working
 - [x] cmp-git not working
 - [x] Hotkey for easily shifting up/down lines
+- [ ] Quickfix list to close on 'q'
 - [ ] Change colors and icons for DAP (e.g. breakpoint)
 - [ ] Octo PR markdown view issue
 - [ ] Fix tabline colors when multiple tabs

@@ -2,17 +2,18 @@
 -- Configuration for formatter
 --]]
 
-local formatter = require('conform')
+local formatter = require("conform")
 
 formatter.setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    typescriptreact = { "prettier" },
-    python = {
-      formatters = { "isort", "black" },
-      run_all_formatters = true,
-    },
-  },
+	formatters_by_ft = {
+		lua = { "stylua" },
+		json = { "prettier" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		typescriptreact = { "prettier" },
+		python = {
+			formatters = { "isort", "black" },
+			run_all_formatters = true,
+		},
+	},
 })
