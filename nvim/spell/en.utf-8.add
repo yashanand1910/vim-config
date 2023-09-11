@@ -7,3 +7,5 @@ config
 #SP/!
 LSP
 nvim
+async
+traceback
