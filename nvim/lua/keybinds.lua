@@ -82,7 +82,7 @@ local key_opt = {
 		function()
 			local status, _ = pcall(builtin.git_files)
 			if not status then
-				builtin.find_files()
+				builtin.find_files({ hidden = true })
 			end
 		end,
 		"Search git files",
@@ -91,7 +91,7 @@ local key_opt = {
 		"n",
 		"<leader>sf",
 		function()
-			builtin.find_files()
+			builtin.find_files({ hidden = true })
 		end,
 		"Search files",
 	},
