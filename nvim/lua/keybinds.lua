@@ -80,9 +80,9 @@ local key_opt = {
 		"<leader>f",
 		-- git_files() will fail in non-git repositories
 		function()
-			local status, _ = pcall(builtin.git_files)
+			local status, _ = pcall(builtin.git_files, { show_untracked = true })
 			if not status then
-				builtin.find_files({ hidden = true })
+				builtin.find_files({ no_ignore = true, hidden = true })
 			end
 		end,
 		"Search git files",
@@ -91,7 +91,7 @@ local key_opt = {
 		"n",
 		"<leader>sf",
 		function()
-			builtin.find_files({ hidden = true })
+			builtin.find_files({ no_ignore = true, hidden = true })
 		end,
 		"Search files",
 	},
