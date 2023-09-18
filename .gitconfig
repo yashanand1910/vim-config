@@ -29,6 +29,3 @@
   autoSetupRemote = true
 [core]
   editor = vi
-[safe]
-	directory = /afs/.cs.cmu.edu/academic/class/15410-f23-users/yashanan/REPOSITORY/p2
-	directory = /afs/.cs.cmu.edu/academic/class/15410-f23-users/yashanan/scratch/p2
