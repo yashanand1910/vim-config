@@ -151,7 +151,7 @@ local key_opt = {
 		end,
 		"File tree float toggle (oil)",
 	},
-	{ "n", "<leader>E", ":NvimTreeToggle<CR>", "File tree toggle" },
+	{ "n", "<leader>E", ":NvimTreeFindFileToggle<CR>", "File tree toggle" },
 
 	-- Git --
 	{ "n", "<leader>gDD", ":DiffviewOpen<CR>", "Git diff view open" },
