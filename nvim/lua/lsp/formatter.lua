@@ -15,7 +15,7 @@ formatter.setup({
       formatters = { "isort", "black" },
       run_all_formatters = true,
     },
-    c = { "clang_format" },
-    cpp = { "clang_format" }
+    -- c = { "clang_format" }, // XXX: Using LSP to get warnings
+    -- cpp = { "clang_format" }
   },
 })
