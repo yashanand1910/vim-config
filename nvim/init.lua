@@ -4,20 +4,24 @@
 
 -- Try catch for modules
 local function safe_require(module)
-  local status, loaded_module = pcall(require, module)
-  if status then
-    return loaded_module
-  end
-  vim.notify("Error loading the module: " .. module)
-  vim.notify(loaded_module)
-  return nil
+	local status, loaded_module = pcall(require, module)
+	if status then
+		return loaded_module
+	end
+	vim.notify("Error loading the module: " .. module)
+	vim.notify(loaded_module)
+	return nil
 end
 
 -- UI elements
 local highlights = safe_require("ui.highlights")
-if highlights then highlights.setup() end
+if highlights then
+	highlights.setup()
+end
 local statusline = safe_require("ui.statusline")
-if statusline then statusline.setup() end
+if statusline then
+	statusline.setup()
+end
 
 -- Core config modules
 safe_require("core")
