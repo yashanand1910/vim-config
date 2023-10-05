@@ -1,4 +1,4 @@
---[[theme.lua
+-[[theme.lua
 -- Theme configuration, such as colorscheme etc.
 --]]
 
@@ -47,15 +47,15 @@ require("notify").setup({
 
 vim.fn.sign_define(
 	"DapBreakpoint",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapBreakpointCondition",
-	{ text = "ﳁ", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+	{ text = "ﳁ", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapBreakpointRejected",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapLogPoint",
@@ -63,5 +63,5 @@ vim.fn.sign_define(
 )
 vim.fn.sign_define(
 	"DapStopped",
-	{ text = "", texthl = "DiagnosticSignWarn", linehl = "", numhl = "DiagnosticSignWarn" }
+	{ text = "", texthl = "DiagnosticSignWarn", linehl = "DiagnosticSignWarn", numhl = "DiagnosticSignWarn" }
 )
