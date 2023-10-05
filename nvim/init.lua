@@ -13,6 +13,10 @@ local function safe_require(module)
 	return nil
 end
 
+-- Core config modules
+safe_require("core")
+safe_require("plugins")
+
 -- UI elements
 local highlights = safe_require("ui.highlights")
 if highlights then
@@ -22,10 +26,7 @@ local statusline = safe_require("ui.statusline")
 if statusline then
 	statusline.setup()
 end
-
--- Core config modules
-safe_require("core")
-safe_require("plugins")
+safe_require("ui.notifications")
 
 -- LSP configurations
 safe_require("lsp.lsp")

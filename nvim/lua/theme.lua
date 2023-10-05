@@ -39,30 +39,29 @@ require("notify").setup({
 	render = "compact",
 })
 
--- Noice config for messages, cmdline, and popupmenu
+-- DAP coloring/icons
 
-require("noice").setup({
-	lsp = {
-		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-		override = {
-			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-			["vim.lsp.util.stylize_markdown"] = true,
-			["cmp.entry.get_documentation"] = true,
-		},
-		throttle = 1000 / 5,
-	},
-	-- you can enable a preset for easier configuration
-	presets = {
-		bottom_search = true, -- use a classic bottom cmdline for search
-		command_palette = true, -- position the cmdline and popupmenu together
-		long_message_to_split = true, -- long messages will be sent to a split
-		inc_rename = true, -- enables an input dialog for inc-rename.nvim
-		lsp_doc_border = true, -- add a border to hover docs and signature help
-	},
-	cmdline = {
-		view = "cmdline",
-	},
-	messages = {
-		enabled = false,
-	},
-})
+-- vim.highlight.create("DapBreakpoint", { ctermbg = 0, guifg = "#993939", guibg = "#31353f" }, false)
+-- vim.highlight.create("DapLogPoint", { ctermbg = 0, guifg = "#61afef", guibg = "#31353f" }, false)
+-- vim.highlight.create("DapStopped", { ctermbg = 0, guifg = "#98c379", guibg = "#31353f" }, false)
+
+vim.fn.sign_define(
+	"DapBreakpoint",
+	{ text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+)
+vim.fn.sign_define(
+	"DapBreakpointCondition",
+	{ text = "ﳁ", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+)
+vim.fn.sign_define(
+	"DapBreakpointRejected",
+	{ text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+)
+vim.fn.sign_define(
+	"DapLogPoint",
+	{ text = "", texthl = "DiagnosticSignWarn", linehl = "", numhl = "DiagnosticSignWarn" }
+)
+vim.fn.sign_define(
+	"DapStopped",
+	{ text = "", texthl = "DiagnosticSignWarn", linehl = "", numhl = "DiagnosticSignWarn" }
+)
