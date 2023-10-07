@@ -1,4 +1,4 @@
--[[theme.lua
+--[[theme.lua
 -- Theme configuration, such as colorscheme etc.
 --]]
 
@@ -55,7 +55,7 @@ vim.fn.sign_define(
 )
 vim.fn.sign_define(
 	"DapBreakpointRejected",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
+	{ text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapLogPoint",

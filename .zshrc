@@ -124,8 +124,11 @@ if [[  "$(uname)" == "Linux" ]]; then
   # Lima END
   # opam configuration
   [[ ! -r /home/yashanand.linux/.opam/opam-init/init.zsh ]] || source /home/yashanand.linux/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-  export GPG_TTY=$(tty)
 fi
+
+# For error "signing failed: Inappropriate ioctl for device"
+# ref: https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
+export GPG_TTY=$(tty)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
