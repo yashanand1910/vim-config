@@ -624,7 +624,7 @@ local key_opt = {
 		"n",
 		"<leader>lX",
 		function()
-			vim.diagnostic.config({ virtual_text = false, signs = false })
+			vim.diagnostic.config({ virtual_text = false, signs = false, underline = false })
 		end,
 		"Disable LSP diagnostics/signs",
 	},
@@ -632,7 +632,7 @@ local key_opt = {
 		"n",
 		"<leader>lS",
 		function()
-			vim.diagnostic.config({ virtual_text = true, signs = true })
+			vim.diagnostic.config({ virtual_text = true, signs = true, underline = true })
 		end,
 		"Enable LSP diagnostics/signs",
 	},
