@@ -133,7 +133,7 @@ local key_opt = {
 		function()
 			builtin.resume()
 		end,
-		"Last search results",
+		"Last search result",
 	},
 	{
 		"n",
@@ -620,8 +620,28 @@ local key_opt = {
 		"Search man pages",
 	},
 	{ "n", "<leader>lc", ":Copilot panel<CR>", "Copilot panel" },
-	{ "n", "<leader>lX", ":LspStop | Copilot disable<CR>", "Stop LSP" },
-	{ "n", "<leader>lS", ":LspStart | Copilot enable<CR>", "Start LSP" },
+	{
+		"n",
+		"<leader>lX",
+		function()
+			vim.lsp.handlers["textDocument/publishDiagnostics"] =
+				vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+					virtual_text = false,
+				})
+		end,
+		"Stop LSP diagnostics",
+	},
+	{
+		"n",
+		"<leader>lS",
+		function()
+			vim.lsp.handlers["textDocument/publishDiagnostics"] =
+				vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+					virtual_text = true,
+				})
+		end,
+		"Start LSP diagnostics",
+	},
 
 	-- Config --
 	{
