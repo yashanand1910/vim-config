@@ -29,15 +29,7 @@ local plugins = {
 			"rcarriga/nvim-notify",
 		},
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim", --> Indentation guides
-		config = function()
-			require("indent_blankline").setup({
-				-- context is off by default
-				show_current_context = true,
-			})
-		end,
-	},
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -208,7 +200,6 @@ local plugins = {
 		config = true,
 	},
 	"williamboman/mason-lspconfig.nvim", --> Bridge between Mason and lspconfig
-	"theopn/friendly-snippets", --> VS Code style snippet collection
 	{
 		"L3MON4D3/LuaSnip", --> Snippet engine that accepts VS Code style snippets
 		config = true, --> Load snippets from friendly snippets
@@ -286,15 +277,6 @@ local plugins = {
 			require("neodev").setup({
 				library = { plugins = { "nvim-dap-ui" }, types = true },
 			})
-		end,
-	},
-	{
-		"ianding1/leetcode.vim", --> Leetcode integration
-		config = function()
-			vim.g["leetcode_browser"] = "firefox"
-			-- FIXME: problem set does not work
-
-			-- vim.g["leetcode_problemset"] = "studyplan/leetcode-75"
 		end,
 	},
 }
