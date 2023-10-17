@@ -677,7 +677,12 @@ local key_opt = {
 	{ "n", "<leader>vi", ":VimuxInspectRunner<CR>", "Tmux inspect" },
 	{ "n", "<leader>vv", ":VimuxRunLastCommand<CR>", "Tmux last command" },
 
-	-- Other --
+	-- Leetcode --
+	{ "n", "<leader>LL", ":LBQuestions<CR>", "LeetCode questions" },
+	{ "n", "<leader>Lq", ":LBQuestion<CR>", "LeetCode question" },
+	{ "n", "<leader>Lx", ":LBClose<CR>", "LeetCode close" },
+	{ "n", "<leader>Lt", ":LBTest<CR>", "LeetCode test" },
+	{ "n", "<leader>Ls", ":LBSubmit<CR>", "LeetCode submit" },
 }
 -- }}}
 

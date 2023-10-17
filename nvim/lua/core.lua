@@ -31,7 +31,7 @@ do
 		{ "list", true }, --> Needed for listchars
 		{
 			"listchars", --> Listing special chars
-			{ tab = "⇥ ", leadmultispace = "│ ", trail = "␣", nbsp = "⍽" },
+			{ tab = "  ", leadmultispace = "  ", trail = "␣", nbsp = "⍽" },
 		},
 		{ "wrap", false }, --> Beginning of wrapped lines
 		{ "showbreak", "↪" }, --> Beginning of wrapped lines if wrap is set

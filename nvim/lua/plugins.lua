@@ -29,7 +29,6 @@ local plugins = {
 			"rcarriga/nvim-notify",
 		},
 	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -270,6 +269,18 @@ local plugins = {
 	},
 
 	-- Misc
+	{
+		"Dhanus3133/LeetBuddy.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		config = function()
+			require("leetbuddy").setup({
+				language = "cpp",
+			})
+		end,
+	},
 	{
 		"folke/neodev.nvim", --> For configuring lua_ls for nvim config files
 		opts = {},

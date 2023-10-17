@@ -2,6 +2,15 @@
 
 require("noice").setup({
 	lsp = {
+		progress = {
+			enabled = false,
+		},
+		signature = {
+			enabled = false,
+		},
+    -- documentation = {
+    --   enabled = false,
+    -- },
 		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 		override = {
 			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -23,5 +32,21 @@ require("noice").setup({
 	},
 	messages = {
 		enabled = true,
+	},
+	routes = {
+		{
+			-- XXX: filter write messages (see https://github.com/folke/noice.nvim/issues/568)
+			filter = {
+				event = "msg_show",
+				any = {
+					{ find = "%d+L, %d+B" },
+					{ find = "; after #%d+" },
+					{ find = "; before #%d+" },
+					{ find = "%d fewer lines" },
+					{ find = "%d more lines" },
+				},
+			},
+			opts = { skip = true },
+		},
 	},
 })
