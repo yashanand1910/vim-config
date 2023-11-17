@@ -263,7 +263,7 @@ local key_opt = {
 	},
 	{
 		"n",
-		"<leader>de",
+		"<leader>dK",
 		function()
 			require("dapui").eval()
 		end,
