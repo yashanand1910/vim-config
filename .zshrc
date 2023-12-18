@@ -66,16 +66,16 @@ COMPLETION_WAITING_DOTS="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # zsh-vi-mode settings
-precmd() {
-  # Set SIGINT to ctrl-e while editing a command
-  stty intr \^E
-}
-preexec() {
-  # Now set it to ctrl-c when a command is running
-  stty intr \^C
-}
+# precmd() {
+#   # Set SIGINT to ctrl-e while editing a command
+#   stty intr \^E
+# }
+# preexec() {
+#   # Now set it to ctrl-c when a command is running
+#   stty intr \^C
+# }
 function zvm_config() {
-  ZVM_VI_ESCAPE_BINDKEY=^C
+  # ZVM_VI_ESCAPE_BINDKEY=^C
   ZVM_CURSOR_STYLE_ENABLED=false
   ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_USER_DEFAULT
 }
