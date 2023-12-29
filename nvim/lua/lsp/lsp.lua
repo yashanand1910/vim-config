@@ -34,12 +34,12 @@ local server_list = {
 	"bashls",
 	"clangd",
 	"lua_ls",
-	"pylsp",
-	"texlab",
+	-- "pylsp",
+	-- "texlab",
 	"jsonls",
-	"tsserver",
-	"angularls",
-	"eslint",
+	-- "tsserver",
+	-- "angularls",
+	-- "eslint",
 }
 
 -- nvim_cmp capabilities
