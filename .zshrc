@@ -74,11 +74,9 @@ COMPLETION_WAITING_DOTS="true"
 #   # Now set it to ctrl-c when a command is running
 #   stty intr \^C
 # }
-function zvm_config() {
-  # ZVM_VI_ESCAPE_BINDKEY=^C
-  ZVM_CURSOR_STYLE_ENABLED=false
-  ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_USER_DEFAULT
-}
+# ZVM_VI_ESCAPE_BINDKEY=^C
+# ZVM_CURSOR_STYLE_ENABLED=false
+# ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_USER_DEFAULT
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -86,10 +84,10 @@ function zvm_config() {
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    vi-mode
     git
     fzf
     zsh-autosuggestions
-    zsh-vi-mode
 )
 
 export FZF_BASE=~/.fzf.zsh

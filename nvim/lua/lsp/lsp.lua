@@ -27,7 +27,7 @@ local function set_diagnostics_config()
 	})
 end
 
--- List of LSP server used later
+-- List of LSP servers used later
 -- Always check the memory usage of each language server. :LSpInfo to identify LSP server
 -- and use "sudo lsof -p PID" to check for associated files
 local server_list = {
@@ -40,6 +40,7 @@ local server_list = {
 	"tsserver",
 	"angularls",
 	"eslint",
+	"ocamllsp",
 }
 
 -- nvim_cmp capabilities
