@@ -10,6 +10,7 @@ local mason_lspconfig = require("mason-lspconfig")
 --[[ set_diagnostics_config()
 -- Initialize Vim diagnostics settings
 --]]
+---@diagnostic disable-next-line: unused-local, unused-function
 local function set_diagnostics_config()
 	vim.diagnostic.config({
 		float = {
@@ -40,7 +41,8 @@ local server_list = {
 	"tsserver",
 	"angularls",
 	"eslint",
-	"ocamllsp",
+	-- "ocamllsp",
+  "gopls"
 }
 
 -- nvim_cmp capabilities

@@ -19,7 +19,6 @@ formatter.setup({
 		c = { "clang_format" },
 		cpp = { "clang_format" },
 		tex = { "latexindent" },
-		ml = { "ocamlformat" },
-		mli = { "ocamlformat" },
+		ocaml = { "ocamlformat" },
 	},
 })
