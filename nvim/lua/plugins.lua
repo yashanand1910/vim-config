@@ -201,6 +201,7 @@ local plugins = {
 	"williamboman/mason-lspconfig.nvim", --> Bridge between Mason and lspconfig
 	{
 		"L3MON4D3/LuaSnip", --> Snippet engine that accepts VS Code style snippets
+		build = "make install_jsregexp",
 		config = true, --> Load snippets from friendly snippets
 	},
 	"saadparwaiz1/cmp_luasnip", --> nvim_cmp and LuaSnip bridge
@@ -226,8 +227,7 @@ local plugins = {
 	"mfussenegger/nvim-dap",
 	{
 		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap" },
-		config = true,
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 	},
 	"nvim-telescope/telescope-dap.nvim",
 	{
