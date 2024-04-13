@@ -40,11 +40,6 @@ ln -s ~/Code/dotfiles/karabiner/assets ~/.config/karabiner/
 ```bash
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-For a better vi mode
-```bash
-git clone https://github.com/jeffreytse/zsh-vi-mode \
-  $ZSH_CUSTOM/plugins/zsh-vi-mode
-```
 
 ## Install vim-plug (if using vim)
 
