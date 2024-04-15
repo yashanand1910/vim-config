@@ -1,5 +1,5 @@
 # exa
-alias ls="exa --icons --group-directories-first -g"
+alias ls="eza --icons --group-directories-first -g"
 alias la="ll -a"
 
 # lazydocker
