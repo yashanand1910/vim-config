@@ -155,3 +155,8 @@ export NVM_DIR="$HOME/.nvm"
 # if [ -z "$TMUX" ]; then
 #     tmux new-session -A
 # fi
+
+# Start X server
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+    exec startx
+fi

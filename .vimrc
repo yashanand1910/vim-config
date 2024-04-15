@@ -52,6 +52,8 @@ let test#strategy = "vimterminal"
 
 let mapleader = " " " map leader to space
 
+noremap <leader>h :noh<CR>
+
 " open vimrc
 noremap <leader>Ci :tabnew ~/.vimrc<CR>
 
@@ -65,7 +67,7 @@ noremap <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
 noremap <leader>T :terminal<CR>
 
 " file explorer
-noremap <leader>e :30vs .<CR>
+noremap <leader>E :30vs .<CR>
 
 " erorrs
 noremap <leader>lt :Errors<CR>

@@ -28,22 +28,22 @@ if statusline then
 end
 safe_require("ui.notifications")
 
--- LSP configurations
+-- -- LSP configurations
 safe_require("lsp.lsp")
 safe_require("lsp.completion")
 safe_require("lsp.formatter")
 
--- Debugger configurations
+-- -- Debugger configurations
 safe_require("debugger.dap")
 
--- Plugin configurations
+-- -- Plugin configurations
 safe_require("config.treesitter")
 
--- Miscellaneous configurations
+-- -- Miscellaneous configurations
 safe_require("misc")
 
--- Keybindings
+-- -- Keybindings
 safe_require("keybinds")
 
--- Theme config modules
+-- -- Theme config modules
 safe_require("theme")
