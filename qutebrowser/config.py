@@ -5,9 +5,9 @@ c.url.searchengines = {
 }
 c.url.default_page = 'https://google.com'
 c.url.start_pages = ['https://google.com']
-c.zoom.default = 150
+c.zoom.default = 100
 
-c.fonts.default_size = '16pt'
-c.fonts.hints = '14pt'
+# c.fonts.default_size = '12pt'
+# c.fonts.hints = '12pt'
 
 # Keybinds
