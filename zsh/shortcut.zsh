@@ -11,3 +11,8 @@ alias vim=nvim
 
 # python
 alias py=python
+
+# gentoo
+alias e="sudo emerge"
+alias eq="equery"
+alias uc="sudo dispatch-conf"
