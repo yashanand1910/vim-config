@@ -11,3 +11,8 @@ c.zoom.default = 100
 # c.fonts.hints = '12pt'
 
 # Keybinds
+c.bindings.default['normal']['H'] = 'tab-prev'
+c.bindings.default['normal']['L'] = 'tab-next'
+c.bindings.default['normal']['<Ctrl-o>'] = 'back'
+c.bindings.default['normal']['<Ctrl-i>'] = 'forward'
+c.bindings.key_mappings['<Ctrl-c>'] = '<Escape>'
