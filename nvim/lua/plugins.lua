@@ -98,7 +98,7 @@ local plugins = {
 	{ "nvim-telescope/telescope-file-browser.nvim" }, --> File browser extension for Telescope
 	{
 		"nvim-tree/nvim-tree.lua",
-		requires = "nvim-tree/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = true,
 	},
 	{
@@ -125,7 +125,8 @@ local plugins = {
 			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = {
+		config = true,
+		opts = {
 			suppress_missing_scope = {
 				projects_v2 = true,
 			},
