@@ -93,6 +93,8 @@ plugins=(
     zsh-autosuggestions
 )
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 export FZF_BASE=~/.fzf.zsh
 
 source $ZSH/oh-my-zsh.sh

@@ -16,6 +16,28 @@ c.input.insert_mode.auto_load = True
 c.fonts.default_family = "JetBrainsMono"
 # c.fonts.default_size = '12pt'
 # c.fonts.hints = '12pt'
+c.colors.tabs.even.bg = "rgb(0, 0, 0)"
+c.colors.tabs.odd.bg = "rgb(0, 0, 0)"
+c.colors.tabs.even.fg = "rgb(100, 100, 100)"
+c.colors.tabs.odd.fg = "rgb(100, 100, 100)"
+c.colors.tabs.pinned.odd.bg = "rgb(0, 0, 0)"
+c.colors.tabs.pinned.even.bg = "rgb(0, 0, 0)"
+c.colors.tabs.pinned.odd.fg = "rgb(100, 100, 100)"
+c.colors.tabs.pinned.even.fg = "rgb(100, 100, 100)"
+c.colors.tabs.pinned.selected.odd.fg = "rgb(255, 255, 255)"
+c.colors.tabs.pinned.selected.even.fg = "rgb(255, 255, 255)"
+c.colors.tabs.pinned.selected.odd.bg = "rgb(0, 0, 0)"
+c.colors.tabs.pinned.selected.even.bg = "rgb(0, 0, 0)"
+c.colors.tabs.selected.odd.fg = "rgb(255, 255, 255)"
+c.colors.tabs.selected.even.fg = "rgb(255, 255, 255)"
+c.colors.tabs.selected.odd.bg = "rgb(0, 0, 0)"
+c.colors.tabs.selected.even.bg = "rgb(0, 0, 0)"
+
+c.content.javascript.clipboard = 'access'
+c.content.blocking.enabled = False
+
+c.window.hide_decoration = True
+c.tabs.show = "multiple"
 
 # Unbindings
 
@@ -46,6 +68,7 @@ c.bindings.default['command']['<Ctrl-P>'] = 'completion-item-focus prev'
 c.bindings.default['command']['<Ctrl-C>'] = 'mode-leave'
 c.bindings.default['caret']['<Ctrl-C>'] = 'mode-leave'
 c.bindings.default['insert']['<Ctrl-C>'] = 'mode-leave'
+c.bindings.default['hint']['<Ctrl-C>'] = 'mode-leave'
 
 c.bindings.key_mappings['<Ctrl-M>'] = '<Return>'
 
