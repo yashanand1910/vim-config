@@ -34,7 +34,7 @@ c.colors.tabs.selected.odd.bg = "rgb(0, 0, 0)"
 c.colors.tabs.selected.even.bg = "rgb(0, 0, 0)"
 
 c.content.javascript.clipboard = 'access'
-c.content.blocking.enabled = False
+c.content.blocking.enabled = True
 
 c.window.hide_decoration = True
 c.tabs.show = "multiple"

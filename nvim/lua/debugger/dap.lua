@@ -18,13 +18,18 @@ end
 
 -- Adapter configurations
 
+local function load_launchjs()
+	require("dap.ext.vscode").load_launchjs(".vscode/launch.json", {
+		chrome = { "typescript", "javascript", "typescriptreact" },
+		codelldb = { "c", "cpp", "rust" },
+		cppdbg = { "c", "cpp" },
+		ocamlearlybird = { "ocaml" },
+	})
+end
+
+pcall(load_launchjs) -- ignore error
+
 -- Load vscode launch.json configs
-require("dap.ext.vscode").load_launchjs(".vscode/launch.json", {
-	chrome = { "typescript", "javascript", "typescriptreact" },
-	codelldb = { "c", "cpp", "rust" },
-	cppdbg = { "c", "cpp" },
-	ocamlearlybird = { "ocaml" },
-})
 
 local mason = require("mason-registry")
 

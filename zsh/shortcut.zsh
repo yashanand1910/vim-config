@@ -14,5 +14,5 @@ alias py=python
 
 # gentoo
 alias e="sudo emerge"
-alias eq="equery"
+alias eq="sudo equery"
 alias uc="sudo dispatch-conf"

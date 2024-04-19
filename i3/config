@@ -14,9 +14,6 @@
 default_border pixel 0
 default_floating_border pixel 2
 
-
-
-
 # CONFIG
 
 set $mod Mod1

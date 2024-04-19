@@ -1,6 +1,4 @@
---[[ init.lua
--- Initialize all configuration files
---]]
+--[[ init.lua ]]
 
 -- Try catch for modules
 local function safe_require(module)
@@ -8,7 +6,7 @@ local function safe_require(module)
 	if status then
 		return loaded_module
 	end
-	vim.notify("Error loading the module: " .. module)
+	vim.notify("Error loading the module: " .. module, vim.log.levels.ERROR)
 	vim.notify(loaded_module)
 	return nil
 end
@@ -28,22 +26,22 @@ if statusline then
 end
 safe_require("ui.notifications")
 
--- -- LSP configurations
+-- LSP configurations
 safe_require("lsp.lsp")
 safe_require("lsp.completion")
 safe_require("lsp.formatter")
 
--- -- Debugger configurations
-safe_require("debugger.dap")
-
--- -- Plugin configurations
+-- Plugin configurations
 safe_require("config.treesitter")
 
--- -- Miscellaneous configurations
+-- Debugger configurations
+safe_require("debugger.dap")
+
+-- Miscellaneous configurations
 safe_require("misc")
 
--- -- Keybindings
+-- Keybindings
 safe_require("keybinds")
 
--- -- Theme config modules
+-- Theme config modules
 safe_require("theme")
