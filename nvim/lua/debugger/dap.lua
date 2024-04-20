@@ -30,12 +30,7 @@ end
 
 pcall(load_launchjs) -- XXX: ignore error
 
--- Load vscode launch.json configs
-
 local mason = require("mason-registry")
-
-local go_dbg_adapter = mason.get_package("go-debug-adapter")
-local go_dbg_adapter_path = go_dbg_adapter.get_install_path(go_dbg_adapter)
 
 dap.adapters.go = {
 	id = "go",
