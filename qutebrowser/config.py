@@ -7,11 +7,11 @@ c.url.searchengines = {"DEFAULT": "https://google.com/search?hl=en&q={}"}
 c.url.default_page = "https://google.com"
 c.url.start_pages = ["https://google.com"]
 c.downloads.location.directory = "~/downloads"
-c.content.blocking.whitelist = ["click.redditmail.com"]
+c.content.blocking.whitelist = ["clink.redditmail.com"]
 
 c.input.insert_mode.auto_load = True
 c.zoom.default = 100
-c.fonts.default_family = "JetBrainsMono"
+c.fonts.default_family = "JetBrains Mono"
 # c.fonts.default_size = '12pt'
 # c.fonts.hints = '12pt'
 c.colors.tabs.even.bg = "rgb(0, 0, 0)"

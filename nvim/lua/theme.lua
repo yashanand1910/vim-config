@@ -47,11 +47,11 @@ require("notify").setup({
 
 vim.fn.sign_define(
 	"DapBreakpoint",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
+	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapBreakpointCondition",
-	{ text = "ﳁ", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
+	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapBreakpointRejected",
