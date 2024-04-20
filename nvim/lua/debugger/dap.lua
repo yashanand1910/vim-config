@@ -24,14 +24,28 @@ local function load_launchjs()
 		codelldb = { "c", "cpp", "rust" },
 		cppdbg = { "c", "cpp" },
 		ocamlearlybird = { "ocaml" },
+		go = { "go" },
 	})
 end
 
-pcall(load_launchjs) -- ignore error
+pcall(load_launchjs) -- XXX: ignore error
 
 -- Load vscode launch.json configs
 
 local mason = require("mason-registry")
+
+local go_dbg_adapter = mason.get_package("go-debug-adapter")
+local go_dbg_adapter_path = go_dbg_adapter.get_install_path(go_dbg_adapter)
+
+dap.adapters.go = {
+	id = "go",
+	type = "server",
+	port = 38697,
+	executable = {
+		command = "dlv",
+		args = { "dap", "-l", ":38697" },
+	},
+}
 
 local chrome_dbg_adapter = mason.get_package("chrome-debug-adapter")
 local chrome_dbg_adapter_path = chrome_dbg_adapter.get_install_path(chrome_dbg_adapter)
@@ -47,7 +61,7 @@ dap.adapters.chrome = {
 -- INFO: see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
 
 local codelldb_adapter = mason.get_package("codelldb")
-local codelldb_adapter_path = chrome_dbg_adapter.get_install_path(codelldb_adapter)
+local codelldb_adapter_path = codelldb_adapter.get_install_path(codelldb_adapter)
 
 dap.adapters.codelldb = {
 	type = "server",

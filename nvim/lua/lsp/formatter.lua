@@ -20,6 +20,6 @@ formatter.setup({
 		cpp = { "clang_format" },
 		tex = { "latexindent" },
 		ocaml = { "ocamlformat" },
-		go = { "gopls " },
+		go = { "gofumpt" },
 	},
 })

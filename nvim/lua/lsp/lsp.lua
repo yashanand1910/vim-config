@@ -42,7 +42,7 @@ local server_list = {
 	"angularls",
 	"eslint",
 	-- "ocamllsp",
-  "gopls"
+	"gopls",
 }
 
 -- nvim_cmp capabilities
@@ -58,6 +58,20 @@ mason_lspconfig.setup_handlers({
 	-- Default handler
 	function(server_name)
 		lspconfig[server_name].setup({ capabilities = cmp_capability, on_attach = on_attach })
+	end,
+	["clangd"] = function()
+		lspconfig.clangd.setup({
+			capabilities = cmp_capability,
+			on_attach = on_attach,
+			cmd = { "clangd", "--background-index" },
+			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+			init_options = {
+				clangdFileStatus = true,
+				usePlaceholders = true,
+				completeUnimported = true,
+				semanticHighlighting = true,
+			},
+		})
 	end,
 	-- Lua gets a special treatment
 	["lua_ls"] = function()

@@ -34,9 +34,6 @@ safe_require("lsp.formatter")
 -- Plugin configurations
 safe_require("config.treesitter")
 
--- Debugger configurations
-safe_require("debugger.dap")
-
 -- Miscellaneous configurations
 safe_require("misc")
 
@@ -45,3 +42,6 @@ safe_require("keybinds")
 
 -- Theme config modules
 safe_require("theme")
+
+-- Debugger configurations
+safe_require("debugger.dap")

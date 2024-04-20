@@ -87,13 +87,12 @@ local plugins = {
 	{ "nvim-treesitter/nvim-treesitter" }, --> Incremental highlighting
 	{
 		"nvim-telescope/telescope.nvim", --> Expandable fuzzy finer
-		config = function()
-			require("telescope").setup({
-				defaults = {
-					layout_strategy = "flex",
-				},
-			})
-		end,
+		opts = {
+			defaults = {
+				layout_strategy = "flex",
+			},
+		},
+		config = true,
 	},
 	{ "nvim-telescope/telescope-file-browser.nvim" }, --> File browser extension for Telescope
 	{
@@ -103,6 +102,7 @@ local plugins = {
 	},
 	{
 		"stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
+		version = "v2.7.0",
 		config = true,
 	},
 
@@ -171,9 +171,7 @@ local plugins = {
 	"tpope/vim-commentary", --> Commenting region
 	{
 		"norcalli/nvim-colorizer.lua", --> Color highlighter
-		config = function()
-			require("colorizer").setup()
-		end,
+		config = true,
 	},
 	{
 		"folke/todo-comments.nvim", --> TODO comments highlighting
@@ -194,11 +192,8 @@ local plugins = {
 	-- },
 
 	-- LSP
-	{
-		"stevearc/conform.nvim",
-		opts = {},
-	},
-	{ "neovim/nvim-lspconfig" }, --> Neovim default LSP engine
+	"stevearc/conform.nvim",
+	"neovim/nvim-lspconfig", --> Neovim default LSP engine
 	{
 		"williamboman/mason.nvim", --> LSP Manager
 		config = true,
@@ -219,9 +214,7 @@ local plugins = {
 	"github/copilot.vim", --> GitHub Copilot
 	{
 		"nvimdev/lspsaga.nvim", --> LSP improvements (mainly breadcrumb)
-		config = function()
-			require("lspsaga").setup({})
-		end,
+		config = true,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -229,20 +222,18 @@ local plugins = {
 	},
 
 	-- Debugging
-	-- {
-	-- 	"mfussenegger/nvim-dap",
-    -- lazy = true
-	-- },
+
+	"mfussenegger/nvim-dap",
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		config = true,
 	},
 	"nvim-telescope/telescope-dap.nvim",
 	{
 		"theHamsta/nvim-dap-virtual-text",
 		config = true,
 	},
-
 	-- Testing
 	{
 		"vim-test/vim-test",
@@ -283,20 +274,17 @@ local plugins = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
-		config = function()
-			require("leetbuddy").setup({
-				language = "cpp",
-			})
-		end,
+		opts = {
+			language = "cpp",
+		},
+		config = true,
 	},
 	{
 		"folke/neodev.nvim", --> For configuring lua_ls for nvim config files
-		opts = {},
-		config = function()
-			require("neodev").setup({
-				library = { plugins = { "nvim-dap-ui" }, types = true },
-			})
-		end,
+		opts = {
+			library = { plugins = { "nvim-dap-ui" }, types = true },
+		},
+		config = true,
 	},
 }
 
