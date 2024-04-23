@@ -32,6 +32,7 @@ local kind_icons = {
 
 ---@diagnostic disable-next-line: missing-fields
 cmp.setup({
+	preselect = cmp.PreselectMode.None,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)

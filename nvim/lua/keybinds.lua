@@ -53,6 +53,7 @@ local key_opt = {
 	{ "n", "<C-u>", "<C-u>zz", "Scroll up half page and recenter" },
 	{ "i", "<C-e>", "<C-o>A", "Jump to end of line" },
 	{ "i", "<C-a>", "<C-o>I", "Jump to start of line" },
+	{ "i", "<C-c>", "<Esc>", "Exit insert mode" },
 
 	-- Notepad --
 	{ "n", "<leader>N", ":Notepad<CR>", "Open notepad" },

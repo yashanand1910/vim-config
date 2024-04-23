@@ -177,6 +177,14 @@ local plugins = {
 		"folke/todo-comments.nvim", --> TODO comments highlighting
 		dependencies = "nvim-lua/plenary.nvim",
 		config = true,
+		opts = {
+			highlight = {
+				pattern = [[.*<(KEYWORDS)\s*]],
+			},
+			search = {
+				pattern = [[\b(KEYWORDS)]],
+			},
+		},
 	},
 	-- {
 	-- 	"jackMort/ChatGPT.nvim",
