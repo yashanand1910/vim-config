@@ -4,7 +4,7 @@
 --]]
 local opt = vim.opt
 
-vim.g.python3_host_prog = "/Users/yashanand/.pyenv/versions/neovim/bin/python"
+vim.g.python3_host_prog = "$HOME/.pyenv/versions/neovim/bin/python"
 
 --------------------------------------------------------- OPT: ---------------------------------------------------------
 
@@ -84,10 +84,10 @@ end
 -- {{{ File settings based on ft
 -- Dictionary for supported file type (key) and the table containing values (values)
 local ft_style_vals = {
-	["c"] = { colorcolumn = "80", tabwidth = 2 },
-	["cpp"] = { colorcolumn = "80", tabwidth = 2 },
-	["python"] = { colorcolumn = "80", tabwidth = 4 },
-	["java"] = { colorcolumn = "120", tabwidth = 4 },
+	-- ["c"] = { colorcolumn = "80", tabwidth = 2 },
+	-- ["cpp"] = { colorcolumn = "80", tabwidth = 2 },
+	-- ["python"] = { colorcolumn = "80", tabwidth = 4 },
+	-- ["java"] = { colorcolumn = "120", tabwidth = 4 },
 	["lua"] = { colorcolumn = "120", tabwidth = 2 },
 }
 -- Make an array of the supported file type

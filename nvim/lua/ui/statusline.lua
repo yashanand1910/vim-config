@@ -13,52 +13,52 @@ Statusline = {} --> global so that luaeval can keep calling build() function
 --]]
 ---@diagnostic disable-next-line: duplicate-set-field
 Statusline.build = function()
-  return table.concat({
-    -- Mode
-    components.update_mode_colors(), --> Dynamically set the highlight depending on the current mode
-    components.format_mode(),
+	return table.concat({
+		-- Mode
+		components.update_mode_colors(), --> Dynamically set the highlight depending on the current mode
+		components.format_mode(),
 
-    -- folder, file name, and status
-    -- "%#PastelculaOrangeAccent# ",
-    -- " ",
-    -- vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), --> current working directory
+		-- folder, file name, and status
+		-- "%#PastelculaOrangeAccent# ",
+		-- " ",
+		-- vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), --> current working directory
 
-    -- File info
-    -- "  ",
-    -- "%f", --> Current file/path relative to the current folder
-    -- "%m", --> [-] for read only, [+] for modified buffer
-    -- "%r", --> [RO] for read only, I know it's redundant
-    -- "%<", --> Truncation starts here (and to the left) if file is too long
+		-- File info
+		-- "  ",
+		-- "%f", --> Current file/path relative to the current folder
+		-- "%m", --> [-] for read only, [+] for modified buffer
+		-- "%r", --> [RO] for read only, I know it's redundant
+		-- "%<", --> Truncation starts here (and to the left) if file is too long
 
-    -- Git
-    " %#PastelculaGreyAccent#",
-    components.git_status(),
+		-- Git
+		" %#PastelculaGreyAccent#",
+		components.git_status(),
 
-    -- Spacer
-    "%#Normal#",
-    "%=",
+		-- Spacer
+		"%#Normal#",
+		"%=",
 
-    -- LSP status
-    components.lsp_status(),
+		-- LSP status
+		components.lsp_status(),
 
-    -- Spellcheck status
-    "%#PastelculaLightGreyAccent#",
-    components.spellcheck_status(),
+		-- Spellcheck status
+		"%#PastelculaLightGreyAccent#",
+		components.spellcheck_status(),
 
-    -- Linter status
-    components.linter_status(),
+		-- Linter status
+		components.linter_status(),
 
-    -- LSP server
-    components.lsp_server(),
+		-- LSP server
+		components.lsp_server(),
 
-    -- File information
-    "%#PastelculaGreyAccent#",
-    "   %Y ", --> Same as vim.bo.filetype:upper()
+		-- File information
+		"%#PastelculaGreyAccent#",
+		"   %Y ", --> Same as vim.bo.filetype:upper()
 
-    components.ff_and_enc(),
-    -- Location in the file
-    "  %l:%c %P " --> Line, column, and page percentage
-  })
+		components.ff_and_enc(),
+		-- Location in the file
+		"  %l:%c %P ", --> Line, column, and page percentage
+	})
 end
 
 --[[ setup()
@@ -66,7 +66,7 @@ end
 --]]
 ---@diagnostic disable-next-line: duplicate-set-field
 Statusline.setup = function()
-  vim.opt.statusline = "%{%v:lua.Statusline.build()%}"
+	vim.opt.statusline = "%{%v:lua.Statusline.build()%}"
 end
 
 return Statusline

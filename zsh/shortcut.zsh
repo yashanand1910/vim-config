@@ -16,3 +16,6 @@ alias py=python
 alias e="sudo emerge"
 alias eq="sudo equery"
 alias uc="sudo dispatch-conf"
+
+# less
+alias less="less -i --use-color"

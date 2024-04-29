@@ -1,0 +1,23 @@
+{
+    "border": "none",
+    "current_border_width": 0,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1125,
+       "width": 1500,
+       "x": 94,
+       "y": 94
+    },
+    "marks": [],
+    "name": "jdholtz/i3-restore: A simple Bash and Python script to restore your i3 session - qutebrowser",
+    "percent": 1,
+    "swallows": [
+       {
+       "class": "^qutebrowser$",
+       "instance": "^qutebrowser$",
+       "machine": "^beam$",
+       "title": "^jdholtz\\/i3\\-restore\\:\\ A\\ simple\\ Bash\\ and\\ Python\\ script\\ to\\ restore\\ your\\ i3\\ session\\ \\-\\ qutebrowser$"
+       }
+    ],
+    "type": "con"
+}

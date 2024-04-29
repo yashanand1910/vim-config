@@ -12,14 +12,12 @@ formatter.setup({
 		javascript = { "prettier" },
 		typescript = { "prettier" },
 		typescriptreact = { "prettier" },
-		python = {
-			formatters = { "isort", "black" },
-			run_all_formatters = true,
-		},
+		python = { { "isort", "black" } },
 		c = { "clang_format" },
 		cpp = { "clang_format" },
 		tex = { "latexindent" },
 		ocaml = { "ocamlformat" },
 		go = { "gofumpt" },
+		cmake = { "cmake_format" },
 	},
 })

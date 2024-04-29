@@ -2,6 +2,8 @@
 -- Theme configuration, such as colorscheme etc.
 --]]
 
+local icons = require("icons")
+
 -- Transparency
 
 vim.g.transparent_enabled = true
@@ -45,23 +47,29 @@ require("notify").setup({
 -- vim.highlight.create("DapLogPoint", { ctermbg = 0, guifg = "#61afef", guibg = "#31353f" }, false)
 -- vim.highlight.create("DapStopped", { ctermbg = 0, guifg = "#98c379", guibg = "#31353f" }, false)
 
-vim.fn.sign_define(
-	"DapBreakpoint",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
-)
-vim.fn.sign_define(
-	"DapBreakpointCondition",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "DiagnosticSignError", numhl = "DiagnosticSignError" }
-)
+vim.fn.sign_define("DapBreakpoint", {
+	text = icons.diagnostics.Debug,
+	texthl = "DiagnosticSignError",
+	linehl = "DiagnosticSignError",
+	numhl = "DiagnosticSignError",
+})
+vim.fn.sign_define("DapBreakpointCondition", {
+	text = icons.diagnostics.Question,
+	texthl = "DiagnosticSignError",
+	linehl = "DiagnosticSignError",
+	numhl = "DiagnosticSignError",
+})
 vim.fn.sign_define(
 	"DapBreakpointRejected",
-	{ text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
+	{ text = icons.diagnostics.Error, texthl = "DiagnosticSignError", linehl = "", numhl = "DiagnosticSignError" }
 )
 vim.fn.sign_define(
 	"DapLogPoint",
-	{ text = "", texthl = "DiagnosticSignWarn", linehl = "", numhl = "DiagnosticSignWarn" }
+	{ text = icons.diagnostics.Trace, texthl = "DiagnosticSignWarn", linehl = "", numhl = "DiagnosticSignWarn" }
 )
-vim.fn.sign_define(
-	"DapStopped",
-	{ text = "", texthl = "DiagnosticSignWarn", linehl = "DiagnosticSignWarn", numhl = "DiagnosticSignWarn" }
-)
+vim.fn.sign_define("DapStopped", {
+	text = icons.ui.Triangle,
+	texthl = "DiagnosticSignWarn",
+	linehl = "DiagnosticSignWarn",
+	numhl = "DiagnosticSignWarn",
+})

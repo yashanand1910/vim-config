@@ -1,0 +1,23 @@
+{
+    "border": "none",
+    "current_border_width": 0,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1125,
+       "width": 1500,
+       "x": 94,
+       "y": 94
+    },
+    "marks": [],
+    "name": "mwilliamson/jq.py: Python bindings for jq - qutebrowser",
+    "percent": 1,
+    "swallows": [
+       {
+       "class": "^qutebrowser$",
+       "instance": "^qutebrowser$",
+       "machine": "^beam$",
+       "title": "^mwilliamson\\/jq\\.py\\:\\ Python\\ bindings\\ for\\ jq\\ \\-\\ qutebrowser$"
+       }
+    ],
+    "type": "con"
+}
