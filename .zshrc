@@ -91,9 +91,13 @@ plugins=(
     git
     fzf
     zsh-autosuggestions
+    zsh-github-copilot
 )
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+bindkey '^\' zsh_gh_copilot_explain  # bind Ctrl+\ to explain
+bindkey '^[\' zsh_gh_copilot_suggest  # bind Alt+\ to suggest
 
 export FZF_BASE=~/.fzf.zsh
 
@@ -134,17 +138,6 @@ export EDITOR='vi'
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
 
-# LINUX-ONLY CONFIG
-if [[  "$(uname)" == "Linux" ]]; then
-  # Lima BEGIN (for VM only)
-  # Make sure iptables and mount.fuse3 are available
-  PATH="$PATH:/usr/sbin:/sbin"
-  export PATH
-  # Lima END
-  # opam configuration
-  [[ ! -r /home/yashanand.linux/.opam/opam-init/init.zsh ]] || source /home/yashanand.linux/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-fi
-
 # For error "signing failed: Inappropriate ioctl for device"
 # ref: https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
 export GPG_TTY=$(tty)
@@ -158,7 +151,20 @@ export NVM_DIR="$HOME/.nvm"
 #     tmux new-session -A
 # fi
 
-# Start X server
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-    exec startx
+# LINUX-ONLY CONFIG
+if [[  "$(uname)" == "Linux" ]]; then
+  # Lima BEGIN (for VM only)
+  # Make sure iptables and mount.fuse3 are available
+  PATH="$PATH:/usr/sbin:/sbin"
+  export PATH
+  # Lima END
+  # opam configuration
+  [[ ! -r /home/yashanand.linux/.opam/opam-init/init.zsh ]] || source /home/yashanand.linux/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+  # Start X server
+  if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+      exec startx
+  fi
+  neofetch
 fi
+

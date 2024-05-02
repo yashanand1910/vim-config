@@ -63,14 +63,7 @@ mason_lspconfig.setup_handlers({
 		lspconfig.clangd.setup({
 			capabilities = cmp_capability,
 			on_attach = on_attach,
-			cmd = { "clangd", "--background-index" },
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-			init_options = {
-				clangdFileStatus = true,
-				usePlaceholders = true,
-				completeUnimported = true,
-				semanticHighlighting = true,
-			},
 		})
 	end,
 	-- Lua gets a special treatment
