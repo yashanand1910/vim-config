@@ -15,6 +15,7 @@ formatter.setup({
 		python = { { "isort", "black" } },
 		c = { "clang_format" },
 		cpp = { "clang_format" },
+		cuda = { "clang_format" },
 		tex = { "latexindent" },
 		ocaml = { "ocamlformat" },
 		go = { "gofumpt" },
