@@ -24,7 +24,7 @@ local function url_handler()
 	-- <something>://<something that aren't >,;)>
 	local url = string.match(vim.fn.getline("."), "[a-z]*://[^ >,;)]*")
 	if url ~= nil then
-		vim.cmd("silent exec '!open " .. url .. "'")
+		vim.cmd("silent exec '!xdg-open " .. url .. "'")
 	else
 		vim.notify("No URI found in the current line")
 	end
@@ -157,6 +157,8 @@ local key_opt = {
 	-- Git --
 	{ "n", "<leader>gDD", ":DiffviewOpen<CR>", "Git diff view open" },
 	{ "n", "<leader>gDQ", ":DiffviewClose<CR>", "Git diff view close" },
+	{ "n", "<leader>gDc", ":DiffviewFileHistory %<CR>", "Git diff view current file history" },
+	{ "n", "<leader>gDC", ":DiffviewFileHistory<CR>", "Git diff view file history" },
 	{ "n", "<leader>gs", ":G<CR>", "Git status" },
 	{ "n", "<leader>gd", ":Gvdiffsplit<CR>", "Git diff current file" },
 	{

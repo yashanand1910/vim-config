@@ -12,7 +12,7 @@ formatter.setup({
 		javascript = { "prettier" },
 		typescript = { "prettier" },
 		typescriptreact = { "prettier" },
-		python = { { "isort", "black" } },
+		python = { "black", "isort" },
 		c = { "clang_format" },
 		cpp = { "clang_format" },
 		cuda = { "clang_format" },

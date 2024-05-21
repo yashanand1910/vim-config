@@ -28,4 +28,4 @@
 [push]
 	autoSetupRemote = true
 [core]
-  editor = vi
+  editor = nvim

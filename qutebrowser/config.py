@@ -13,6 +13,10 @@ c.content.blocking.whitelist = [
     "ad.doubleclick.net",
 ]
 
+# c.content.user_stylesheets = ["~/.config/qutebrowser/solarized-dark.css"]
+c.colors.webpage.preferred_color_scheme = "dark"
+c.colors.webpage.darkmode.enabled = True
+
 c.input.insert_mode.auto_enter = True
 c.input.insert_mode.auto_load = False
 

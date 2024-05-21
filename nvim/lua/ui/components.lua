@@ -133,7 +133,7 @@ M.lsp_server = function()
 	for _, client in ipairs(vim.lsp.get_active_clients()) do
 		if client.attached_buffers[vim.api.nvim_get_current_buf()] then
 			local name = nil
-			if client.name == "copilot" then
+			if client.name == "GitHub Copilot" or client.name == "copilot" then
 				name = ""
 			else
 				name = client.name
@@ -147,6 +147,15 @@ M.lsp_server = function()
 	else
 		return s
 	end
+end
+
+M.formatter = function()
+	local s = ""
+	local formatters = require("conform").list_formatters(vim.api.nvim_get_current_buf())
+	for _, formatter in ipairs(formatters) do
+		s = s .. " " .. formatter.name
+	end
+	return s
 end
 
 --[[ lsp_status()
@@ -198,6 +207,27 @@ M.ff_and_enc = function()
 	-- If new file does not have encoding, display global encoding
 	local enc = (vim.bo.fileencoding == "") and vim.o.encoding or vim.bo.fileencoding
 	return string.format("%s %s", ff, enc):upper()
+end
+
+M.virtual_env = function()
+	-- only show virtual env for Python
+	if vim.bo.filetype ~= "python" then
+		return ""
+	end
+
+	local conda_env = os.getenv("CONDA_DEFAULT_ENV")
+	local venv_path = os.getenv("VIRTUAL_ENV")
+
+	if venv_path == nil then
+		if conda_env == nil then
+			return ""
+		else
+			return string.format(" (%s)", conda_env)
+		end
+	else
+		local venv_name = vim.fn.fnamemodify(venv_path, ":t")
+		return string.format(" (%s)", venv_name)
+	end
 end
 
 return M

@@ -26,6 +26,9 @@ font pango:JetBrains Mono 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# Start composite manager (for transparency and other stuff)
+exec --no-startup-id picom --daemon
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -229,6 +232,14 @@ bar {
                 focused_workspace #000000 #000000 #ffffff
         }
 }
+
+# For screenshotting
+bindsym Print         exec shutter --full
+bindsym Shift+Print   exec shutter --select
+
+# Gaps
+gaps inner 24
+gaps outer 4
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a

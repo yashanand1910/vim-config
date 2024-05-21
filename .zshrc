@@ -161,10 +161,11 @@ if [[  "$(uname)" == "Linux" ]]; then
   # opam configuration
   [[ ! -r /home/yashanand.linux/.opam/opam-init/init.zsh ]] || source /home/yashanand.linux/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-  # Start X server
-  if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-      exec startx
-  fi
+  # Start display server
+  # if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+  #     exec startx
+  #     # dbus-run-session Hyprland
+  # fi
   # neofetch
 fi
 

@@ -34,6 +34,9 @@ Statusline.build = function()
 		" %#PastelculaGreyAccent#",
 		components.git_status(),
 
+    -- Virutal env
+    components.virtual_env(),
+
 		-- Spacer
 		"%#Normal#",
 		"%=",
@@ -50,6 +53,9 @@ Statusline.build = function()
 
 		-- LSP server
 		components.lsp_server(),
+
+		-- Formatter
+		components.formatter(),
 
 		-- File information
 		"%#PastelculaGreyAccent#",
