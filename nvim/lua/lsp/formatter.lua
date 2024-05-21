@@ -8,6 +8,7 @@ formatter.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		json = { "prettier" },
+		jsonc = { "prettier" },
 		html = { "prettier" },
 		javascript = { "prettier" },
 		typescript = { "prettier" },
