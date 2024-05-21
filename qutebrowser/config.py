@@ -13,9 +13,14 @@ c.content.blocking.whitelist = [
     "ad.doubleclick.net",
 ]
 
+c.statusbar.show = "in-mode"
+c.scrolling.bar = "when-searching"
+c.window.hide_decoration = True
+c.tabs.show = "switching"
+
 # c.content.user_stylesheets = ["~/.config/qutebrowser/solarized-dark.css"]
 c.colors.webpage.preferred_color_scheme = "dark"
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 
 c.input.insert_mode.auto_enter = True
 c.input.insert_mode.auto_load = False
@@ -43,9 +48,6 @@ c.colors.tabs.selected.even.bg = "rgb(0, 0, 0)"
 
 c.content.javascript.clipboard = "access"
 c.content.blocking.enabled = True
-
-c.window.hide_decoration = True
-c.tabs.show = "multiple"
 
 # Unbindings
 
