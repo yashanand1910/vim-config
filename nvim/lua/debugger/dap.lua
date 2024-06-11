@@ -30,14 +30,19 @@ end
 
 pcall(load_launchjs) -- XXX: ignore error
 
+-- Load vscode launch.json configs
+
 local mason = require("mason-registry")
+
+local delve = mason.get_package("delve")
+local delve_path = delve.get_install_path(delve)
 
 dap.adapters.go = {
 	id = "go",
 	type = "server",
 	port = 38697,
 	executable = {
-		command = "dlv",
+		command = delve_path .. "/dlv",
 		args = { "dap", "-l", ":38697" },
 	},
 }

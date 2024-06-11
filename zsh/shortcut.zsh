@@ -2,12 +2,9 @@
 alias ls="eza --icons --group-directories-first -g"
 alias la="ll -a"
 
-# lazydocker
-alias ld=lazydocker
-
 # lvim
-alias vi=nvim
-alias vim=nvim
+alias vi="sudo -E nvim"
+alias vim=vi
 
 # python
 alias py=python

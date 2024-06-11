@@ -38,11 +38,12 @@ local server_list = {
 	-- "pylsp",
 	-- "texlab",
 	"jsonls",
-	"tsserver",
-	"angularls",
-	"eslint",
+	-- "tsserver",
+	-- "angularls",
+	-- "eslint",
 	-- "ocamllsp",
-	"gopls",
+	-- "gopls",
+	"docker_compose_language_service",
 }
 
 -- nvim_cmp capabilities
@@ -89,6 +90,12 @@ mason_lspconfig.setup_handlers({
 					},
 				},
 			},
+		})
+	end,
+	["docker_compose_language_service"] = function()
+		lspconfig.docker_compose_language_service.setup({
+			capabilities = cmp_capability,
+			on_attach = on_attach,
 		})
 	end,
 })

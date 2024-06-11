@@ -310,6 +310,7 @@ local key_opt = {
 		"<leader>dlb",
 		function()
 			require("dapui").float_element("breakpoints", {
+				title = "Breakpoints",
 				position = "center",
 				enter = true,
 				height = 40,
@@ -323,6 +324,7 @@ local key_opt = {
 		"<leader>dls",
 		function()
 			require("dapui").float_element("scopes", {
+				title = "Scopes",
 				position = "center",
 				enter = true,
 				height = 40,
@@ -335,7 +337,8 @@ local key_opt = {
 		"n",
 		"<leader>dlc",
 		function()
-			require("dapui").float_element("console", {
+			require("dapui").float_element("repl", {
+				title = "REPL",
 				position = "center",
 				enter = true,
 				height = 40,
@@ -346,9 +349,10 @@ local key_opt = {
 	},
 	{
 		"n",
-		"<leader>dlr",
+		"<leader>dlC",
 		function()
-			require("dapui").float_element("repl", {
+			require("dapui").float_element("console", {
+				title = "Console",
 				position = "center",
 				enter = true,
 				height = 40,
