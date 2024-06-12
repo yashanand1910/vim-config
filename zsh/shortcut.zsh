@@ -3,7 +3,7 @@ alias ls="eza --icons --group-directories-first -g"
 alias la="ll -a"
 
 # lvim
-alias vi="sudo -E nvim"
+alias vi="nvim"
 alias vim=vi
 
 # python
