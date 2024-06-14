@@ -70,6 +70,7 @@ local plugins = {
 	},
 	"projekt0n/github-nvim-theme",
 	"xiyaowong/transparent.nvim",
+	-- ANSI colorizer for text (used for DAP console filetype)
 	{
 		"m00qek/baleia.nvim",
 		version = "*",

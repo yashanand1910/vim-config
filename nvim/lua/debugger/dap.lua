@@ -25,18 +25,42 @@ local function load_launchjs()
 		cppdbg = { "c", "cpp" },
 		ocamlearlybird = { "ocaml" },
 		go = { "go" },
+		debugpy = { "python" },
 	})
 end
 
-pcall(load_launchjs) -- XXX: ignore error
+pcall(load_launchjs) -- XXX: ignore errors for now
 
 -- Load vscode launch.json configs
 
 local mason = require("mason-registry")
 
+local debugpy = mason.get_package("debugpy")
+local debugpy_path = debugpy.get_install_path(debugpy)
+dap.adapters.debugpy = {
+	type = "executable",
+	command = "python3",
+	args = { "-m", "debugpy.adapter" },
+}
+dap.adapters.python = dap.adapters.debugpy
+-- Add some default configurations
+local pyconfig = dap.configurations.python or {}
+dap.configurations.python = pyconfig
+table.insert(pyconfig, {
+	type = "python",
+	request = "launch",
+	name = "Launch command",
+	program = "${file}",
+	args = function()
+		local args_string = vim.fn.input("ARGS: ")
+		return vim.split(args_string, " +")
+	end,
+	-- console = opts.console,
+	-- pythonPath = debugpy_path .. "/venv/bin/python",
+})
+
 local delve = mason.get_package("delve")
 local delve_path = delve.get_install_path(delve)
-
 dap.adapters.go = {
 	id = "go",
 	type = "server",
@@ -49,7 +73,6 @@ dap.adapters.go = {
 
 local chrome_dbg_adapter = mason.get_package("chrome-debug-adapter")
 local chrome_dbg_adapter_path = chrome_dbg_adapter.get_install_path(chrome_dbg_adapter)
-
 dap.adapters.chrome = {
 	type = "executable",
 	command = "node",
@@ -62,7 +85,6 @@ dap.adapters.chrome = {
 
 local codelldb_adapter = mason.get_package("codelldb")
 local codelldb_adapter_path = codelldb_adapter.get_install_path(codelldb_adapter)
-
 dap.adapters.codelldb = {
 	type = "server",
 	port = "13000",
@@ -75,7 +97,6 @@ dap.adapters.codelldb = {
 
 local cpptools_adapter = mason.get_package("cpptools")
 local cpptools_adapter_path = cpptools_adapter.get_install_path(cpptools_adapter)
-
 dap.adapters.cppdbg = {
 	id = "cppdbg",
 	type = "executable",
@@ -88,7 +109,7 @@ dap.adapters.rust = {
 	command = cpptools_adapter_path .. "/extension/debugAdapters/bin/OpenDebugAD7",
 }
 
--- TODO: fix ocaml debugger / doesn't work
+-- FIXME: ocaml debugger / doesn't work
 
 -- -- dap.adapters.ocamlearlybird = {
 -- -- 	type = "executable",
