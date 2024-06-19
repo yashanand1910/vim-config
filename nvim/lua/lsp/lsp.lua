@@ -35,14 +35,7 @@ local server_list = {
 	"bashls",
 	"clangd",
 	"lua_ls",
-	-- "pylsp",
-	-- "texlab",
 	"jsonls",
-	-- "tsserver",
-	-- "angularls",
-	-- "eslint",
-	-- "ocamllsp",
-	-- "gopls",
 	"docker_compose_language_service",
 }
 
@@ -96,6 +89,18 @@ mason_lspconfig.setup_handlers({
 		lspconfig.docker_compose_language_service.setup({
 			capabilities = cmp_capability,
 			on_attach = on_attach,
+		})
+	end,
+	["pylsp"] = function()
+		lspconfig.pylsp.setup({
+			settings = {
+				pylsp = {
+					plugins = {
+						mccabe = { enabled = false, threshold = 30 },
+						pycodestyle = { maxLineLength = 100 },
+					},
+				},
+			},
 		})
 	end,
 })

@@ -335,7 +335,7 @@ local key_opt = {
 	},
 	{
 		"n",
-		"<leader>dlc",
+		"<leader>dlr",
 		function()
 			require("dapui").float_element("repl", {
 				title = "REPL",
@@ -349,7 +349,7 @@ local key_opt = {
 	},
 	{
 		"n",
-		"<leader>dlC",
+		"<leader>dlc",
 		function()
 			require("dapui").float_element("console", {
 				title = "Console",

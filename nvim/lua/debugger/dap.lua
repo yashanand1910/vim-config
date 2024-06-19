@@ -35,8 +35,6 @@ pcall(load_launchjs) -- XXX: ignore errors for now
 
 local mason = require("mason-registry")
 
-local debugpy = mason.get_package("debugpy")
-local debugpy_path = debugpy.get_install_path(debugpy)
 dap.adapters.debugpy = {
 	type = "executable",
 	command = "python3",
@@ -55,7 +53,8 @@ table.insert(pyconfig, {
 		local args_string = vim.fn.input("ARGS: ")
 		return vim.split(args_string, " +")
 	end,
-	-- console = opts.console,
+	console = "integratedTerminal",
+	justMyCode = false,
 	-- pythonPath = debugpy_path .. "/venv/bin/python",
 })
 

@@ -92,7 +92,16 @@ local plugins = {
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		config = true,
+		opts = {
+			options = {
+				themable = true,
+				show_buffer_close_icon = false,
+				show_close_icon = false,
+				diagnostics = "nvim_lsp",
+				diagnostics_update_in_insert = true,
+				always_show_bufferline = false,
+			},
+		},
 	},
 	{
 		"tiagovla/scope.nvim",
@@ -118,8 +127,8 @@ local plugins = {
 	},
 	{
 		"stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
-		version = "v2.7.0",
-		config = true,
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	-- Formatting & linting
