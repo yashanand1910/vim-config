@@ -99,13 +99,30 @@ local plugins = {
 				show_close_icon = false,
 				diagnostics = "nvim_lsp",
 				diagnostics_update_in_insert = true,
-				always_show_bufferline = false,
+				always_show_bufferline = true,
 			},
 		},
 	},
 	{
 		"tiagovla/scope.nvim",
 		config = true,
+	},
+	{
+		"christoomey/vim-tmux-navigator", --> Navigate between Vim and Tmux panes
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
 	},
 
 	-- File, search
