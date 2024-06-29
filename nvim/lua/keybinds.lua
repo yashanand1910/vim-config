@@ -501,6 +501,12 @@ local key_opt = {
 	},
 	{
 		"n",
+		"<C-semicolon>",
+		"<C-w>p",
+		"Switch to last split buffer",
+	},
+	{
+		"n",
 		"<leader>bd",
 		":%bd|e#|bd#<CR>",
 		"Close all buffers but this one",
