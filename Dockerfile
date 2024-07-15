@@ -15,7 +15,6 @@ apt-get install -y unzip
 apt-get install python3.11
 apt-get install python3-pip
 apt-get install -y gpg
-rm -rf /var/lib/apt/lists/*
 EOT
 
 # Setup user
