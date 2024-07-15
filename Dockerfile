@@ -38,6 +38,13 @@ sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
 rm nvim-linux64.tar.gz
 EOT
 
+# Setup node
+RUN <<EOT
+curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+sudo -E bash nodesource_setup.sh
+sudo apt-get install -y nodejs
+EOT
+
 # Setup dotfiles
 RUN mkdir -p .config
 COPY nvim .config/nvim
