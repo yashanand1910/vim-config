@@ -91,7 +91,6 @@ plugins=(
     git
     fzf
     zsh-autosuggestions
-    zsh-github-copilot
 )
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
