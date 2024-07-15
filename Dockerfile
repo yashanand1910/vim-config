@@ -9,9 +9,11 @@ apt-get install -y openssh-client
 apt-get install -y git
 apt-get install -y zsh
 apt-get install -y wget
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
 rm -rf /var/lib/apt/lists/*
 EOT
+
+# Install zsh
+RUN "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
 
 # Setup user
 ARG USER=yashanand
