@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source https://github.com/yashanand1910/dotfiles
 # Install packages
 RUN <<EOT
 apt-get update
-apt-get install -y openssh-client
+apt-get install -y build-essential
 apt-get install -y git
 apt-get install -y zsh
 apt-get install -y wget
