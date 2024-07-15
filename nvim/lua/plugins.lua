@@ -73,6 +73,7 @@ local plugins = {
 	-- ANSI colorizer for text (used for DAP console filetype)
 	{
 		"m00qek/baleia.nvim",
+		lazy = true,
 		version = "*",
 		config = function()
 			vim.g.baleia = require("baleia").setup({})
@@ -139,11 +140,13 @@ local plugins = {
 	{ "nvim-telescope/telescope-file-browser.nvim" }, --> File browser extension for Telescope
 	{
 		"nvim-tree/nvim-tree.lua",
+		lazy = true,
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = true,
 	},
 	{
 		"stevearc/oil.nvim", --> Manage files like Vim buffer; currently testing!
+		lazy = true,
 		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
@@ -157,17 +160,23 @@ local plugins = {
 		"lewis6991/gitsigns.nvim", --> Git information
 		config = true,
 	},
-	"sindrets/diffview.nvim",
-	"tpope/vim-fugitive",
-	"tpope/vim-rhubarb", --> Enables :Gbrowse
+	{
+		"sindrets/diffview.nvim",
+		lazy = true,
+	},
+	{ "tpope/vim-fugitive", lazy = true },
+	{
+		"tpope/vim-rhubarb",
+		lazy = true,
+	}, --> Enables :Gbrowse
 	{
 		"pwntester/octo.nvim", --> GitHub integration
+		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = true,
 		opts = {
 			suppress_missing_scope = {
 				projects_v2 = true,
@@ -176,12 +185,14 @@ local plugins = {
 	},
 	{
 		"petertriho/cmp-git",
+		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
 	},
 	{
 		"ruifm/gitlinker.nvim",
+		lazy = true,
 		dependencies = "nvim-lua/plenary.nvim",
 		config = true,
 	},
@@ -189,6 +200,7 @@ local plugins = {
 	-- Terminal
 	{
 		"preservim/vimux",
+		lazy = true,
 		config = function()
 			vim.g["VimuxHeight"] = "30"
 			vim.g["VimuxOrientation"] = "h"
@@ -198,6 +210,7 @@ local plugins = {
 	-- Convenience
 	{
 		"smjonas/inc-rename.nvim", --> Incremental rename
+		lazy = true,
 		config = true,
 	},
 	{
@@ -276,17 +289,20 @@ local plugins = {
 	"mfussenegger/nvim-dap",
 	{
 		"rcarriga/nvim-dap-ui",
+		lazy = true,
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = true,
 	},
-	"nvim-telescope/telescope-dap.nvim",
+	{ "nvim-telescope/telescope-dap.nvim", lazy = true },
 	{
 		"theHamsta/nvim-dap-virtual-text",
+		lazy = true,
 		config = true,
 	},
 	-- Testing
 	{
 		"vim-test/vim-test",
+		lazy = true,
 		config = function()
 			vim.g["test#strategy"] = "vimux"
 			-- vim.g["test#neovim#term_position"] = "right 25"
@@ -300,6 +316,7 @@ local plugins = {
 	-- Text editing
 	{
 		"iamcco/markdown-preview.nvim", --> MarkdownPreview to toggle
+		lazy = true,
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end, --> Binary installation for markdown-preview
@@ -307,6 +324,7 @@ local plugins = {
 	},
 	{
 		"lervag/vimtex", --> LaTeX integration
+		lazy = true,
 		config = function()
 			vim.g.tex_flavor = "latex"
 			vim.g.vimtex_compiler_method = "latexmk"
@@ -320,6 +338,7 @@ local plugins = {
 	-- Misc
 	{
 		"Dhanus3133/LeetBuddy.nvim",
+		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
