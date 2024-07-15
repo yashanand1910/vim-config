@@ -12,15 +12,15 @@ apt-get install -y wget
 rm -rf /var/lib/apt/lists/*
 EOT
 
-# Install zsh
-RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
-
 # Setup user
 ARG USER=yashanand
 ARG UID=1000
 RUN useradd -rm -d /home/${USER} -s /bin/zsh -G sudo -u ${UID} -g root ${USER}
 USER ${USER}
 WORKDIR /home/${USER}
+
+# Install zsh
+RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
 
 # Setup dotfiles
 RUN mkdir -p .config
