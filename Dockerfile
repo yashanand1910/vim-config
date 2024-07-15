@@ -15,12 +15,14 @@ apt-get install -y unzip
 apt-get install python3.11
 apt-get install python3-pip
 apt-get install -y gpg
+apt-get install -y man-db
 EOT
 
 # Setup user
 ARG USER=yashanand
 ARG UID=1000
-RUN useradd -rm -d /home/${USER} -s /bin/zsh -G sudo -u ${UID} -g root ${USER}
+RUN groupadd -g 1000 {USER}
+RUN useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g root ${USER} -G ${USER}
 RUN echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
 USER ${USER}
 WORKDIR /home/${USER}
