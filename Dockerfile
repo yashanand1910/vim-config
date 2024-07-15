@@ -35,5 +35,6 @@ COPY .gitconfig .gitconfig
 COPY .vimrc .vimrc
 COPY .zshrc .zshrc
 COPY .tmux.conf .tmux.conf
+COPY zsh .oh-my-zsh/custom/
 
 ENTRYPOINT ["/bin/zsh"]
