@@ -10,7 +10,6 @@ apt-get install -y git
 apt-get install -y zsh
 apt-get install -y wget
 apt-get install -y sudo
-apt-get install -y neovim
 rm -rf /var/lib/apt/lists/*
 EOT
 
@@ -28,6 +27,15 @@ RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.
 RUN git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-github-copilot
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN ~/.fzf/install --key-bindings --completion --no-update-rc
+
+# Setup neovim
+RUN <<EOT
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+rm nvim-linux64.tar.gz
+EOT
 
 # Setup dotfiles
 RUN mkdir -p .config
