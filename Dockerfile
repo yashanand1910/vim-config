@@ -10,7 +10,7 @@ apt-get install -y git
 apt-get install -y zsh
 apt-get install -y wget
 apt-get install -y sudo
-apt-get install -y nvim
+apt-get install -y neovim
 rm -rf /var/lib/apt/lists/*
 EOT
 
