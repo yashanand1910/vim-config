@@ -21,7 +21,7 @@ EOT
 # Setup user
 ARG USER=yashanand
 ARG UID=1000
-RUN groupadd -g 1000 {USER}
+RUN groupadd -g 1000 ${USER}
 RUN useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g root ${USER} -G ${USER}
 RUN echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
 USER ${USER}:${USER}
