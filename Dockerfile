@@ -33,6 +33,13 @@ RUN git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.o
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN ~/.fzf/install --key-bindings --completion --no-update-rc
 
+# Setup tmux
+RUN <<EOT
+sudo apt-get install -y tmux
+mkdir -p ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+EOT
+
 # Setup neovim
 RUN <<EOT
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -42,7 +49,7 @@ sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
 rm nvim-linux64.tar.gz
 EOT
 
-# Setup node
+# Setup node (for nvim plugins)
 RUN <<EOT
 curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
 sudo -E bash nodesource_setup.sh
@@ -50,7 +57,7 @@ sudo apt-get install -y nodejs
 rm nodesource_setup.sh
 EOT
 
-# Setup eza
+# Setup miscelaneous
 RUN <<EOT
 sudo mkdir -p /etc/apt/keyrings
 wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
@@ -58,6 +65,7 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
 sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 sudo apt update
 sudo apt install -y eza
+sudo apt-get install -y ripgrep
 EOT
 
 # Setup dotfiles
