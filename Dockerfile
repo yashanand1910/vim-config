@@ -9,6 +9,7 @@ apt-get install -y openssh-client
 apt-get install -y git
 apt-get install -y zsh
 apt-get install -y wget
+apt-get install -y sudo
 rm -rf /var/lib/apt/lists/*
 EOT
 
