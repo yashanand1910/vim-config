@@ -13,7 +13,7 @@ rm -rf /var/lib/apt/lists/*
 EOT
 
 # Install zsh
-RUN "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
+RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
 
 # Setup user
 ARG USER=yashanand
