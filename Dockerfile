@@ -72,11 +72,12 @@ EOT
 
 # Setup dotfiles
 RUN mkdir -p .config
-COPY nvim .config/nvim
-COPY .gitconfig .gitconfig
-COPY .vimrc .vimrc
-COPY .zshrc .zshrc
-COPY .tmux.conf .tmux.conf
-COPY zsh .oh-my-zsh/custom/
+RUN chown -R ${USER}:${USER} .config
+COPY --chown=${USER}:${USER} nvim .config/nvim
+COPY --chown=${USER}:${USER} .gitconfig .gitconfig
+COPY --chown=${USER}:${USER} .vimrc .vimrc
+COPY --chown=${USER}:${USER} .zshrc .zshrc
+COPY --chown=${USER}:${USER} .tmux.conf .tmux.conf
+COPY --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
 
 ENTRYPOINT ["/bin/zsh"]
