@@ -10,6 +10,7 @@ apt-get install -y git
 apt-get install -y zsh
 apt-get install -y wget
 apt-get install -y sudo
+apt-get install -y nvim
 rm -rf /var/lib/apt/lists/*
 EOT
 
