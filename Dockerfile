@@ -22,7 +22,6 @@ WORKDIR /home/${USER}
 # Setup dotfiles
 RUN mkdir -p .config
 COPY nvim .config/nvim
-COPY zsh .oh-my-zsh/custom
 COPY .gitconfig .gitconfig
 COPY .vimrc .vimrc
 COPY .zshrc .zshrc
