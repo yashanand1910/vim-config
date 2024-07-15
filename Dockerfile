@@ -8,6 +8,7 @@ apt-get update
 apt-get install -y openssh-client
 apt-get install -y git
 apt-get install -y zsh
+apt-get install -y wget
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 rm -rf /var/lib/apt/lists/*
 EOT
