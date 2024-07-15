@@ -11,6 +11,7 @@ apt-get install -y zsh
 apt-get install -y wget
 apt-get install -y curl
 apt-get install -y sudo
+apt-get install -y unzip
 apt-get install python3.11
 apt-get install python3-pip
 rm -rf /var/lib/apt/lists/*
@@ -45,6 +46,7 @@ RUN <<EOT
 curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
 sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
+rm nodesource_setup.sh
 EOT
 
 # Setup dotfiles
