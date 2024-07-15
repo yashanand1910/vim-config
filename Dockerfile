@@ -29,3 +29,5 @@ COPY .gitconfig .gitconfig
 COPY .vimrc .vimrc
 COPY .zshrc .zshrc
 COPY .tmux.conf .tmux.conf
+
+ENTRYPOINT ["/bin/zsh"]
