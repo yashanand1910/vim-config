@@ -28,4 +28,4 @@ COPY .vimrc .vimrc
 COPY .zshrc .zshrc
 COPY .tmux.conf .tmux.conf
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/zsh"]
