@@ -2,9 +2,11 @@
 alias ls="eza --icons --group-directories-first -g"
 alias la="ll -a"
 
-# lvim
-alias vi="nvim"
+# vim
+alias vi=nvim
 alias vim=vi
+alias svi="sudo -E nvim"
+alias svim=svi
 
 # python
 alias py=python

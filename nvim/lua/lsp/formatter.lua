@@ -21,5 +21,8 @@ formatter.setup({
 		ocaml = { "ocamlformat" },
 		go = { "gofumpt" },
 		cmake = { "cmake_format" },
+		zsh = { "beautysh" },
+		sh = { "beautysh" },
+		bash = { "beautysh" },
 	},
 })
