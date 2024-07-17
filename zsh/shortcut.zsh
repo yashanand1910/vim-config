@@ -1,5 +1,5 @@
 # exa
-alias ls="eza --icons --group-directories-first -g"
+alias ls="ls --group-directories-first --color=auto -h"
 alias la="ll -a"
 
 # vim
