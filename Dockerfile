@@ -2,18 +2,6 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
 LABEL org.opencontainers.image.source https://github.com/yashanand1910/dotfiles
 
-# Setup user
-ARG USER=yashanand
-ARG UID=1000
-RUN <<EOT
-groupadd -g 1000 ${USER}
-groupadd -g 48 docker
-useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo,docker ${USER}
-echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
-EOT
-USER ${USER}
-WORKDIR /home/${USER}
-
 # Install packages
 RUN <<EOT
 apt-get update
@@ -54,6 +42,18 @@ echo \
 apt-get update
 apt-get install -y docker-ce-cli
 EOT
+
+# Setup user
+ARG USER=yashanand
+ARG UID=1000
+RUN <<EOT
+groupadd -g 1000 ${USER}
+groupadd -g 48 docker
+useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo,docker ${USER}
+echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
+EOT
+USER ${USER}
+WORKDIR /home/${USER}
 
 # Setup zsh
 RUN <<EOT
