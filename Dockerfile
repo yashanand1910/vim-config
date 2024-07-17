@@ -49,7 +49,7 @@ groupadd -g 1000 ${USER}
 useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo ${USER}
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
 EOT
-USER ${USER}:${USER}
+USER ${USER}
 WORKDIR /home/${USER}
 
 # Setup zsh
