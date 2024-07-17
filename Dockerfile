@@ -27,35 +27,41 @@ locale-gen
 EOT
 
 # Setup docker (for docker-in-docker)
-RUN apt-get install -y ca-certificates
-RUN install -m 0755 -d /etc/apt/keyrings
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-RUN chmod a+r /etc/apt/keyrings/docker.asc
-RUN echo \
+RUN <<EOT
+apt-get install -y ca-certificates
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
     https://download.docker.com/linux/ubuntu \
     $(. /etc/os-release && echo "$UBUNTU_CODENAME") stable" | \
     tee /etc/apt/sources.list.d/docker.list > /dev/null
-RUN apt-get update
-RUN apt-get install -y docker-ce-cli
+apt-get update
+apt-get install -y docker-ce-cli
+EOT
 
 # Setup user
 ARG USER=yashanand
 ARG UID=1000
-RUN groupadd -g 1000 ${USER}
-RUN useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G ${USER} ${USER}
-RUN echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
+RUN <<EOT
+groupadd -g 1000 ${USER}
+useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G ${USER} ${USER}
+echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
+EOT
 USER ${USER}:${USER}
 WORKDIR /home/${USER}
 
 # Setup zsh
-RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
-RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-RUN git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-github-copilot
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-RUN ~/.fzf/install --key-bindings --completion --no-update-rc
-RUN echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
-RUN rm ~/.oh-my-zsh/custom/example.zsh
+RUN <<EOT
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-github-copilot
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --key-bindings --completion --no-update-rc
+echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
+rm ~/.oh-my-zsh/custom/example.zsh
+EOT
 ENV TERM=xterm-256color
 
 # Setup tmux
