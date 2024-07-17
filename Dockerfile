@@ -49,7 +49,7 @@ ARG UID=1000
 RUN <<EOT
 groupadd -g 1000 ${USER}
 groupadd -g 48 docker
-useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo,docker ${USER}
+useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo,docker,root ${USER}
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
 EOT
 USER ${USER}
