@@ -14,10 +14,12 @@ apt-get install -y sudo
 apt-get install -y unzip
 apt-get install python3.11
 apt-get install python3-pip
+apt-get install python3-venv
 apt-get install -y gpg
-apt-get install -y lsof
+apt-get install -y net-tools lsof
 apt-get install -y locales
 apt-get install -y man-db
+yes | unminimize
 EOT
 
 # Set locale
