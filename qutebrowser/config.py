@@ -25,8 +25,9 @@ c.colors.webpage.darkmode.enabled = False
 c.input.insert_mode.auto_enter = True
 c.input.insert_mode.auto_load = False
 
-c.zoom.default = 100
+c.zoom.default = 90
 c.fonts.default_family = 'JetBrains Mono'
+c.qt.highdpi = True
 # c.fonts.default_size = '12pt'
 # c.fonts.hints = '12pt'
 c.colors.tabs.even.bg = 'rgb(0, 0, 0)'
