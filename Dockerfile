@@ -15,6 +15,7 @@ apt-get install -y unzip
 apt-get install python3.11
 apt-get install python3-pip
 apt-get install -y gpg
+apt-get install -y lsof
 apt-get install -y man-db
 EOT
 
