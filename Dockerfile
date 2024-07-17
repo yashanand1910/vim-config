@@ -19,6 +19,12 @@ apt-get install -y lsof
 apt-get install -y man-db
 EOT
 
+# Set locale
+RUN <<EOT
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen
+EOT
+
 # Setup docker (for docker-in-docker)
 RUN apt-get install -y ca-certificates
 RUN install -m 0755 -d /etc/apt/keyrings
