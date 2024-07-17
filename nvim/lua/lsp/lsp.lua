@@ -36,8 +36,7 @@ local server_list = {
 	"clangd",
 	"lua_ls",
 	"jsonls",
-	"docker_compose_language_service",
-	"pylsp",
+	"dockerls",
 }
 
 -- nvim_cmp capabilities

@@ -28,7 +28,7 @@ echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 EOT
 
-# Setup docker (for docker-in-docker)
+# Setup docker (CLI only for docker-in-docker)
 RUN <<EOT
 apt-get install -y ca-certificates
 install -m 0755 -d /etc/apt/keyrings
@@ -48,7 +48,8 @@ ARG USER=yashanand
 ARG UID=1000
 RUN <<EOT
 groupadd -g 1000 ${USER}
-useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo ${USER}
+groupadd -g 48 docker
+useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo,docker ${USER}
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
 EOT
 USER ${USER}
