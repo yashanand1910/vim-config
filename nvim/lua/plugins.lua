@@ -98,7 +98,7 @@ local plugins = {
 				show_buffer_close_icons = false,
 				show_close_icon = false,
 				diagnostics = "nvim_lsp",
-				diagnostics_update_in_insert = true,
+				update_in_insert = true,
 				always_show_bufferline = true,
 			},
 		},
@@ -162,7 +162,6 @@ local plugins = {
 	"tpope/vim-rhubarb", --> Enables :Gbrowse
 	{
 		"pwntester/octo.nvim", --> GitHub integration
-    lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
@@ -171,6 +170,17 @@ local plugins = {
 		opts = {
 			suppress_missing_scope = {
 				projects_v2 = true,
+			},
+			mappings = {
+				review_thread = {
+					close_review_tab = { lhs = "<C-q>", desc = "Close review tab" },
+				},
+				review_diff = {
+					close_review_tab = { lhs = "<C-q>", desc = "Close review tab" },
+				},
+				file_panel = {
+					close_review_tab = { lhs = "<C-q>", desc = "Close review tab" },
+				},
 			},
 		},
 	},
