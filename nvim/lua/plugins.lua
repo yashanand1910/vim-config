@@ -109,6 +109,7 @@ local plugins = {
 	},
 	{
 		"christoomey/vim-tmux-navigator", --> Navigate between Vim and Tmux panes
+		enabled = false,
 		cmd = {
 			"TmuxNavigateLeft",
 			"TmuxNavigateDown",
@@ -238,18 +239,19 @@ local plugins = {
 			},
 		},
 	},
-	-- {
-	-- 	"jackMort/ChatGPT.nvim",
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("chatgpt").setup()
-	-- 	end,
-	-- 	dependencies = {
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-telescope/telescope.nvim",
-	-- 	},
-	-- },
+	{
+		"jackMort/ChatGPT.nvim",
+		enabled = false,
+		event = "VeryLazy",
+		config = function()
+			require("chatgpt").setup()
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	},
 
 	-- LSP
 	"stevearc/conform.nvim",

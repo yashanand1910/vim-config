@@ -477,6 +477,30 @@ local key_opt = {
 	},
 	{
 		"n",
+		"<C-h>",
+		"<C-w>h",
+		"Switch to left split buffer",
+	},
+	{
+		"n",
+		"<C-l>",
+		"<C-w>l",
+		"Switch to right split buffer",
+	},
+	{
+		"n",
+		"<C-j>",
+		"<C-w>j",
+		"Switch to bottom split buffer",
+	},
+	{
+		"n",
+		"<C-k>",
+		"<C-w>k",
+		"Switch to top split buffer",
+	},
+	{
+		"n",
 		"<leader>bd",
 		":%bd|e#|bd#<CR>",
 		"Close all buffers but this one",
