@@ -29,5 +29,4 @@
 	autoSetupRemote = true
 [core]
   editor = nvim
-[safe]
-	directory = /home/yashanand/code/cedana/cedana-benchmark-gpu/runtimes/cedana
+	excludesFile = ~/.gitignore
