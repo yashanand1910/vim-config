@@ -91,6 +91,14 @@ sudo apt-get install -y nodejs
 rm nodesource_setup.sh
 EOT
 
+# Setup go
+RUN <<EOT
+curl -o go.tar.gz https://go.dev/dl/
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf go.tar.gz
+rm go.tar.gz
+EOT
+
 # Setup miscelaneous
 RUN <<EOT
 sudo apt-get install -y ripgrep
@@ -101,6 +109,7 @@ RUN mkdir -p .config
 RUN chown -R ${USER}:${USER} .config
 COPY --chown=${USER}:${USER} nvim .config/nvim
 COPY --chown=${USER}:${USER} .gitconfig .gitconfig
+COPY --chown=${USER}:${USER} .gitignore .gitignore
 COPY --chown=${USER}:${USER} .vimrc .vimrc
 COPY --chown=${USER}:${USER} .zshrc .zshrc
 COPY --chown=${USER}:${USER} .tmux.conf .tmux.conf
