@@ -4,6 +4,7 @@ LABEL org.opencontainers.image.source https://github.com/yashanand1910/dotfiles
 
 # Install packages
 RUN <<EOT
+set -eux
 apt-get update
 apt-get install -y build-essential
 apt-get install -y git
@@ -24,12 +25,14 @@ EOT
 
 # Set locale
 RUN <<EOT
+set -eux
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 EOT
 
 # Setup docker (CLI only for docker-in-docker)
 RUN <<EOT
+set -eux
 apt-get install -y ca-certificates
 install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -47,6 +50,7 @@ EOT
 ARG USER=yashanand
 ARG UID=1000
 RUN <<EOT
+set -eux
 groupadd -g 1000 ${USER}
 groupadd -g 48 docker
 useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo,docker ${USER}
@@ -57,6 +61,7 @@ WORKDIR /home/${USER}
 
 # Setup zsh
 RUN <<EOT
+set -eux
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended --keep-zshrc
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-github-copilot
@@ -69,6 +74,7 @@ ENV TERM=xterm-256color
 
 # Setup tmux
 RUN <<EOT
+set -eux
 sudo apt-get install -y tmux
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -76,6 +82,7 @@ EOT
 
 # Setup neovim
 RUN <<EOT
+set -eux
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
@@ -85,6 +92,7 @@ EOT
 
 # Setup node (for nvim plugins)
 RUN <<EOT
+set -eux
 curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
 sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
@@ -93,6 +101,7 @@ EOT
 
 # Setup github CLI
 RUN <<EOT
+set -eux
 (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
 && sudo mkdir -p -m 755 /etc/apt/keyrings \
 && wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
@@ -104,6 +113,7 @@ EOT
 
 # Setup go
 RUN <<EOT
+set -eux
 wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz
@@ -113,6 +123,7 @@ EOT
 
 # Setup miscelaneous
 RUN <<EOT
+set -eux
 sudo apt-get install -y ripgrep
 EOT
 

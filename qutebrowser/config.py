@@ -49,6 +49,7 @@ c.colors.tabs.selected.even.bg = 'rgb(0, 0, 0)'
 
 c.content.javascript.clipboard = 'access'
 c.content.blocking.enabled = True
+c.content.desktop_capture = True
 
 # Unbindings
 
