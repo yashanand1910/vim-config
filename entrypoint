@@ -9,6 +9,9 @@ if [ -f ~/host-public.key ]; then
 fi
 if [ -f ~/host-private.key ]; then
     gpg --import ~/host-private.key
+
+    # Set the key to trust ultimate
+    echo "5" | gpg --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
 fi
 
 /bin/zsh $@
