@@ -1,13 +1,26 @@
 # dotfiles
 
 ### Docker (Recommended)
-This dev environment can be directly launched using
-```bash
-docker run -it --name dev ghcr.io/yashanand1910/dev:latest
-```
 To build image for your own user, clone this repo and run
 ```bash
 docker build --build-arg USER=$(whoami) --build-arg UID=$(id -u) -t dev .
+```
+Then, to run
+```bash
+docker run -it --name dev dev
+```
+To set up ssh from host, simply mount
+```bash
+docker run -it --name dev -v ~/.ssh:/home/$(whoami)/.ssh dev
+```
+To install gpg keys from host, first export your keys
+```bash
+gpg --export <KEY_ID> > ~/.gnupg/private.key
+gpg --export-secret-keys <KEY_ID> > ~/.gnupg/public.key
+```
+Then, mount the keys and container should automatically import them
+```bash
+docker run -it --name dev -v ~/.gnupg/private.key:/home/$(whoami)/host-private.key -v ~/.gnupg/public.key:/home/$(whoami)/host-public.key dev
 ```
 
 ### Local

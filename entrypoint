@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -eux
+
+# Import GPG keys if available
+
+if [ -f ~/host-public.key ]; then
+    gpg --import ~/host-public.key
+fi
+if [ -f ~/host-private.key ]; then
+    gpg --import ~/host-private.key
+fi
+
+/bin/zsh @

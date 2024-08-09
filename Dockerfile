@@ -138,4 +138,6 @@ COPY --chown=${USER}:${USER} .zshrc .zshrc
 COPY --chown=${USER}:${USER} .tmux.conf .tmux.conf
 COPY --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
 
-ENTRYPOINT ["/bin/zsh"]
+COPY --chown=${USER}:${USER} entrypoint /home/${USER}/entrypoint
+
+ENTRYPOINT ["./entrypoint"]
