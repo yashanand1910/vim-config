@@ -11,7 +11,7 @@ if [ -f ~/host-private.key ]; then
     gpg --import ~/host-private.key
 
     # Set the key to trust ultimate
-    gpg --batch --yes --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit <<< "5"
+    gpg --batch --yes --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
 fi
 
 /bin/zsh $@
