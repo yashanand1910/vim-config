@@ -11,4 +11,4 @@ if [ -f ~/host-private.key ]; then
     gpg --import ~/host-private.key
 fi
 
-/bin/zsh @
+/bin/zsh $@
