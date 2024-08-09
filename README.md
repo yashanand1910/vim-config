@@ -1,12 +1,18 @@
 # dotfiles
 
-### Docker
+### Docker (Recommended)
 This dev environment can be directly launched using
 ```bash
 docker run -it --name dev ghcr.io/yashanand1910/dev:latest
 ```
+To build image for your own user, clone this repo and run
+```bash
+docker build --build-arg USER=$(whoami) --build-arg UID=$(id -u) -t dev .
+```
 
-### macOS
+### Local
+
+#### macOS
 
 Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim config is a super-light subset of neovim config at least in terms of key bindings.
 
@@ -26,7 +32,7 @@ Hosts my zsh, vim, tmux & kitty configuration for sync across hosts. The vim con
 15. Install [homerow](https://www.homerow.app)
 16. Install [Karabiner-Elements](https://karabiner-elements.pqrs.org/index.html)
 
-### Create symlinks
+#### Create symlinks
 
 After cloning this repository, create the symlinks
 
@@ -43,13 +49,13 @@ ln -s ~/Code/dotfiles/karabiner/assets ~/.config/karabiner/
 ...
 ```
 
-### Install oh-my-zsh
+#### Install oh-my-zsh
 
 ```bash
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-### Install vim-plug (if using vim)
+#### Install vim-plug (if using vim)
 
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
