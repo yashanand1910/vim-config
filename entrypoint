@@ -22,4 +22,4 @@ if [ ! -S /var/run/docker.sock ]; then
 fi
 
 # Relogin as user to apply group change
-exec su `whoami` -c "/bin/zsh $@"
+exec sudo su `whoami` -c "/bin/zsh $@"
