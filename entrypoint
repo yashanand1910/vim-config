@@ -21,4 +21,5 @@ if [ ! -S /var/run/docker.sock ]; then
     sudo usermod -aG docker $(getent passwd | awk -F: -v uid="`id -u`" '$3 == uid {print $1}')
 fi
 
-/bin/zsh $@
+# Relogin as user to apply group change
+exec su `whoami` -c "/bin/zsh $@"
