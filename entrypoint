@@ -22,4 +22,5 @@ if [ -S /var/run/docker.sock ]; then
 
 fi
 
-exec newgrp
+su - $USER
+/bin/zsh $@
