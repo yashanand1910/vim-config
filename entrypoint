@@ -22,7 +22,4 @@ if [ -S /var/run/docker.sock ]; then
 
 fi
 
-# Apply any group change to the current session
-exec newgrp << END
-  exec /bin/zsh $@
-END
+exec /bin/zsh $@
