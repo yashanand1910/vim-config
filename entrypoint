@@ -20,7 +20,9 @@ if [ -S /var/run/docker.sock ]; then
     sudo groupadd -g $DOCKER_GID docker
     sudo usermod -aG docker $(getent passwd | awk -F: -v uid="`id -u`" '$3 == uid {print $1}')
 
-    newgrp
 fi
 
-/bin/zsh $@
+# Apply any group change to the current session
+exec newgrp << END
+  exec /bin/zsh $@
+END
