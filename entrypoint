@@ -22,5 +22,5 @@ if [ -S /var/run/docker.sock ]; then
 
 fi
 
-su - `whoami`
+sudo su - `whoami`
 /bin/zsh $@
