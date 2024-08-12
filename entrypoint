@@ -21,5 +21,7 @@ if [ ! -S /var/run/docker.sock ]; then
     sudo usermod -aG docker $(getent passwd | awk -F: -v uid="`id -u`" '$3 == uid {print $1}')
 fi
 
-# Relogin as user to apply group change
-exec sudo su `whoami` -c "/bin/zsh $@"
+# Apply the group change to the current session
+exec newgrp docker << END
+  exec /bin/zsh $@
+END
