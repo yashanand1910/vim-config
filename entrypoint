@@ -24,5 +24,5 @@ fi
 
 # Apply any group change to the current session
 exec newgrp << END
-  exec sudo su `whoami` -c "$@"
+  exec /bin/zsh $@
 END
