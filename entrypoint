@@ -23,4 +23,4 @@ if [ -S /var/run/docker.sock ]; then
 fi
 
 sudo su - `whoami`
-/bin/zsh $@
+exec /bin/zsh $@
