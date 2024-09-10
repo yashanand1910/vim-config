@@ -16,10 +16,11 @@ fi
 # Add user to host docker group using UID
 
 if [ -S /var/run/docker.sock ]; then
-    DOCKER_GID=`stat -c '%g' /var/run/docker.sock`
-    sudo groupadd -g $DOCKER_GID docker
-    sudo usermod -aG docker $(getent passwd | awk -F: -v uid="`id -u`" '$3 == uid {print $1}')
-
+    if [ ! `getent group docker` ]; then
+        DOCKER_GID=`stat -c '%g' /var/run/docker.sock`
+        sudo groupadd -g $DOCKER_GID docker
+        sudo usermod -aG docker $(getent passwd | awk -F: -v uid="`id -u`" '$3 == uid {print $1}')
+    fi
 fi
 
 sudo su - `whoami`

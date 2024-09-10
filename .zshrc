@@ -150,7 +150,7 @@ export NVM_DIR="$HOME/.nvm"
 #     tmux new-session -A
 # fi
 
-# LINUX-ONLY CONFIG
+# LINUX-ONLY CONFIG (non-macOS)
 if [[  "$(uname)" == "Linux" ]]; then
   # Lima BEGIN (for VM only)
   # Make sure iptables and mount.fuse3 are available
