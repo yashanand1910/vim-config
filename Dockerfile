@@ -13,7 +13,6 @@ apt-get install -y wget
 apt-get install -y curl
 apt-get install -y sudo
 apt-get install -y unzip
-apt-get install -y python3.11
 apt-get install -y python3-pip
 apt-get install -y python3-venv
 apt-get install -y gpg
