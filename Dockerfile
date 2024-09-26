@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.6.1-base-ubuntu24.04
+FROM nvidia/cuda:12.6.1-base-ubuntu22.04
 
 LABEL org.opencontainers.image.source https://github.com/yashanand1910/dotfiles
 
@@ -50,6 +50,7 @@ ARG USER=yashanand
 ARG UID=1000
 RUN <<EOT
 set -eux
+groupadd -g 1000 ${USER}
 useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo ${USER}
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
 EOT
