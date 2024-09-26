@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.6.1-base-ubuntu22.04
+FROM nvidia/cuda:12.4.1-base-ubuntu22.04
 
 LABEL org.opencontainers.image.source https://github.com/yashanand1910/dotfiles
 
