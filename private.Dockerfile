@@ -138,6 +138,16 @@ set -eux
 sudo apt-get install -y ripgrep
 EOT
 
+# Setup credentials (since image is private)
+COPY --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
+COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key private.key
+COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key public.key
+RUN <<EOT
+gpg --batch --import public.key
+gpg --batch --import private.key
+echo -e "5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
+EOT
+
 # Setup dotfiles
 RUN git clone git@github.com:yashanand1910/dotfiles.git
 RUN <<EOT
@@ -150,16 +160,6 @@ ln -s /home/${USER}/dotfiles/.vimrc .vimrc
 ln -s /home/${USER}/dotfiles/.zshrc .zshrc
 ln -s /home/${USER}/dotfiles/.tmux.conf .tmux.conf
 ln -s /home/${USER}/dotfiles/zsh .oh-my-zsh/custom/
-EOT
-
-# Setup credentials (since image is private)
-COPY --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
-COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key private.key
-COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key public.key
-RUN <<EOT
-gpg --batch --import public.key
-gpg --batch --import private.key
-echo -e "5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
 EOT
 
 COPY --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
