@@ -2,7 +2,7 @@
 
 FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
 
-LABEL org.opencontainers.image.source https://github.com/yashanand1910/dotfiles
+LABEL org.opencontainers.image.source=https://github.com/yashanand1910/dotfiles
 
 # Install packages
 RUN <<EOT
