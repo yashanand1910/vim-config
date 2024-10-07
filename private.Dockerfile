@@ -165,6 +165,6 @@ ln -s ${DOCKERFILE_DIR}/.tmux.conf .tmux.conf
 ln -s ${DOCKERFILE_DIR}/zsh .oh-my-zsh/custom/
 EOT
 
-ADD --chown=${USER}:${USER} --chmod=755 ${DOCKERFILE_DIR}/entrypoint /home/${USER}/entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 ${DOCKERFILE_DIR}/entrypoint entrypoint
 
 ENTRYPOINT ["./entrypoint"]
