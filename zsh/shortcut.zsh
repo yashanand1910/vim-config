@@ -10,6 +10,7 @@ alias svim=svi
 
 # python
 alias py=python
+alias python=python3
 
 # gentoo
 alias e="sudo emerge"
