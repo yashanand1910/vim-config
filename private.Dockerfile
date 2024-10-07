@@ -154,15 +154,15 @@ RUN git clone git@github.com:yashanand1910/dotfiles.git
 RUN <<EOT
 mkdir -p .config
 chown -R ${USER}:${USER} .config
-ln -s `pwd`/dotfiles/nvim .config/nvim
-ln -s `pwd`/dotfiles/.gitconfig .gitconfig
-ln -s `pwd`/dotfiles/.gitignore .gitignore
-ln -s `pwd`/dotfiles/.vimrc .vimrc
-ln -s `pwd`/dotfiles/.zshrc .zshrc
-ln -s `pwd`/dotfiles/.tmux.conf .tmux.conf
-ln -s `pwd`/dotfiles/zsh .oh-my-zsh/custom/
+ln -s ${DOCKERFILE_DIR}/nvim .config/nvim
+ln -s ${DOCKERFILE_DIR}/.gitconfig .gitconfig
+ln -s ${DOCKERFILE_DIR}/.gitignore .gitignore
+ln -s ${DOCKERFILE_DIR}/.vimrc .vimrc
+ln -s ${DOCKERFILE_DIR}/.zshrc .zshrc
+ln -s ${DOCKERFILE_DIR}/.tmux.conf .tmux.conf
+ln -s ${DOCKERFILE_DIR}/zsh .oh-my-zsh/custom/
 EOT
 
-ADD --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 ${DOCKERFILE_DIR}/entrypoint /home/${USER}/entrypoint
 
 ENTRYPOINT ["./entrypoint"]
