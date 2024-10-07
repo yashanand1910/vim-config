@@ -139,10 +139,10 @@ sudo apt-get install -y ripgrep
 EOT
 
 # Setup credentials and env (since image is private)
-ADD --chown=${USER}:${USER} /home/${USER}/.oh-my-zsh/custom/env.zsh .oh-my-zsh/custom/env.zsh
-ADD --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
-ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key .gnupg/public.key
-ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key .gnupg/private.key
+ADD --chown=${USER}:${USER} .oh-my-zsh/custom/env.zsh .oh-my-zsh/custom/env.zsh
+ADD --chown=${USER}:${USER} .ssh .ssh
+ADD --chown=${USER}:${USER} .gnupg/public.key .gnupg/public.key
+ADD --chown=${USER}:${USER} .gnupg/private.key .gnupg/private.key
 RUN <<EOT
 gpg --batch --import public.key
 gpg --batch --import private.key
@@ -154,13 +154,13 @@ RUN git clone git@github.com:yashanand1910/dotfiles.git
 RUN <<EOT
 mkdir -p .config
 chown -R ${USER}:${USER} .config
-ln -s /home/${USER}/dotfiles/nvim .config/nvim
-ln -s /home/${USER}/dotfiles/.gitconfig .gitconfig
-ln -s /home/${USER}/dotfiles/.gitignore .gitignore
-ln -s /home/${USER}/dotfiles/.vimrc .vimrc
-ln -s /home/${USER}/dotfiles/.zshrc .zshrc
-ln -s /home/${USER}/dotfiles/.tmux.conf .tmux.conf
-ln -s /home/${USER}/dotfiles/zsh .oh-my-zsh/custom/
+ln -s `pwd`/dotfiles/nvim .config/nvim
+ln -s `pwd`/dotfiles/.gitconfig .gitconfig
+ln -s `pwd`/dotfiles/.gitignore .gitignore
+ln -s `pwd`/dotfiles/.vimrc .vimrc
+ln -s `pwd`/dotfiles/.zshrc .zshrc
+ln -s `pwd`/dotfiles/.tmux.conf .tmux.conf
+ln -s `pwd`/dotfiles/zsh .oh-my-zsh/custom/
 EOT
 
 ADD --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
