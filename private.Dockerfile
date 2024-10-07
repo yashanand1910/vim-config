@@ -138,10 +138,11 @@ set -eux
 sudo apt-get install -y ripgrep
 EOT
 
-# Setup credentials (since image is private)
+# Setup credentials and env (since image is private)
+ADD --chown=${USER}:${USER} /home/${USER}/.oh-my-zsh/custom/env.zsh .oh-my-zsh/custom/env.zsh
 ADD --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
 ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key .gnupg/public.key
-
+ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key .gnupg/private.key
 RUN <<EOT
 gpg --batch --import public.key
 gpg --batch --import private.key
