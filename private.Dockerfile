@@ -140,8 +140,8 @@ EOT
 
 # Setup credentials (since image is private)
 ADD --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
-ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key .gnupg/private.key
 ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key .gnupg/public.key
+ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key .gnupg/private.key
 RUN <<EOT
 gpg --batch --import public.key
 gpg --batch --import private.key
