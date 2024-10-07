@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -eux
 
@@ -13,15 +13,4 @@ if [ -f ~/host-private.key ]; then
     echo -e "5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
 fi
 
-# Add user to host docker group using UID
-
-if [ -S /var/run/docker.sock ]; then
-    if [ ! `getent group docker` ]; then
-        DOCKER_GID=`stat -c '%g' /var/run/docker.sock`
-        sudo groupadd -g $DOCKER_GID docker
-        sudo usermod -aG docker $(getent passwd | awk -F: -v uid="`id -u`" '$3 == uid {print $1}')
-    fi
-fi
-
-sudo su - `whoami`
-exec /bin/zsh $@
+$@

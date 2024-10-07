@@ -5,7 +5,10 @@ git add .
 git commit -m "Update config on $(date)"
 git push
 
-docker build -t ghcr.io/yashanand1910/dev -t yashanand1910/dev -t dev .
-docker push ghcr.io/yashanand1910/dev:latest
+docker build -t yashanand1910/dev -t dev .
+docker build -t yashanand1910/dev-private -t dev-private -f private.Dockerfile .
+
 docker push yashanand1910/dev:latest
+docker push yashanand1910/dev-private:latest
+
 docker system prune -f --volumes

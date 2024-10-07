@@ -154,6 +154,16 @@ COPY --chown=${USER}:${USER} .zshrc .zshrc
 COPY --chown=${USER}:${USER} .tmux.conf .tmux.conf
 COPY --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
 
+# Setup credentials (since image is private)
+COPY --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
+COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key private.key
+COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key public.key
+RUN <<EOT
+gpg --batch --import public.key
+gpg --batch --import private.key
+echo -e "5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
+EOT
+
 COPY --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
 
 ENTRYPOINT ["./entrypoint"]
