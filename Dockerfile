@@ -139,15 +139,18 @@ sudo apt-get install -y ripgrep
 EOT
 
 # Setup dotfiles
-RUN mkdir -p .config
-RUN chown -R ${USER}:${USER} .config
-COPY --chown=${USER}:${USER} nvim .config/nvim
-COPY --chown=${USER}:${USER} .gitconfig .gitconfig
-COPY --chown=${USER}:${USER} .gitignore .gitignore
-COPY --chown=${USER}:${USER} .vimrc .vimrc
-COPY --chown=${USER}:${USER} .zshrc .zshrc
-COPY --chown=${USER}:${USER} .tmux.conf .tmux.conf
-COPY --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
+RUN git clone git@github.com:yashanand1910/dotfiles.git
+RUN <<EOT
+mkdir -p .config
+chown -R ${USER}:${USER} .config
+ln -s /home/${USER}/dotfiles/nvim .config/nvim
+ln -s /home/${USER}/dotfiles/.gitconfig .gitconfig
+ln -s /home/${USER}/dotfiles/.gitignore .gitignore
+ln -s /home/${USER}/dotfiles/.vimrc .vimrc
+ln -s /home/${USER}/dotfiles/.zshrc .zshrc
+ln -s /home/${USER}/dotfiles/.tmux.conf .tmux.conf
+ln -s /home/${USER}/dotfiles/zsh .oh-my-zsh/custom/
+EOT
 
 COPY --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
 
