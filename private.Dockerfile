@@ -139,9 +139,9 @@ sudo apt-get install -y ripgrep
 EOT
 
 # Setup credentials (since image is private)
-COPY --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
-COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key private.key
-COPY --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key public.key
+ADD --chown=${USER}:${USER} /home/${USER}/.ssh .ssh
+ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/private.key private.key
+ADD --chown=${USER}:${USER} /home/${USER}/.gnupg/public.key public.key
 RUN <<EOT
 gpg --batch --import public.key
 gpg --batch --import private.key
@@ -162,6 +162,6 @@ ln -s /home/${USER}/dotfiles/.tmux.conf .tmux.conf
 ln -s /home/${USER}/dotfiles/zsh .oh-my-zsh/custom/
 EOT
 
-COPY --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
 
 ENTRYPOINT ["./entrypoint"]
