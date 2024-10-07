@@ -1,19 +1,23 @@
-#!/bin/bash -e
-
-git pull
-git add .
-git commit -m "Update config on $(date)"
-git push
+#!/bin/bash -eux
 
 DOCKERFILE_DIR=$PWD
 
 docker build -t yashanand1910/dev -t dev -f $DOCKERFILE_DIR/Dockerfile .
 (
     cd $HOME # since we are accessing some files from $HOME during build
-    docker build --build-arg DOCKERFILE_DIR=$DOCKERFILE_DIR -t yashanand1910/dev-private -t dev-private -f $DOCKERFILE_DIR/private.Dockerfile .
+    docker build \
+      --build-arg DOCKERFILE_DIR=$DOCKERFILE_DIR \
+      --build-arg GITHUB_KEY=$GITHUB_KEY \
+      --build-arg DOCKERHUB_KEY=$DOCKERHUB_KEY \
+      -t yashanand1910/dev-private -t dev-private -f $DOCKERFILE_DIR/private.Dockerfile .
 )
 
 docker push yashanand1910/dev:latest
 docker push yashanand1910/dev-private:latest
 
 docker system prune -f --volumes
+
+git pull
+git add .
+git commit -m "Update config on $(date)"
+git push

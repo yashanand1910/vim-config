@@ -7,6 +7,8 @@ LABEL org.opencontainers.image.source=https://github.com/yashanand1910/dotfiles
 ARG USER=yashanand
 ARG UID=1000
 ARG DOCKERFILE_DIR
+ARG GITHUB_KEY
+ARG DOCKERHUB_KEY
 
 # Install packages
 RUN <<EOT
@@ -149,6 +151,10 @@ RUN <<EOT
 gpg --batch --import .gnupg/public.key
 gpg --batch --import .gnupg/private.key
 echo -e "5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
+docker login -u yashanand1910 -p ${DOCKERHUB_KEY}
+echo ${GITHUB_KEY} > github_key
+gh auth login --with-token < github_key
+rm github_key
 EOT
 
 # Setup dotfiles
