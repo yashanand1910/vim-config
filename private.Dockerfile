@@ -4,6 +4,10 @@ FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
 
 LABEL org.opencontainers.image.source=https://github.com/yashanand1910/dotfiles
 
+ARG USER=yashanand
+ARG UID=1000
+ARG DOCKERFILE_DIR
+
 # Install packages
 RUN <<EOT
 set -eux
@@ -48,8 +52,6 @@ apt-get install -y docker-ce-cli
 EOT
 
 # Setup user
-ARG USER=yashanand
-ARG UID=1000
 RUN <<EOT
 set -eux
 groupadd -g 1000 ${USER}
