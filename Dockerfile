@@ -150,6 +150,6 @@ ADD --chown=${USER}:${USER} .zshrc .zshrc
 ADD --chown=${USER}:${USER} .tmux.conf .tmux.conf
 ADD --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
 
-ADD --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 entrypoint entrypoint
 
 ENTRYPOINT ["./entrypoint"]

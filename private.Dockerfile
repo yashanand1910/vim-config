@@ -146,25 +146,25 @@ ADD --chown=${USER}:${USER} .ssh .ssh
 ADD --chown=${USER}:${USER} .gnupg/public.key .gnupg/public.key
 ADD --chown=${USER}:${USER} .gnupg/private.key .gnupg/private.key
 RUN <<EOT
-gpg --batch --import public.key
-gpg --batch --import private.key
+gpg --batch --import .gnupg/public.key
+gpg --batch --import .gnupg/private.key
 echo -e "5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2) trust quit
 EOT
 
 # Setup dotfiles
-RUN git clone git@github.com:yashanand1910/dotfiles.git
 RUN <<EOT
+git clone git@github.com:yashanand1910/dotfiles.git
 mkdir -p .config
 chown -R ${USER}:${USER} .config
-ln -s ${DOCKERFILE_DIR}/nvim .config/nvim
-ln -s ${DOCKERFILE_DIR}/.gitconfig .gitconfig
-ln -s ${DOCKERFILE_DIR}/.gitignore .gitignore
-ln -s ${DOCKERFILE_DIR}/.vimrc .vimrc
-ln -s ${DOCKERFILE_DIR}/.zshrc .zshrc
-ln -s ${DOCKERFILE_DIR}/.tmux.conf .tmux.conf
-ln -s ${DOCKERFILE_DIR}/zsh .oh-my-zsh/custom/
+ln -s /home/${USER}/dotfiles/nvim .config/nvim
+ln -s /home/${USER}/dotfiles/.gitconfig .gitconfig
+ln -s /home/${USER}/dotfiles/.gitignore .gitignore
+ln -s /home/${USER}/dotfiles/.vimrc .vimrc
+ln -s /home/${USER}/dotfiles/.zshrc .zshrc
+ln -s /home/${USER}/dotfiles/.tmux.conf .tmux.conf
+ln -s /home/${USER}/dotfiles/zsh .oh-my-zsh/custom/
 EOT
 
-ADD --chown=${USER}:${USER} --chmod=755 ${DOCKERFILE_DIR}/entrypoint entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 code/dotfiles/entrypoint entrypoint
 
 ENTRYPOINT ["./entrypoint"]

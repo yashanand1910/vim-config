@@ -9,7 +9,7 @@ DOCKERFILE_DIR=$PWD
 
 docker build -t yashanand1910/dev -t dev -f $DOCKERFILE_DIR/Dockerfile .
 (
-    cd ~ # since we are accessing some files from ~ during build
+    cd $HOME # since we are accessing some files from $HOME during build
     docker build --build-arg DOCKERFILE_DIR=$DOCKERFILE_DIR -t yashanand1910/dev-private -t dev-private -f $DOCKERFILE_DIR/private.Dockerfile .
 )
 
