@@ -55,11 +55,6 @@ set -eux
 groupadd -g 1000 ${USER}
 useradd -rm -d /home/${USER} -s /bin/zsh -u ${UID} -g ${USER} -G sudo ${USER}
 echo "${USER} ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/${USER}
-if [ ! `getent group docker` ]; then
-    DOCKER_GID=`stat -c '%g' /var/run/docker.sock`
-    groupadd -g $DOCKER_GID docker
-    usermod -aG docker $(getent passwd | awk -F: -v uid=${UID} '$3 == uid {print $1}')
-fi
 EOT
 USER ${USER}
 WORKDIR /home/${USER}
