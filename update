@@ -5,8 +5,13 @@ git add .
 git commit -m "Update config on $(date)"
 git push
 
-docker build -t yashanand1910/dev -t dev .
-docker build -t yashanand1910/dev-private -t dev-private -f private.Dockerfile .
+CURRENT_DIR=$PWD
+
+(
+    cd ~
+    docker build -t yashanand1910/dev -t dev -f $CURRENT_DIR/Dockerfile .
+    docker build -t yashanand1910/dev-private -t dev-private -f $CURRENT_DIR/private.Dockerfile .
+)
 
 docker push yashanand1910/dev:latest
 docker push yashanand1910/dev-private:latest
