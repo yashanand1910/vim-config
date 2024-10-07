@@ -141,14 +141,14 @@ EOT
 # Setup dotfiles
 RUN mkdir -p .config
 RUN chown -R ${USER}:${USER} .config
-COPY --chown=${USER}:${USER} nvim .config/nvim
-COPY --chown=${USER}:${USER} .gitconfig .gitconfig
-COPY --chown=${USER}:${USER} .gitignore .gitignore
-COPY --chown=${USER}:${USER} .vimrc .vimrc
-COPY --chown=${USER}:${USER} .zshrc .zshrc
-COPY --chown=${USER}:${USER} .tmux.conf .tmux.conf
-COPY --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
+ADD --chown=${USER}:${USER} nvim .config/nvim
+ADD --chown=${USER}:${USER} .gitconfig .gitconfig
+ADD --chown=${USER}:${USER} .gitignore .gitignore
+ADD --chown=${USER}:${USER} .vimrc .vimrc
+ADD --chown=${USER}:${USER} .zshrc .zshrc
+ADD --chown=${USER}:${USER} .tmux.conf .tmux.conf
+ADD --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
 
-COPY --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 entrypoint /home/${USER}/entrypoint
 
 ENTRYPOINT ["./entrypoint"]
