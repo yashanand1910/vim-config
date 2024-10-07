@@ -165,15 +165,15 @@ git clone git@github.com:yashanand1910/dotfiles.git
 cd -
 mkdir -p .config
 chown -R ${USER}:${USER} .config
-ln -s /home/${USER}/code/dotfiles/nvim .config
-ln -s /home/${USER}/code/dotfiles/.gitconfig .
-ln -s /home/${USER}/code/dotfiles/.gitignore .
-ln -s /home/${USER}/code/dotfiles/.vimrc .
-ln -s /home/${USER}/code/dotfiles/.zshrc .
-ln -s /home/${USER}/code/dotfiles/.tmux.conf .
-ln -s /home/${USER}/code/dotfiles/zsh/* .oh-my-zsh/custom/
+ln -sf /home/${USER}/code/dotfiles/nvim .config/nvim
+ln -sf /home/${USER}/code/dotfiles/.gitconfig .gitconfig
+ln -sf /home/${USER}/code/dotfiles/.gitignore .gitignore
+ln -sf /home/${USER}/code/dotfiles/.vimrc .vimrc
+ln -sf /home/${USER}/code/dotfiles/.zshrc .zshrc
+ln -sf /home/${USER}/code/dotfiles/.tmux.conf .tmux.conf
+ln -sf /home/${USER}/code/dotfiles/zsh .oh-my-zsh/custom/
 EOT
 
-ADD --chown=${USER}:${USER} --chmod=755 dotfiles/entrypoint entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 code/dotfiles/entrypoint entrypoint
 
 ENTRYPOINT ["./entrypoint"]
