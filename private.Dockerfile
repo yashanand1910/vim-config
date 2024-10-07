@@ -159,18 +159,21 @@ EOT
 
 # Setup dotfiles
 RUN <<EOT
+mkdir code
+cd code
 git clone git@github.com:yashanand1910/dotfiles.git
+cd -
 mkdir -p .config
 chown -R ${USER}:${USER} .config
-ln -s /home/${USER}/dotfiles/nvim .config/nvim
-ln -s /home/${USER}/dotfiles/.gitconfig .gitconfig
-ln -s /home/${USER}/dotfiles/.gitignore .gitignore
-ln -s /home/${USER}/dotfiles/.vimrc .vimrc
-ln -s /home/${USER}/dotfiles/.zshrc .zshrc
-ln -s /home/${USER}/dotfiles/.tmux.conf .tmux.conf
-ln -s /home/${USER}/dotfiles/zsh .oh-my-zsh/custom/
+ln -s /home/${USER}/code/dotfiles/nvim .config
+ln -s /home/${USER}/code/dotfiles/.gitconfig .
+ln -s /home/${USER}/code/dotfiles/.gitignore .
+ln -s /home/${USER}/code/dotfiles/.vimrc .
+ln -s /home/${USER}/code/dotfiles/.zshrc .
+ln -s /home/${USER}/code/dotfiles/.tmux.conf .
+ln -s /home/${USER}/code/dotfiles/zsh/* .oh-my-zsh/custom/
 EOT
 
-ADD --chown=${USER}:${USER} --chmod=755 code/dotfiles/entrypoint entrypoint
+ADD --chown=${USER}:${USER} --chmod=755 dotfiles/entrypoint entrypoint
 
 ENTRYPOINT ["./entrypoint"]
