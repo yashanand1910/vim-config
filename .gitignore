@@ -2,6 +2,8 @@
 .luarc.json
 .DS_Store
 notes.md
+.ssh
+.gnupg
 
 # beta9
 test.py
