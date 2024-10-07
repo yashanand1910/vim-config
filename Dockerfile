@@ -148,7 +148,7 @@ ADD --chown=${USER}:${USER} .gitignore .gitignore
 ADD --chown=${USER}:${USER} .vimrc .vimrc
 ADD --chown=${USER}:${USER} .zshrc .zshrc
 ADD --chown=${USER}:${USER} .tmux.conf .tmux.conf
-ADD --chown=${USER}:${USER} zsh .oh-my-zsh/custom/
+ADD --chown=${USER}:${USER} zsh/* .oh-my-zsh/custom/
 
 ADD --chown=${USER}:${USER} --chmod=755 entrypoint entrypoint
 
