@@ -136,6 +136,8 @@ EOT
 RUN <<EOT
 set -eux
 sudo apt-get install -y ripgrep
+sudo apt-get install -y btop
+sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 EOT
 
 # Setup dotfiles
