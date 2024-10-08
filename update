@@ -1,10 +1,5 @@
 #!/bin/bash -eux
 
-git pull
-git add .
-git commit -m "Update config on $(date)"
-git push
-
 DOCKERFILE_DIR=$PWD
 
 docker build -t yashanand1910/dev -t dev -f $DOCKERFILE_DIR/Dockerfile .
@@ -21,3 +16,8 @@ docker push yashanand1910/dev:latest
 docker push yashanand1910/dev-private:latest
 
 docker system prune -f --volumes
+
+git pull
+git add .
+git commit -m "Update config on $(date)"
+git push
