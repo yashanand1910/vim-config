@@ -6,7 +6,6 @@ LABEL org.opencontainers.image.source=https://github.com/yashanand1910/dotfiles
 
 ARG USER=yashanand
 ARG UID=1000
-ARG DOCKERFILE_DIR
 ARG GITHUB_KEY
 ARG DOCKERHUB_KEY
 
@@ -27,6 +26,7 @@ apt-get install -y gpg
 apt-get install -y net-tools lsof
 apt-get install -y locales
 apt-get install -y man-db
+apt-get install -y zip unzip tar
 yes | unminimize
 EOT
 

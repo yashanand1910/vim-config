@@ -17,13 +17,13 @@ apt-get install -y zsh
 apt-get install -y wget
 apt-get install -y curl
 apt-get install -y sudo
-apt-get install -y unzip
 apt-get install -y python3-pip
 apt-get install -y python3-venv
 apt-get install -y gpg
 apt-get install -y net-tools lsof
 apt-get install -y locales
 apt-get install -y man-db
+apt-get install -y zip unzip tar
 yes | unminimize
 EOT
 
