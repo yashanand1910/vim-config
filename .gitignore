@@ -6,5 +6,5 @@ notes.md
 .gnupg
 
 # beta9
-test.py
+test*.py
 .beta9ignore
