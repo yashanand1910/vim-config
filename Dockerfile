@@ -154,4 +154,6 @@ ADD --chown=${USER}:${USER} zsh/* .oh-my-zsh/custom/
 
 ADD --chown=${USER}:${USER} --chmod=755 entrypoint entrypoint
 
+# TODO: add apt autoremove, purge etc
+
 ENTRYPOINT ["./entrypoint"]
