@@ -23,3 +23,6 @@ alias less="less -i --use-color"
 
 # kernel
 alias kconfig='cat /proc/config.gz | gunzip | less'
+
+# sudo
+alias sudo="sudo -E"
