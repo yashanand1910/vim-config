@@ -74,8 +74,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --no-update-rc
 echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
 rm ~/.oh-my-zsh/custom/example.zsh
+rm ~/.oh-my-zsh/custom/themes/robbyrussell.zsh-theme
 EOT
-COPY code/dotfiles/themes/* .oh-my-zsh/custom/themes/
+COPY code/dotfiles/themes/* .oh-my-zsh/themes/
 ENV TERM=xterm-256color
 
 # Setup tmux
