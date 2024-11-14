@@ -19,7 +19,6 @@ local plugins = {
 	"rcarriga/nvim-notify", --> Pretty notifications
 	{
 		"folke/noice.nvim", --> Replaces UI for messages, cmdline, and popupmenu
-		enabled = true,
 		event = "VeryLazy",
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -311,13 +310,6 @@ local plugins = {
 	},
 
 	-- Text editing
-	{
-		"iamcco/markdown-preview.nvim", --> MarkdownPreview to toggle
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end, --> Binary installation for markdown-preview
-		ft = { "markdown" },
-	},
 	{
 		"lervag/vimtex", --> LaTeX integration
 		config = function()
