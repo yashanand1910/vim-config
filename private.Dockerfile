@@ -77,6 +77,7 @@ rm ~/.oh-my-zsh/custom/example.zsh
 EOT
 COPY code/dotfiles/themes/* .oh-my-zsh/themes/
 ENV TERM=xterm-256color
+ENV PROMPT_CTX="dev-private"
 
 # Setup tmux
 RUN <<EOT
@@ -179,5 +180,4 @@ EOT
 
 ADD --chown=${USER}:${USER} --chmod=755 code/dotfiles/entrypoint entrypoint
 
-ENV PROMPT_CTX="dev-private"
 ENTRYPOINT ["./entrypoint"]

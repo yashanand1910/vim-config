@@ -74,6 +74,7 @@ rm ~/.oh-my-zsh/custom/example.zsh
 EOT
 COPY themes/* .oh-my-zsh/themes/
 ENV TERM=xterm-256color
+ENV PROMPT_CTX="dev"
 
 # Setup tmux
 RUN <<EOT
@@ -157,5 +158,4 @@ ADD --chown=${USER}:${USER} --chmod=755 entrypoint entrypoint
 
 # TODO: add apt autoremove, purge etc
 
-ENV PROMPT_CTX="dev"
 ENTRYPOINT ["./entrypoint"]
