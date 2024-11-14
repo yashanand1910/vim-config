@@ -179,4 +179,5 @@ EOT
 
 ADD --chown=${USER}:${USER} --chmod=755 code/dotfiles/entrypoint entrypoint
 
+ENV PROMPT_CTX="dev-private"
 ENTRYPOINT ["./entrypoint"]

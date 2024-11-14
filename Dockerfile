@@ -157,4 +157,5 @@ ADD --chown=${USER}:${USER} --chmod=755 entrypoint entrypoint
 
 # TODO: add apt autoremove, purge etc
 
+ENV PROMPT_CTX="dev"
 ENTRYPOINT ["./entrypoint"]
