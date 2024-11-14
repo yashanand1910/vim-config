@@ -73,7 +73,7 @@ echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zs
 rm ~/.oh-my-zsh/custom/example.zsh
 EOT
 ENV TERM=xterm-256color
-ENV PROMPT_CTX="dev"
+ENV PROMPT_CTX="[dev] "
 
 # Setup tmux
 RUN <<EOT
