@@ -75,8 +75,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
 rm ~/.oh-my-zsh/custom/example.zsh
 EOT
+COPY themes/* .oh-my-zsh/custom/themes/
 ENV TERM=xterm-256color
-ENV PROMPT_CTX="[dev-private] "
 
 # Setup tmux
 RUN <<EOT
