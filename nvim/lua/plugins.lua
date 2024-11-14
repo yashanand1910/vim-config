@@ -19,6 +19,7 @@ local plugins = {
 	"rcarriga/nvim-notify", --> Pretty notifications
 	{
 		"folke/noice.nvim", --> Replaces UI for messages, cmdline, and popupmenu
+		enabled = true,
 		event = "VeryLazy",
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
