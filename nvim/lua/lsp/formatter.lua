@@ -19,7 +19,7 @@ formatter.setup({
 		cuda = { "clang_format" },
 		tex = { "latexindent" },
 		ocaml = { "ocamlformat" },
-		go = { "gofumpt" },
+		go = { "gofumpt", "golines" },
 		cmake = { "cmake_format" },
 		zsh = { "beautysh" },
 		sh = { "beautysh" },
