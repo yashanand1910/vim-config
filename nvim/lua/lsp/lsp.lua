@@ -37,6 +37,7 @@ local server_list = {
 	"lua_ls",
 	"jsonls",
 	"dockerls",
+	"yamlls",
 }
 
 -- nvim_cmp capabilities

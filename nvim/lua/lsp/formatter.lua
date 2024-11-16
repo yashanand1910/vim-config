@@ -7,6 +7,7 @@ local formatter = require("conform")
 formatter.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		yaml = { "prettier" },
 		json = { "prettier" },
 		jsonc = { "prettier" },
 		html = { "prettier" },
