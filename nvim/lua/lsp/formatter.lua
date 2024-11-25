@@ -25,5 +25,8 @@ formatter.setup({
 		zsh = { "beautysh" },
 		sh = { "beautysh" },
 		bash = { "beautysh" },
+		markdown = { "prettier", "cbfmt" },
+    css = { "prettier" },
+    scss = { "prettier" },
 	},
 })

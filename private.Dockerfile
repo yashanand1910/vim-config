@@ -135,6 +135,7 @@ set -eux
 wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz
+sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 rm go1.22.5.linux-amd64.tar.gz
 EOT
 
