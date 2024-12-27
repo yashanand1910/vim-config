@@ -75,7 +75,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
 rm ~/.oh-my-zsh/custom/example.zsh
 EOT
-COPY code/dotfiles/themes/* .oh-my-zsh/themes/
 ENV TERM=xterm-256color
 ENV PROMPT_CTX="dev-private"
 
@@ -168,15 +167,13 @@ mkdir code
 cd code
 git clone git@github.com:yashanand1910/dotfiles.git
 cd -
-mkdir -p .config
-chown -R ${USER}:${USER} .config
-ln -sf /home/${USER}/code/dotfiles/nvim .config/nvim
+ln -sf /home/${USER}/code/dotfiles/.config .config
 ln -sf /home/${USER}/code/dotfiles/.gitconfig .gitconfig
 ln -sf /home/${USER}/code/dotfiles/.gitignore .gitignore
 ln -sf /home/${USER}/code/dotfiles/.vimrc .vimrc
 ln -sf /home/${USER}/code/dotfiles/.zshrc .zshrc
 ln -sf /home/${USER}/code/dotfiles/.tmux.conf .tmux.conf
-ln -sf /home/${USER}/code/dotfiles/zsh/* .oh-my-zsh/custom/
+ln -sf /home/${USER}/code/dotfiles/.oh-my-zsh/* .oh-my-zsh/custom/
 EOT
 
 ADD --chown=${USER}:${USER} --chmod=755 code/dotfiles/entrypoint entrypoint

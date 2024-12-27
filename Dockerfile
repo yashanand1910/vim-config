@@ -72,7 +72,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
 rm ~/.oh-my-zsh/custom/example.zsh
 EOT
-COPY themes/* .oh-my-zsh/themes/
 ENV TERM=xterm-256color
 ENV PROMPT_CTX="dev"
 
@@ -145,15 +144,13 @@ sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scri
 EOT
 
 # Setup dotfiles
-RUN mkdir -p .config
-RUN chown -R ${USER}:${USER} .config
-ADD --chown=${USER}:${USER} nvim .config/nvim
+ADD --chown=${USER}:${USER} .config .config
 ADD --chown=${USER}:${USER} .gitconfig .gitconfig
 ADD --chown=${USER}:${USER} .gitignore .gitignore
 ADD --chown=${USER}:${USER} .vimrc .vimrc
 ADD --chown=${USER}:${USER} .zshrc .zshrc
 ADD --chown=${USER}:${USER} .tmux.conf .tmux.conf
-ADD --chown=${USER}:${USER} zsh/* .oh-my-zsh/custom/
+ADD --chown=${USER}:${USER} .oh-my-zsh/* .oh-my-zsh/custom
 
 ADD --chown=${USER}:${USER} --chmod=755 entrypoint entrypoint
 
