@@ -1,4 +1,7 @@
-# exa
+# sudo
+alias sudo="sudo -E"
+
+# ls
 alias ls="ls --group-directories-first --color=auto -h"
 alias la="ll -a"
 
@@ -17,12 +20,10 @@ alias e="sudo emerge"
 alias eq="sudo equery"
 alias uc="sudo dispatch-conf"
 alias eix="sudo eix"
+alias es="sudo eselect"
 
 # less
 alias less="less -i --use-color"
 
 # kernel
 alias kconfig='cat /proc/config.gz | gunzip | less'
-
-# sudo
-alias sudo="sudo -E"
