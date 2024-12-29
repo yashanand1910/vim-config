@@ -213,6 +213,7 @@ local plugins = {
 	},
 	{
 		"folke/which-key.nvim", --> Keybindings helper
+		dependencies = "echasnovski/mini.nvim",
 		event = "VeryLazy",
 		config = true,
 	},

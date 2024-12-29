@@ -20,7 +20,7 @@ formatter.setup({
 		cuda = { "clang_format" },
 		tex = { "latexindent" },
 		ocaml = { "ocamlformat" },
-		go = { "gofumpt", "golines" },
+		go = { "gofumpt" },
 		cmake = { "cmake_format" },
 		zsh = { "beautysh", "shellcheck" },
 		sh = { "beautysh", "shellcheck" },
@@ -29,6 +29,6 @@ formatter.setup({
 		markdown = { "prettier", "cbfmt" },
 		css = { "prettier" },
 		scss = { "prettier" },
-    proto = { "buf" },
+		proto = { "buf" },
 	},
 })
