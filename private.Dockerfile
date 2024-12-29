@@ -73,7 +73,7 @@ git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.oh-my
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --no-update-rc
 echo "export PATH=\$PATH:/home/${USER}/.local/bin" >> ~/.oh-my-zsh/custom/env.zsh
-rm -r ~/.oh-my-zsh/custom/*
+rm -r ~/.oh-my-zsh/custom/themes
 EOT
 ENV TERM=xterm-256color
 ENV PROMPT_CTX="dev-private"

@@ -40,3 +40,20 @@ ln -s ~/Code/dotfiles/.vim/* ~/.vim
 ln -s ~/Code/dotfiles/.config/* ~/.config
 ln -s ~/Code/dotfiles/.oh-my-zsh/* ~/.oh-my-zsh/custom
 ...
+```
+
+#### Install oh-my-zsh
+
+```bash
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+#### Install vim-plug (if using vim)
+
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```   
+```bash
+:PlugInst
+```
