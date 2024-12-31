@@ -1,6 +1,9 @@
 # sudo
 alias sudo="sudo -E"
 
+# rm
+alias rm="rm -I -v"
+
 # ls
 alias ls="ls --group-directories-first --color=auto -h"
 alias la="ll -a"
@@ -27,3 +30,6 @@ alias less="less -i --use-color"
 
 # kernel
 alias kconfig='cat /proc/config.gz | gunzip | less'
+
+# lazydocker
+alias lazydocker="TERM=xterm lazydocker"
