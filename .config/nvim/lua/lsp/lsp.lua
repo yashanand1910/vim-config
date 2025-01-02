@@ -61,7 +61,7 @@ mason_lspconfig.setup_handlers({
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 		})
 	end,
-	-- Lua gets a special treatment
+	-- Lua gets special treatment
 	["lua_ls"] = function()
 		lspconfig.lua_ls.setup({
 			capabilities = cmp_capability,
