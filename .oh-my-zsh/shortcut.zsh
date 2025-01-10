@@ -17,6 +17,7 @@ alias svim=svi
 # python
 alias py=python
 alias python=python3
+alias pyenv="source ~/venv/bin/activate"
 
 # gentoo
 alias e="sudo emerge"
